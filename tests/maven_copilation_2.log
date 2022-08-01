@@ -1,0 +1,50 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for some.thing:project:jar:1.2.3
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-jar-plugin is missing. @ line 135, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] -------------------------< some.thing:project >--------------------------
+[INFO] Building Project 1.2.3
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ config ---
+[INFO] Deleting /tmp/project/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ config ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ config ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 53 source files to /tmp/project/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /tmp/project/src/main/java/some/thing/project/Main.java:[45,4] cannot find symbol
+  symbol:   class Overrid
+  location: class some.thing.project.Main
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.297 s
+[INFO] Finished at: 2022-07-31T17:02:30+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:compile (default-compile) on project config: Compilation failure
+[ERROR] /tmp/project/src/main/java/some/thing/project/Main.java:[45,4] cannot find symbol
+[ERROR]   symbol:   class Overrid
+[ERROR]   location: class some.thing.project.Main
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

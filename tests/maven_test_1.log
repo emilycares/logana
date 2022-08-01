@@ -1,0 +1,69 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for some.thing:project:jar:1.2.3
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-jar-plugin is missing. @ line 135, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] -------------------------< some.thing:project >--------------------------
+[INFO] Building Project 1.2.3
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ config ---
+[INFO] Deleting /tmp/project/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ config ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ config ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /tmp/project/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ config ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /tmp/project/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.0:test (default-test) @ config ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running some.thing.project.controller.SignAnalyzerTest
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.026 s <<< FAILURE! - in some.thing.project.controller.AnalyzerTest
+[ERROR] should_Test  Time elapsed: 0.021 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at some.thing.project.controller.AnalyzerTest.should_Test(AnalyzerTest.java:34)
+
+[ERROR] should_Testasd  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <2>
+	at some.thing.project.controller.AnalyzerTest.should_Testasd(AnalyzerTest.java:39)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   AnalyzerTest.should_Test:34 expected: <true> but was: <false>
+[ERROR]   AnalyzerTest.should_Testasd:39 expected: <1> but was: <2>
+[INFO] 
+[ERROR] Tests run: 0, Failures: 2, Errors: 3, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.478 s
+[INFO] Finished at: 2022-07-31T19:52:57+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.0:test (default-test) on project config: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /tmp/project/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date]-jvmRun[N].dump, [date].dumpstream and [date]-jvmRun[N].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
