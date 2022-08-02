@@ -198,9 +198,10 @@ enum MavenPhase {
 
 #[cfg(test)]
 mod tests {
-    use crate::types;
-
-    use super::{analyse, parse_test_location, MavenAnalyseReport, MavenMessage};
+    use crate::{
+        analyser::maven::{analyse, parse_test_location, MavenAnalyseReport, MavenMessage},
+        types,
+    };
 
     #[test]
     fn should_find_sytax_error() {
