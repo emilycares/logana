@@ -3,7 +3,7 @@ use std::fmt::Display;
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> KarmaJasmineAnalyseReport {
-    let mut test_failures: Vec<KarmaJasmineMessage> = vec![];
+    let mut test_failures: Vec<types::Message> = vec![];
     let lines: Vec<&str> = log.lines().collect();
 
     for i in 0..lines.len() {
@@ -24,7 +24,7 @@ pub fn analyse(log: &str, project_dir: &str) -> KarmaJasmineAnalyseReport {
                                 if let Some(location) =
                                     parse_test_location(line_trimed, project_dir)
                                 {
-                                    test_failures.push(KarmaJasmineMessage {
+                                    test_failures.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
                                     })
@@ -43,7 +43,6 @@ pub fn analyse(log: &str, project_dir: &str) -> KarmaJasmineAnalyseReport {
 fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Location> {
     if let Some((_, location)) = location.split_once('(') {
         if let Some((path, row_col)) = location.split_once(':') {
-            //let path = &path[.. path.len() - 1];
             let path = format!("{}/{}", project_dir, path);
 
             let row_col = &row_col[..row_col.len() - 1];
@@ -60,7 +59,7 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
 
 #[derive(Debug, PartialEq)]
 pub struct KarmaJasmineAnalyseReport {
-    pub test_failures: Vec<KarmaJasmineMessage>,
+    pub test_failures: Vec<types::Message>,
 }
 
 impl KarmaJasmineAnalyseReport {
@@ -72,8 +71,12 @@ impl KarmaJasmineAnalyseReport {
 }
 
 impl Display for KarmaJasmineAnalyseReport {
-    fn fmt(&self, _f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        todo!()
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.test_failures
+            .iter()
+            .fold(Ok(()), |result, message| {
+                result.and_then(|_| writeln!(f, "{}", message))
+            })
     }
 }
 
@@ -83,22 +86,11 @@ impl Default for KarmaJasmineAnalyseReport {
     }
 }
 
-#[derive(Debug, PartialEq)]
-pub struct KarmaJasmineMessage {
-    pub error: String,
-    pub locations: Vec<types::Location>,
-}
-
-impl Display for KarmaJasmineMessage {
-    fn fmt(&self, _f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        todo!()
-    }
-}
 
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::karma_jasmine::{analyse, KarmaJasmineAnalyseReport, KarmaJasmineMessage},
+        analyser::karma_jasmine::{analyse, KarmaJasmineAnalyseReport},
         types,
     };
 
@@ -110,14 +102,25 @@ mod tests {
         assert_eq!(
             result,
             KarmaJasmineAnalyseReport {
-                test_failures: vec![KarmaJasmineMessage {
-                    error: "Expected true to be false.".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/app/app.component.spec.ts".to_string(),
-                        row: 35,
-                        col: 18
-                    }]
-                }],
+                test_failures: vec![
+                    types::Message {
+                        error: "Expected true to be false.".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/app/app.component.spec.ts".to_string(),
+                            row: 35,
+                            col: 18
+                        }]
+                    },
+                    types::Message {
+                        error: "Expected OtherServiceService({  }) to be false.".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/app/components/other-service.service.spec.ts"
+                                .to_string(),
+                            row: 14,
+                            col: 21
+                        }]
+                    }
+                ],
             }
         )
     }

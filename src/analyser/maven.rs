@@ -3,8 +3,8 @@ use std::fmt::Display;
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
-    let mut copiler_errors: Vec<MavenMessage> = vec![];
-    let mut test_failures: Vec<MavenMessage> = vec![];
+    let mut copiler_errors: Vec<types::Message> = vec![];
+    let mut test_failures: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 
     let lines: Vec<&str> = log.lines().collect();
@@ -43,7 +43,7 @@ pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
                                     }
                                     let line = &line[4..];
                                     if let Some(location) = parse_test_location(line, project_dir) {
-                                        test_failures.push(MavenMessage {
+                                        test_failures.push(types::Message {
                                             error: error.to_string(),
                                             locations: vec![location],
                                         })
@@ -64,14 +64,14 @@ pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
     }
 }
 
-fn parse_copilation_error(error: &str) -> Option<MavenMessage> {
+fn parse_copilation_error(error: &str) -> Option<types::Message> {
     // remove "[ERROR] "
     let error = &error[8..];
 
     if let Some((location, _)) = error.split_once(' ') {
         if let Some(location) = parse_coppilation_location(location) {
             if let Some((_, error)) = error.split_once("] ") {
-                return Some(MavenMessage {
+                return Some(types::Message {
                     error: error.to_string(),
                     locations: vec![location],
                 });
@@ -142,8 +142,8 @@ fn parse_row_from_test_location(location: &str) -> Option<usize> {
 
 #[derive(Debug, PartialEq)]
 pub struct MavenAnalyseReport {
-    pub copiler_errors: Vec<MavenMessage>,
-    pub test_failures: Vec<MavenMessage>,
+    pub copiler_errors: Vec<types::Message>,
+    pub test_failures: Vec<types::Message>,
 }
 
 impl MavenAnalyseReport {
@@ -173,22 +173,6 @@ impl Default for MavenAnalyseReport {
     }
 }
 
-#[derive(Debug, PartialEq)]
-pub struct MavenMessage {
-    pub error: String,
-    pub locations: Vec<types::Location>,
-}
-
-impl Display for MavenMessage {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        if let Some(location) = self.locations.first() {
-            write!(f, "{}|{}", location, self.error)
-        } else {
-            write!(f, "")
-        }
-    }
-}
-
 enum MavenPhase {
     Scanning,
     Building,
@@ -199,7 +183,7 @@ enum MavenPhase {
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::maven::{analyse, parse_test_location, MavenAnalyseReport, MavenMessage},
+        analyser::maven::{analyse, parse_test_location, MavenAnalyseReport},
         types,
     };
 
@@ -211,7 +195,7 @@ mod tests {
         assert_eq!(
             result,
             MavenAnalyseReport {
-                copiler_errors: vec![MavenMessage {
+                copiler_errors: vec![types::Message {
                     error: "';' expected".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
@@ -232,7 +216,7 @@ mod tests {
         assert_eq!(
             result,
             MavenAnalyseReport {
-                copiler_errors: vec![MavenMessage {
+                copiler_errors: vec![types::Message {
                     error: "cannot find symbol".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
@@ -255,7 +239,7 @@ mod tests {
             MavenAnalyseReport {
                 copiler_errors: vec![],
                 test_failures: vec![
-                    MavenMessage {
+                    types::Message {
                         error: "expected: <true> but was: <false>".to_string(),
                         locations: vec![
                             types::Location {
@@ -265,7 +249,7 @@ mod tests {
                             }
                         ]
                     },
-                    MavenMessage {
+                    types::Message {
                         error: "expected: <1> but was: <2>".to_string(),
                         locations: vec![
                             types::Location {

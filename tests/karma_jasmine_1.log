@@ -2,12 +2,12 @@
 > angular-test@0.0.0 test-ci
 > ng test --watch false
 
-02 08 2022 08:53:02.575:INFO [karma-server]: Karma v6.4.0 server started at http://localhost:9876/
-02 08 2022 08:53:02.577:INFO [launcher]: Launching browsers Chrome with concurrency unlimited
-02 08 2022 08:53:02.579:INFO [launcher]: Starting browser Chrome
-02 08 2022 08:53:02.995:INFO [Chrome 103.0.5060.134 (Linux x86_64)]: Connected on socket SPVOlp4JT6jyhoPsAAAB with id 13185451
-Chrome 103.0.5060.134 (Linux x86_64): Executed 0 of 4[32m SUCCESS[39m (0 secs / 0 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 1 of 4[32m SUCCESS[39m (0 secs / 0.084 secs)
+06 08 2022 10:19:33.819:INFO [karma-server]: Karma v6.4.0 server started at http://localhost:9876/
+06 08 2022 10:19:33.821:INFO [launcher]: Launching browsers Chrome with concurrency unlimited
+06 08 2022 10:19:33.824:INFO [launcher]: Starting browser Chrome
+06 08 2022 10:19:35.189:INFO [Chrome 103.0.5060.134 (Linux x86_64)]: Connected on socket xGTF-4oA0VpUHL8TAAAB with id 90369693
+Chrome 103.0.5060.134 (Linux x86_64): Executed 0 of 5[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 1 of 5[32m SUCCESS[39m (0 secs / 0.088 secs)
 [1A[2K[31mChrome 103.0.5060.134 (Linux x86_64) AppComponent shoudl fail FAILED[39m
 	Expected true to be false.
 	    at <Jasmine>
@@ -25,8 +25,23 @@ Chrome 103.0.5060.134 (Linux x86_64): Executed 0 of 4[32m SUCCESS[39m (0 secs 
 	    at _ZoneDelegate.invokeTask (node_modules/zone.js/fesm2015/zone.js:406:31)
 	    at Zone.runTask (node_modules/zone.js/fesm2015/zone.js:178:47)
 	    at drainMicroTaskQueue (node_modules/zone.js/fesm2015/zone.js:585:35)
-Chrome 103.0.5060.134 (Linux x86_64): Executed 2 of 4[31m (1 FAILED)[39m (0 secs / 0.086 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 3 of 4[31m (1 FAILED)[39m (0 secs / 0.099 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 4 of 4[31m (1 FAILED)[39m (0 secs / 0.108 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 4 of 4[31m (1 FAILED)[39m (0.142 secs / 0.108 secs)
-[31mTOTAL: 1 FAILED, 3 SUCCESS[39m
+Chrome 103.0.5060.134 (Linux x86_64): Executed 2 of 5[31m (1 FAILED)[39m (0 secs / 0.091 secs)
+[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 3 of 5[31m (1 FAILED)[39m (0 secs / 0.103 secs)
+[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 4 of 5[31m (1 FAILED)[39m (0 secs / 0.111 secs)
+[1A[2K[31mChrome 103.0.5060.134 (Linux x86_64) OtherServiceService should be created FAILED[39m
+	Expected OtherServiceService({  }) to be false.
+	    at <Jasmine>
+	    at UserContext.apply (src/app/components/other-service.service.spec.ts:14:21)
+	    at _ZoneDelegate.invoke (node_modules/zone.js/fesm2015/zone.js:372:26)
+	    at ProxyZoneSpec.onInvoke (node_modules/zone.js/fesm2015/zone-testing.js:287:39)
+	    at _ZoneDelegate.invoke (node_modules/zone.js/fesm2015/zone.js:371:52)
+	    at Zone.run (node_modules/zone.js/fesm2015/zone.js:134:43)
+	    at runInTestZone (node_modules/zone.js/fesm2015/zone-testing.js:582:34)
+	    at UserContext.<anonymous> (node_modules/zone.js/fesm2015/zone-testing.js:597:20)
+	    at <Jasmine>
+	    at _ZoneDelegate.invokeTask (node_modules/zone.js/fesm2015/zone.js:406:31)
+	    at Zone.runTask (node_modules/zone.js/fesm2015/zone.js:178:47)
+	    at drainMicroTaskQueue (node_modules/zone.js/fesm2015/zone.js:585:35)
+Chrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0 secs / 0.116 secs)
+[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0.153 secs / 0.116 secs)
+[31mTOTAL: 2 FAILED, 3 SUCCESS[39m
