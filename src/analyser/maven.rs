@@ -32,7 +32,9 @@ pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
                     }
                 }
                 MavenPhase::Testing => {
-                    if line.starts_with("org.opentest4j.AssertionFailedError") {
+                    if line.starts_with("org.opentest4j.AssertionFailedError")
+                        || line.starts_with("java.lang.AssertionError")
+                    {
                         if let Some((_, error)) = line.split_once(':') {
                             let error = &error[1..];
                             for y in 1.. {

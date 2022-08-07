@@ -8,11 +8,11 @@ use std::{
 pub mod analyser;
 pub mod types;
 
-/// Simple program to greet a person
+/// A build log analysis tool 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
-    /// Name of the person to greet
+    /// The type of log input "Maven" or "KarmaJasmine"
     #[clap(short, long)]
     parser: ParserKind,
 }
@@ -28,9 +28,9 @@ impl FromStr for ParserKind {
     type Err = ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
-            "Maven" => Ok(Self::Maven),
-            "KarmaJasmine" => Ok(Self::KarmaJasmine),
+        match s.to_ascii_lowercase().as_str() {
+            "maven" => Ok(Self::Maven),
+            "karmajasmine" => Ok(Self::KarmaJasmine),
             _ => Ok(Self::Unknown),
         }
     }
