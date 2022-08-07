@@ -1,8 +1,6 @@
-use std::fmt::Display;
-
 use crate::types;
 
-pub fn analyse(log: &str, project_dir: &str) -> KarmaJasmineAnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut test_failures: Vec<types::Message> = vec![];
     let lines: Vec<&str> = log.lines().collect();
 
@@ -37,7 +35,10 @@ pub fn analyse(log: &str, project_dir: &str) -> KarmaJasmineAnalyseReport {
         }
     }
 
-    KarmaJasmineAnalyseReport { test_failures }
+    types::AnalyseReport {
+        copiler_errors: vec![],
+        test_failures,
+    }
 }
 
 fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Location> {
@@ -57,42 +58,9 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
     None
 }
 
-#[derive(Debug, PartialEq)]
-pub struct KarmaJasmineAnalyseReport {
-    pub test_failures: Vec<types::Message>,
-}
-
-impl KarmaJasmineAnalyseReport {
-    pub fn new() -> Self {
-        Self {
-            test_failures: vec![],
-        }
-    }
-}
-
-impl Display for KarmaJasmineAnalyseReport {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        self.test_failures
-            .iter()
-            .fold(Ok(()), |result, message| {
-                result.and_then(|_| writeln!(f, "{}", message))
-            })
-    }
-}
-
-impl Default for KarmaJasmineAnalyseReport {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-
 #[cfg(test)]
 mod tests {
-    use crate::{
-        analyser::karma_jasmine::{analyse, KarmaJasmineAnalyseReport},
-        types,
-    };
+    use crate::{analyser::karma_jasmine::analyse, types};
 
     #[test]
     fn should_find_sytax_error() {
@@ -101,7 +69,8 @@ mod tests {
 
         assert_eq!(
             result,
-            KarmaJasmineAnalyseReport {
+            types::AnalyseReport {
+                copiler_errors: vec![],
                 test_failures: vec![
                     types::Message {
                         error: "Expected true to be false.".to_string(),

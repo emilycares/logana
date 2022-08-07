@@ -44,21 +44,24 @@ fn main() {
         Ok(_log) => {
             if let Ok(dir) = std::env::current_dir() {
                 if let Some(dir) = dir.to_str() {
-                    match args.parser {
+                    let report = match args.parser {
                         ParserKind::Maven => {
-                            let report = analyser::maven::analyse(&buffer, dir);
-
-                            println!("{}", report);
+                            analyser::maven::analyse(&buffer, dir)
                         }
                         ParserKind::KarmaJasmine => {
-                            let report = analyser::karma_jasmine::analyse(&buffer, dir);
-
-                            println!("{}", report);
+                            analyser::karma_jasmine::analyse(&buffer, dir)
                         }
                         ParserKind::Unknown => {
                             println!("Unknown parser the valid options are \"Maven\" and \"KarmaJasmine\"");
+
+                            types::AnalyseReport {
+                                copiler_errors: vec![],
+                                test_failures: vec![]
+                            }
                         }
-                    }
+                    };
+
+                    println!("{}", report);
                 }
             }
         }

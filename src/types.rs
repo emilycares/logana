@@ -28,3 +28,37 @@ impl Display for Message {
         }
     }
 }
+
+#[derive(Debug, PartialEq)]
+pub struct AnalyseReport {
+    pub copiler_errors: Vec<Message>,
+    pub test_failures: Vec<Message>,
+}
+
+impl AnalyseReport {
+    pub fn new() -> Self {
+        Self {
+            copiler_errors: vec![],
+            test_failures: vec![],
+        }
+    }
+}
+
+impl Display for AnalyseReport {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let test_failures = self.test_failures.iter();
+        self.copiler_errors
+            .iter()
+            .chain(test_failures)
+            .fold(Ok(()), |result, message| {
+                result.and_then(|_| writeln!(f, "{}", message))
+            })
+    }
+}
+
+impl Default for AnalyseReport {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+

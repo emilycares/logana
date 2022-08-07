@@ -1,8 +1,6 @@
-use std::fmt::Display;
-
 use crate::types;
 
-pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut copiler_errors: Vec<types::Message> = vec![];
     let mut test_failures: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
@@ -60,7 +58,7 @@ pub fn analyse(log: &str, project_dir: &str) -> MavenAnalyseReport {
         }
     }
 
-    MavenAnalyseReport {
+    types::AnalyseReport {
         copiler_errors,
         test_failures,
     }
@@ -142,39 +140,6 @@ fn parse_row_from_test_location(location: &str) -> Option<usize> {
     None
 }
 
-#[derive(Debug, PartialEq)]
-pub struct MavenAnalyseReport {
-    pub copiler_errors: Vec<types::Message>,
-    pub test_failures: Vec<types::Message>,
-}
-
-impl MavenAnalyseReport {
-    pub fn new() -> Self {
-        Self {
-            copiler_errors: vec![],
-            test_failures: vec![],
-        }
-    }
-}
-
-impl Display for MavenAnalyseReport {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let test_failures = self.test_failures.iter();
-        self.copiler_errors
-            .iter()
-            .chain(test_failures)
-            .fold(Ok(()), |result, message| {
-                result.and_then(|_| writeln!(f, "{}", message))
-            })
-    }
-}
-
-impl Default for MavenAnalyseReport {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 enum MavenPhase {
     Scanning,
     Building,
@@ -185,7 +150,7 @@ enum MavenPhase {
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::maven::{analyse, parse_test_location, MavenAnalyseReport},
+        analyser::maven::{analyse, parse_test_location},
         types,
     };
 
@@ -196,7 +161,7 @@ mod tests {
 
         assert_eq!(
             result,
-            MavenAnalyseReport {
+            types::AnalyseReport {
                 copiler_errors: vec![types::Message {
                     error: "';' expected".to_string(),
                     locations: vec![types::Location {
@@ -217,7 +182,7 @@ mod tests {
 
         assert_eq!(
             result,
-            MavenAnalyseReport {
+            types::AnalyseReport {
                 copiler_errors: vec![types::Message {
                     error: "cannot find symbol".to_string(),
                     locations: vec![types::Location {
@@ -238,7 +203,7 @@ mod tests {
 
         assert_eq!(
             result,
-            MavenAnalyseReport {
+            types::AnalyseReport {
                 copiler_errors: vec![],
                 test_failures: vec![
                     types::Message {
