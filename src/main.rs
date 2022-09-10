@@ -7,12 +7,13 @@ use std::{
 
 pub mod analyser;
 pub mod types;
+pub mod loader;
 
 /// A build log analysis tool 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
-    /// The type of log input "Maven" or "KarmaJasmine"
+    /// The type of log input "Maven" or "KarmaJasmine" or "Cargo"
     #[clap(short, long)]
     parser: ParserKind,
 }
@@ -21,6 +22,7 @@ struct Args {
 enum ParserKind {
     Maven,
     KarmaJasmine,
+    Cargo,
     Unknown,
 }
 
@@ -31,6 +33,7 @@ impl FromStr for ParserKind {
         match s.to_ascii_lowercase().as_str() {
             "maven" => Ok(Self::Maven),
             "karmajasmine" => Ok(Self::KarmaJasmine),
+            "cargo" => Ok(Self::Cargo),
             _ => Ok(Self::Unknown),
         }
     }
@@ -51,11 +54,14 @@ fn main() {
                         ParserKind::KarmaJasmine => {
                             analyser::karma_jasmine::analyse(&buffer, dir)
                         }
+                        ParserKind::Cargo => {
+                            analyser::cargo::analyse(&buffer, dir)
+                        }
                         ParserKind::Unknown => {
                             println!("Unknown parser the valid options are \"Maven\" and \"KarmaJasmine\"");
 
                             types::AnalyseReport {
-                                copiler_errors: vec![],
+                                compiler_errors: vec![],
                                 test_failures: vec![]
                             }
                         }

@@ -36,7 +36,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        copiler_errors: vec![],
+        compiler_errors: vec![],
         test_failures,
     }
 }
@@ -70,7 +70,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                copiler_errors: vec![],
+                compiler_errors: vec![],
                 test_failures: vec![
                     types::Message {
                         error: "Expected true to be false.".to_string(),

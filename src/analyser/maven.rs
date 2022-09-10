@@ -59,7 +59,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        copiler_errors,
+        compiler_errors: copiler_errors,
         test_failures,
     }
 }
@@ -162,7 +162,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                copiler_errors: vec![types::Message {
+                compiler_errors: vec![types::Message {
                     error: "';' expected".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
@@ -183,7 +183,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                copiler_errors: vec![types::Message {
+                compiler_errors: vec![types::Message {
                     error: "cannot find symbol".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
@@ -204,7 +204,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                copiler_errors: vec![],
+                compiler_errors: vec![],
                 test_failures: vec![
                     types::Message {
                         error: "expected: <true> but was: <false>".to_string(),

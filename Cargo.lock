@@ -106,6 +106,7 @@ name = "logana"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "tmux_interface",
 ]
 
 [[package]]
@@ -193,6 +194,12 @@ name = "textwrap"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b1141d4d61095b28419e22cb0bbf02755f5e54e0526f97f1e3d1d160e60885fb"
+
+[[package]]
+name = "tmux_interface"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "994f52fd871ec97d0c84c28fcaa717d63636ca1459c4dafb17a97114f3687ab0"
 
 [[package]]
 name = "unicode-ident"
