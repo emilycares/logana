@@ -1,2 +1,2 @@
-mod fetch;
-mod split;
+pub mod fetch;
+pub mod split;
