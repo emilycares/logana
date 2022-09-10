@@ -7,7 +7,7 @@ pub fn get_tmux_pane_content(target: &str) -> Option<String> {
     match tmux
         .capture_pane()
         .stdout()
-        //.escape_sequences()
+        //.escape_sequences() // shell colors
         .start_line("-")
         .join()
         .target_pane(target)
