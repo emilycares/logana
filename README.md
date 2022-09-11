@@ -4,6 +4,7 @@ A build log analysis tool so that your PDE (Personal Development Environment) ca
 Currently, it only supports 
 - Maven
 - KarmaJasmine
+- Cargo
 
 with plans for more.
 

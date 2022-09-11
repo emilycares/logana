@@ -1,0 +1,73 @@
+warning: unused variable: `i`
+ --> src/loader/split.rs:9:19
+  |
+9 |         .filter(|(i, line)| line.starts_with(&split_symbol))
+  |                   ^ help: if this is intentional, prefix it with an underscore: `_i`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `last`
+ --> src/loader/split.rs:4:9
+  |
+4 |     let last = lines.len();
+  |         ^^^^ help: if this is intentional, prefix it with an underscore: `_last`
+
+warning: unused variable: `split_lines`
+ --> src/loader/split.rs:6:9
+  |
+6 |     let split_lines: Vec<usize> = lines
+  |         ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_split_lines`
+
+warning: variable does not need to be mutable
+ --> src/loader/split.rs:2:9
+  |
+2 |     let mut out = vec![];
+  |         ----^^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` on by default
+
+warning: function `get_pane_content` is never used
+ --> src/loader/fetch.rs:4:8
+  |
+4 | pub fn get_pane_content(target: &str) -> Option<String> {
+  |        ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: function `split_builds` is never used
+ --> src/loader/split.rs:1:8
+  |
+1 | pub fn split_builds<'a>(log: &'a str, split_symbol: &str) -> Vec<&'a str> {
+  |        ^^^^^^^^^^^^
+
+warning: single-character string constant used as pattern
+  --> src/analyser/cargo.rs:43:43
+   |
+43 |     let parts: Vec<&str> = location.split(":").collect();
+   |                                           ^^^ help: try using a `char` instead: `':'`
+   |
+   = note: `#[warn(clippy::single_char_pattern)]` on by default
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#single_char_pattern
+
+warning: accessing first element with `parts.get(0)`
+  --> src/analyser/cargo.rs:45:25
+   |
+45 |     if let Some(path) = parts.get(0) {
+   |                         ^^^^^^^^^^^^ help: try: `parts.first()`
+   |
+   = note: `#[warn(clippy::get_first)]` on by default
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#get_first
+
+warning: you are deriving `PartialEq` and can implement `Eq`
+ --> src/types.rs:3:17
+  |
+3 | #[derive(Debug, PartialEq)]
+  |                 ^^^^^^^^^ help: consider deriving `Eq` as well: `PartialEq, Eq`
+  |
+  = note: `#[warn(clippy::derive_partial_eq_without_eq)]` on by default
+  = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#derive_partial_eq_without_eq
+
+warning: `logana` (bin "logana") generated 9 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
