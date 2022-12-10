@@ -1,7 +1,7 @@
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut copiler_errors: Vec<types::Message> = vec![];
+    let mut compiler_errors: Vec<types::Message> = vec![];
     let mut test_failures: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 
@@ -22,10 +22,10 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
             match phase {
                 MavenPhase::Scanning => {}
                 MavenPhase::Building => {
-                    let begining = format!("[ERROR] {}", project_dir);
-                    if line.starts_with(&begining) {
+                    let beginning = format!("[ERROR] {}", project_dir);
+                    if line.starts_with(&beginning) {
                         if let Some(message) = parse_copilation_error(line) {
-                            copiler_errors.push(message);
+                            compiler_errors.push(message);
                         }
                     }
                 }
@@ -59,7 +59,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        compiler_errors: copiler_errors,
+        compiler_errors,
         test_failures,
     }
 }
@@ -155,7 +155,7 @@ mod tests {
     };
 
     #[test]
-    fn should_find_sytax_error() {
+    fn should_find_syntax_error() {
         static LOG: &'static str = include_str!("../../tests/maven_copilation_1.log");
         let result = analyse(LOG, "/tmp/project");
 

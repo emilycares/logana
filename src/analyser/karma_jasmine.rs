@@ -13,14 +13,14 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     for y in 2.. {
                         let i = i + y;
                         if let Some(line) = lines.get(i) {
-                            let line_trimed = line.trim();
-                            if !line_trimed.starts_with("at ") {
+                            let line_trimmed = line.trim();
+                            if !line_trimmed.starts_with("at ") {
                                 break;
                             }
 
-                            if line_trimed.contains("(src/app") {
+                            if line_trimmed.contains("(src/app") {
                                 if let Some(location) =
-                                    parse_test_location(line_trimed, project_dir)
+                                    parse_test_location(line_trimmed, project_dir)
                                 {
                                     test_failures.push(types::Message {
                                         error: error.to_string(),
@@ -63,7 +63,7 @@ mod tests {
     use crate::{analyser::karma_jasmine::analyse, types};
 
     #[test]
-    fn should_find_sytax_error() {
+    fn should_find_syntax_error() {
         static LOG: &'static str = include_str!("../../tests/karma_jasmine_1.log");
         let result = analyse(LOG, "/tmp/project");
 
