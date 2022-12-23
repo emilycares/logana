@@ -37,9 +37,9 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
-    let parts: Vec<&str> = location.split(":").collect();
+    let parts: Vec<&str> = location.split(':').collect();
 
-    if let Some(path) = parts.get(0) {
+    if let Some(path) = parts.first() {
         let path = path.to_string();
         if let Some(row) = parts.get(1) {
             if let Ok(row) = row.parse::<usize>() {
