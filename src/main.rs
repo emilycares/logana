@@ -2,9 +2,11 @@ use std::io::{self, Read};
 
 use clap::Parser;
 use config::{Args, InputKind, ParserKind};
+use loader::command;
 
 pub mod analyser;
-mod config;
+pub mod config;
+pub mod file;
 pub mod loader;
 pub mod types;
 
@@ -17,26 +19,29 @@ fn main() {
             Ok(_log) => {
                 let report = analyse(&args.parser, &buffer);
 
-                println!("{}", report);
+                file::save_analyse(report);
             }
             Err(_) => println!("Unable to read user input."),
         },
+        InputKind::Command => {
+            if let Ok(lines) = command::run_command_and_collect(args.command) {
+                let report = analyse(&args.parser, &lines);
+                file::save_analyse(report);
+            }
+        }
         InputKind::Tmux => {
             if let Some(content) = loader::fetch::get_tmux_pane_content(args.target.as_str()) {
                 let parser = args.parser;
-                if let Some(report) =
-                    loader::split::split_builds(content.as_str(), &args.splitby)
-                        .iter()
-                        .map(|build| analyse(&parser, build))
-                        // filter out empty reports
-                        .filter(|analyse| {
-                            !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
-                        })
-                        .last()
+                if let Some(report) = loader::split::split_builds(content.as_str(), &args.splitby)
+                    .iter()
+                    .map(|build| analyse(&parser, build))
+                    // filter out empty reports
+                    .filter(|analyse| {
+                        !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
+                    })
+                    .last()
                 {
-                    //let report = analyse(args.parser, build);
-
-                    println!("{}", report)
+                    file::save_analyse(report);
                 }
             }
         }

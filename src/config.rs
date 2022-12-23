@@ -12,6 +12,10 @@ pub struct Args {
     #[clap(short, long, value_enum, default_missing_value = "stdin")]
     pub input: InputKind,
 
+    /// The command to execute
+    #[clap(short, long, default_value = "", required_if_eq("input", "command"))]
+    pub command: String,
+
     /// The tmux pane
     #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
     pub target: String,
@@ -33,5 +37,6 @@ pub enum ParserKind {
 pub enum InputKind {
     #[default]
     Stdin,
-    Tmux
+    Tmux,
+    Command
 }
