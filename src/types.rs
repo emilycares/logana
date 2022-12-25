@@ -31,25 +31,21 @@ impl Display for Message {
 
 #[derive(Debug, PartialEq)]
 pub struct AnalyseReport {
-    pub compiler_errors: Vec<Message>,
-    pub test_failures: Vec<Message>,
+    pub errors: Vec<Message>,
 }
 
 impl AnalyseReport {
     pub fn new() -> Self {
         Self {
-            compiler_errors: vec![],
-            test_failures: vec![],
+            errors: vec![],
         }
     }
 }
 
 impl Display for AnalyseReport {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let test_failures = self.test_failures.iter();
-        self.compiler_errors
+        self.errors
             .iter()
-            .chain(test_failures)
             .fold(Ok(()), |result, message| {
                 result.and_then(|_| writeln!(f, "{}", message))
             })

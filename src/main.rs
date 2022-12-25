@@ -37,7 +37,7 @@ fn main() {
                     .map(|build| analyse(&parser, build))
                     // filter out empty reports
                     .filter(|analyse| {
-                        !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
+                        !analyse.errors.is_empty()
                     })
                     .last()
                 {
@@ -55,6 +55,7 @@ fn analyse(parser: &ParserKind, input: &String) -> types::AnalyseReport {
                 ParserKind::Maven => analyser::maven::analyse(input, dir),
                 ParserKind::KarmaJasmine => analyser::karma_jasmine::analyse(input, dir),
                 ParserKind::Cargo => analyser::cargo::analyse(input, dir),
+                ParserKind::Java => analyser::java::analyse(input, dir),
                 ParserKind::Unknown => {
                     println!("Unknown parser the valid options are \"Cargo\", \"Maven\" and \"KarmaJasmine\"");
 

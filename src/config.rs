@@ -30,6 +30,7 @@ pub enum ParserKind {
     Maven,
     KarmaJasmine,
     Cargo,
+    Java,
     Unknown,
 }
 

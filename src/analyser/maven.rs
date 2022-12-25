@@ -1,8 +1,7 @@
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut compiler_errors: Vec<types::Message> = vec![];
-    let mut test_failures: Vec<types::Message> = vec![];
+    let mut errors: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 
     let lines: Vec<&str> = log.lines().collect();
@@ -25,7 +24,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     let beginning = format!("[ERROR] {}", project_dir);
                     if line.starts_with(&beginning) {
                         if let Some(message) = parse_copilation_error(line) {
-                            compiler_errors.push(message);
+                            errors.push(message);
                         }
                     }
                 }
@@ -43,7 +42,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                                     }
                                     let line = &line[4..];
                                     if let Some(location) = parse_test_location(line, project_dir) {
-                                        test_failures.push(types::Message {
+                                        errors.push(types::Message {
                                             error: error.to_string(),
                                             locations: vec![location],
                                         })
@@ -59,8 +58,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        compiler_errors,
-        test_failures,
+        errors
     }
 }
 
@@ -162,15 +160,14 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![types::Message {
+                errors: vec![types::Message {
                     error: "';' expected".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
                         row: 18,
                         col: 54
                     }]
-                }],
-                test_failures: vec![]
+                }]
             }
         )
     }
@@ -183,15 +180,14 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![types::Message {
+                errors: vec![types::Message {
                     error: "cannot find symbol".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
                         row: 45,
                         col: 4
                     }]
-                }],
-                test_failures: vec![]
+                }]
             }
         )
     }
@@ -204,8 +200,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![],
-                test_failures: vec![
+                errors: vec![
                     types::Message {
                         error: "expected: <true> but was: <false>".to_string(),
                         locations: vec![

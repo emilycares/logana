@@ -14,3 +14,4 @@ pub fn save_analyse(content: types::AnalyseReport) {
     let mut file = File::create(path).expect("Create own config file");
     write!(file, "{}", content).expect("Write file");
 }
+
