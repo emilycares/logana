@@ -57,9 +57,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport {
-        errors
-    }
+    types::AnalyseReport { errors }
 }
 
 fn parse_copilation_error(error: &str) -> Option<types::Message> {

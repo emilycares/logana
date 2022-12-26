@@ -1,6 +1,6 @@
-use std::io::{BufRead, BufReader};
 use lazy_static::lazy_static;
 use regex::Regex;
+use std::io::{BufRead, BufReader};
 
 use subprocess::{Exec, Redirection};
 pub fn run_command_and_collect(command: String) -> Result<String, std::io::Error> {
@@ -20,7 +20,7 @@ pub fn run_command_and_collect(command: String) -> Result<String, std::io::Error
         let line = line.unwrap();
         println!("{}", line);
         let line = strip_color(&line);
-        
+
         output = output.clone() + &line + "\n";
     });
 

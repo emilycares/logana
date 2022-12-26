@@ -7,7 +7,7 @@ pub struct Args {
     /// The type of log input "Cargo", "Maven" or "KarmaJasmine"
     #[clap(short, long, value_enum)]
     pub parser: ParserKind,
-    
+
     /// The input method that should be used to collect the log.
     #[clap(short, long, value_enum, default_missing_value = "stdin")]
     pub input: InputKind,
@@ -19,7 +19,7 @@ pub struct Args {
     /// The tmux pane
     #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
     pub target: String,
-    
+
     /// Your shell PS1 in order to split logs for tmux
     #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
     pub splitby: String,
@@ -39,5 +39,5 @@ pub enum InputKind {
     #[default]
     Stdin,
     Tmux,
-    Command
+    Command,
 }
