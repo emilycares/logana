@@ -37,7 +37,7 @@ fn main() {
                     .map(|build| analyse(&parser, build))
                     // filter out empty reports
                     .filter(|analyse| {
-                        !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
+                        !analyse.errors.is_empty()
                     })
                     .last()
                 {

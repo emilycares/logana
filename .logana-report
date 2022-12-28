@@ -1,5 +1,0 @@
-/home/michael/Documents/rust/logana/src/builder/storage.rs:191:17|unneeded `return` statement
-/home/michael/Documents/rust/logana/src/configuration.rs:155:48|you are deriving `PartialEq` and can implement `Eq`
-/home/michael/Documents/rust/logana/src/configuration.rs:166:48|you are deriving `PartialEq` and can implement `Eq`
-/home/michael/Documents/rust/logana/src/configuration.rs:240:48|you are deriving `PartialEq` and can implement `Eq`
-

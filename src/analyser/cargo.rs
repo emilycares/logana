@@ -2,16 +2,16 @@ use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut errors: Vec<types::Message> = vec![];
-    let gI: Vec<&str> = log.lines().collect();
+    let lines: Vec<&str> = log.lines().collect();
 
-    for i in 0..gI.len() {
-        if let Some(line) = gI.get(i) {
+    for i in 0..lines.len() {
+        if let Some(line) = lines.get(i) {
             if line.starts_with("error: ")
                 || line.starts_with("error[")
                 || line.starts_with("warning: ")
             {
                 if let Some((_, error)) = line.split_once(": ") {
-                    if let Some(location_line) = gI.get(i + 1) {
+                    if let Some(location_line) = lines.get(i + 1) {
                         let location_line = location_line.trim();
                         if location_line.starts_with("-->") {
                             let location = &location_line[4..];
@@ -59,6 +59,7 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
 #[cfg(test)]
 mod tests {
     use crate::{analyser::cargo::analyse, types};
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn should_find_clippy_error() {
@@ -68,7 +69,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![
+                errors: vec![
                     types::Message {
                         error: "unused variable: `i`".to_string(),
                         locations: vec![types::Location {
@@ -86,7 +87,7 @@ mod tests {
                         }]
                     },
                     types::Message {
-                        error: "unused variable: `split_gI`".to_string(),
+                        error: "unused variable: `split_lines`".to_string(),
                         locations: vec![types::Location {
                             path: "/tmp/project/src/loader/split.rs".to_string(),
                             row: 6,
@@ -141,8 +142,7 @@ mod tests {
                             col: 17
                         }]
                     }
-                ],
-                test_failures: vec![],
+                ]
             }
         )
     }
@@ -155,7 +155,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![
+                errors: vec![
                     types::Message {
                         error: "cannot find value `asd` in this scope".to_string(),
                         locations: vec![types::Location {
@@ -172,8 +172,7 @@ mod tests {
                             col: 5
                         }]
                     },
-                ],
-                test_failures: vec![]
+                ]
             }
         )
     }

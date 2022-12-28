@@ -1,7 +1,7 @@
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut test_failures: Vec<types::Message> = vec![];
+    let mut errors: Vec<types::Message> = vec![];
     let lines: Vec<&str> = log.lines().collect();
 
     for i in 0..lines.len() {
@@ -24,7 +24,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     exeption.push(line);
                 }
                 if let Some(message) = parse_exeption(exeption, project_dir) {
-                    test_failures.push(message);
+                    errors.push(message);
                 }
             }
             if line_trimmed.starts_with("TypeError: ") {}
@@ -44,7 +44,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                                 if let Some(location) =
                                     parse_test_location(line_trimmed, project_dir)
                                 {
-                                    test_failures.push(types::Message {
+                                    errors.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
                                     })
@@ -58,8 +58,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        compiler_errors: vec![],
-        test_failures,
+        errors,
     }
 }
 
@@ -155,8 +154,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![],
-                test_failures: vec![
+                errors: vec![
                     types::Message {
                         error: "Expected true to be false.".to_string(),
                         locations: vec![types::Location {
