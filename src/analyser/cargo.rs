@@ -29,9 +29,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport {
-        errors
-    }
+    types::AnalyseReport { errors }
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
@@ -176,4 +174,4 @@ mod tests {
             }
         )
     }
-}
+}

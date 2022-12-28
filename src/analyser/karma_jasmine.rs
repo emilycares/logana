@@ -7,7 +7,10 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     for i in 0..lines.len() {
         if let Some(line) = lines.get(i) {
             let line_trimmed = line.trim();
-            if line_trimmed.starts_with("Error: ") || line_trimmed.starts_with("Usage:") || line_trimmed.starts_with("TypeError:") {
+            if line_trimmed.starts_with("Error: ")
+                || line_trimmed.starts_with("Usage:")
+                || line_trimmed.starts_with("TypeError:")
+            {
                 let mut exeption = vec![line_trimmed];
                 'exeption: for y in 1.. {
                     let i: usize = i + y;
@@ -18,7 +21,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     let line = line.trim();
 
                     if !line.starts_with("at ") {
-                      break 'exeption;
+                        break 'exeption;
                     }
 
                     exeption.push(line);
@@ -57,9 +60,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport {
-        errors,
-    }
+    types::AnalyseReport { errors }
 }
 
 pub fn parse_exeption(log: Vec<&str>, project_dir: &str) -> Option<types::Message> {

@@ -22,7 +22,7 @@ pub struct Message {
 impl Display for Message {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if let Some(location) = self.locations.first() {
-            write!(f, "{}|{}", location, self.error) 
+            write!(f, "{}|{}", location, self.error)
         } else {
             write!(f, "")
         }
@@ -31,28 +31,24 @@ impl Display for Message {
 
 #[derive(Debug, PartialEq)]
 pub struct AnalyseReport {
-    pub errors: Vec<Message>
+    pub errors: Vec<Message>,
 }
 
 impl AnalyseReport {
     pub fn new() -> Self {
-        Self {
-            errors: vec![]
-        }
+        Self { errors: vec![] }
     }
 }
 
 impl Display for AnalyseReport {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        self.errors
-            .iter()
-            .fold(Ok(()), |result, message| {
-                if !message.locations.is_empty() {
-                    result.and_then(|_| writeln!(f, "{}", message))
-                } else {
-                    result
-                }
-            })
+        self.errors.iter().fold(Ok(()), |result, message| {
+            if !message.locations.is_empty() {
+                result.and_then(|_| writeln!(f, "{}", message))
+            } else {
+                result
+            }
+        })
     }
 }
 

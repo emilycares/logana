@@ -36,9 +36,7 @@ fn main() {
                     .iter()
                     .map(|build| analyse(&parser, build))
                     // filter out empty reports
-                    .filter(|analyse| {
-                        !analyse.errors.is_empty()
-                    })
+                    .filter(|analyse| !analyse.errors.is_empty())
                     .last()
                 {
                     file::save_analyse(report);
