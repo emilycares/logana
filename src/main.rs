@@ -8,7 +8,6 @@ pub mod analyser;
 pub mod config;
 pub mod file;
 pub mod loader;
-pub mod logvec;
 pub mod types;
 
 fn main() {
@@ -37,7 +36,9 @@ fn main() {
                     .iter()
                     .map(|build| analyse(&parser, build))
                     // filter out empty reports
-                    .filter(|analyse| !analyse.errors.is_empty())
+                    .filter(|analyse| {
+                        !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
+                    })
                     .last()
                 {
                     file::save_analyse(report);
@@ -54,7 +55,6 @@ fn analyse(parser: &ParserKind, input: &String) -> types::AnalyseReport {
                 ParserKind::Maven => analyser::maven::analyse(input, dir),
                 ParserKind::KarmaJasmine => analyser::karma_jasmine::analyse(input, dir),
                 ParserKind::Cargo => analyser::cargo::analyse(input, dir),
-                ParserKind::Java => analyser::java::analyse(input, dir),
                 ParserKind::Unknown => {
                     println!("Unknown parser the valid options are \"Cargo\", \"Maven\" and \"KarmaJasmine\"");
 

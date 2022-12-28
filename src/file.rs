@@ -11,6 +11,7 @@ pub fn save_analyse(content: types::AnalyseReport) {
     if path.exists() {
         std::fs::remove_file(path).expect("Remove own file");
     }
+
     let mut file = File::create(path).expect("Create own config file");
     write!(file, "{}", content).expect("Write file");
 }

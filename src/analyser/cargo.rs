@@ -1,7 +1,8 @@
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut errors: Vec<types::Message> = vec![];
+    let mut compiler_errors: Vec<types::Message> = vec![];
+    let test_failures: Vec<types::Message> = vec![];
     let lines: Vec<&str> = log.lines().collect();
 
     for i in 0..lines.len() {
@@ -17,7 +18,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                             let location = &location_line[4..];
 
                             if let Some(location) = parse_location(location, project_dir) {
-                                errors.push(types::Message {
+                                compiler_errors.push(types::Message {
                                     error: error.to_string(),
                                     locations: vec![location],
                                 });
@@ -29,7 +30,10 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport { errors }
+    types::AnalyseReport {
+        compiler_errors,
+        test_failures,
+    }
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
@@ -66,7 +70,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                errors: vec![
+                compiler_errors: vec![
                     types::Message {
                         error: "unused variable: `i`".to_string(),
                         locations: vec![types::Location {
@@ -139,7 +143,8 @@ mod tests {
                             col: 17
                         }]
                     }
-                ]
+                ],
+                test_failures: vec![],
             }
         )
     }
@@ -152,7 +157,7 @@ mod tests {
         assert_eq!(
             result,
             types::AnalyseReport {
-                errors: vec![
+                compiler_errors: vec![
                     types::Message {
                         error: "cannot find value `asd` in this scope".to_string(),
                         locations: vec![types::Location {
@@ -169,7 +174,8 @@ mod tests {
                             col: 5
                         }]
                     },
-                ]
+                ],
+                test_failures: vec![]
             }
         )
     }
