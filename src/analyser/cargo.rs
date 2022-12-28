@@ -1,24 +1,23 @@
 use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut compiler_errors: Vec<types::Message> = vec![];
-    let test_failures: Vec<types::Message> = vec![];
-    let lines: Vec<&str> = log.lines().collect();
+    let mut errors: Vec<types::Message> = vec![];
+    let gI: Vec<&str> = log.lines().collect();
 
-    for i in 0..lines.len() {
-        if let Some(line) = lines.get(i) {
+    for i in 0..gI.len() {
+        if let Some(line) = gI.get(i) {
             if line.starts_with("error: ")
                 || line.starts_with("error[")
                 || line.starts_with("warning: ")
             {
                 if let Some((_, error)) = line.split_once(": ") {
-                    if let Some(location_line) = lines.get(i + 1) {
+                    if let Some(location_line) = gI.get(i + 1) {
                         let location_line = location_line.trim();
                         if location_line.starts_with("-->") {
                             let location = &location_line[4..];
 
                             if let Some(location) = parse_location(location, project_dir) {
-                                compiler_errors.push(types::Message {
+                                errors.push(types::Message {
                                     error: error.to_string(),
                                     locations: vec![location],
                                 });
@@ -31,8 +30,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     }
 
     types::AnalyseReport {
-        compiler_errors,
-        test_failures,
+        errors
     }
 }
 
@@ -88,7 +86,7 @@ mod tests {
                         }]
                     },
                     types::Message {
-                        error: "unused variable: `split_lines`".to_string(),
+                        error: "unused variable: `split_gI`".to_string(),
                         locations: vec![types::Location {
                             path: "/tmp/project/src/loader/split.rs".to_string(),
                             row: 6,
@@ -179,4 +177,4 @@ mod tests {
             }
         )
     }
-}
+}

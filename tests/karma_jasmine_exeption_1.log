@@ -1,0 +1,11 @@
+  TypeError: Cannot read property 'component' of undefined
+      at MapSubscriber.call [as project] (http://localhost:9876/_karma_webpack_/webpack:/src/app/components/layout/main/command-info-dialog-modal/command-info-dialog-modal.component.ts:83:1)
+      at MapSubscriber._next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/operators/map.js:29:35)
+      at MapSubscriber.next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/Subscriber.js:49:18)
+      at MapSubscriber._next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/operators/map.js:35:26)
+      at MapSubscriber.next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/Subscriber.js:49:18)
+      at FilterSubscriber._next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/operators/filter.js:33:30)
+      at FilterSubscriber.next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/Subscriber.js:49:18)
+      at SwitchMapSubscriber.notifyNext (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/operators/switchMap.js:66:26)
+      at SimpleInnerSubscriber._next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/innerSubscribe.js:10:21)
+      at SimpleInnerSubscriber.next (http://localhost:9876/_karma_webpack_/webpack:/node_modules/rxjs/_esm2015/internal/Subscriber.js:49:18)
