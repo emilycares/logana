@@ -48,7 +48,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                         }
                     }
                 } else {
-                    // muiti line error explaination
+                    // muiti line error excplaination
                     let error = &line[error_start..];
                     'pani: for y in 1.. {
                         let y = i + y;
@@ -77,7 +77,10 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
     let parts: Vec<&str> = location.split(':').collect();
 
     if let Some(path) = parts.first() {
-        let path = path.to_string();
+        let mut path = path.to_string();
+        if let Some(pathr) = path.strip_prefix("./") {
+            path = pathr.to_string();
+        }
         if let Some(row) = parts.get(1) {
             if let Ok(row) = row.parse::<usize>() {
                 if let Some(col) = parts.get(2) {
@@ -251,6 +254,28 @@ mod tests {
                             col: 5
                         }]
                     },
+                ]
+            }
+        )
+    }
+
+    #[test]
+    fn should_find_typos_error() {
+        static LOG: &'static str = include_str!("../../tests/cargo_typos.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![
+                    types::Message {
+                        error: "`ba` should be `by`, `be`".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/tests/java_1.log".to_string(),
+                            row: 13,
+                            col: 38
+                        }]
+                    }
                 ]
             }
         )

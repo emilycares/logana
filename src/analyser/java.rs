@@ -6,7 +6,7 @@ use crate::types;
 
 pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseReport {
     let log = log.lines().collect();
-    let errors = get_exeptions(log, project_dir, package);
+    let errors = get_exceptions(log, project_dir, package);
 
     types::AnalyseReport { errors }
 }
@@ -76,7 +76,7 @@ pub fn get_row(row: &str) -> Option<usize> {
     Some(row)
 }
 
-pub fn parse_exeption(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
+pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
     let first_line = log.get(0).unwrap();
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
@@ -116,7 +116,7 @@ pub fn parse_exeption(log: &[&str], project_dir: &str, package: &str) -> Option<
     })
 }
 
-pub fn get_exeptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
+pub fn get_exceptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
     let mut errors = vec![];
     'log: for i in 1.. {
         let Some(line) = log.get(i) else {
@@ -127,16 +127,16 @@ pub fn get_exeptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<ty
 
         if (line.contains("Error: ") || line.contains("Exception: ")) && !line.starts_with("Caused by:") {
             let mut end = 0;
-            'exeption: for y in 1.. {
+            'exception: for y in 1.. {
                 let y = i + y;
                 let Some(line) = log.get(y) else {
-                    break 'exeption;
+                    break 'exception;
                 };
 
                 if !line.trim().starts_with("at ") {
                     if let Some(line) = log.get(y + 1) {
                         if !line.trim().starts_with("at ") {
-                            break 'exeption;
+                            break 'exception;
                         }
                     };
                 }
@@ -145,8 +145,8 @@ pub fn get_exeptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<ty
             }
 
             let end = end + 1;
-            let exeption_log = &log[i..end];
-            if let Some(error) = parse_exeption(exeption_log, project_dir, package) {
+            let exception_log = &log[i..end];
+            if let Some(error) = parse_exception(exception_log, project_dir, package) {
                 errors.push(error);
             }
         }
@@ -158,7 +158,7 @@ pub fn get_exeptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<ty
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::java::{analyse, get_file, get_package, parse_exeption},
+        analyser::java::{analyse, get_file, get_package, parse_exception},
         types,
     };
 
@@ -221,10 +221,10 @@ mod tests {
     }
 
     #[test]
-    fn should_parse_exeption_1() {
+    fn should_parse_exception_1() {
         static LOG: &'static str = include_str!("../../tests/java_exeption_1.log");
         let log: Vec<&str> = LOG.lines().collect();
-        let result = parse_exeption(&*log, "/tmp/project", "my.rootpackage.name");
+        let result = parse_exception(&*log, "/tmp/project", "my.rootpackage.name");
         assert_eq!(result, Some(types::Message {
             error: "java.lang.NullPointerException: Cannot invoke \"String.split(String)\" because \"abc\" is null".to_string(),
             locations: vec![types::Location {

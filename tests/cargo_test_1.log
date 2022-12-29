@@ -12,9 +12,9 @@ test analyser::java::tests::get_file_test ... ok
 test analyser::cargo::tests::test ... FAILED
 test analyser::java::tests::get_package_test ... ok
 test analyser::karma_jasmine::tests::should_find_syntax_error ... ok
-test analyser::karma_jasmine::tests::should_parse_exeption_1 ... ok
-test analyser::karma_jasmine::tests::should_parse_exeption_2 ... ok
-test analyser::java::tests::should_parse_exeption_1 ... ok
+test analyser::karma_jasmine::tests::should_parse_exception_1 ... ok
+test analyser::karma_jasmine::tests::should_parse_exception_2 ... ok
+test analyser::java::tests::should_parse_exception_1 ... ok
 test analyser::maven::tests::parse_test_location_test ... ok
 test analyser::maven::tests::should_find_failed_test ... ok
 test analyser::maven::tests::should_find_syntax_error ... ok
