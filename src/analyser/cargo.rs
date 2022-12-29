@@ -26,6 +26,47 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     }
                 }
             }
+
+            if line.starts_with("thread ") && line.contains(" panicked at ") {
+                let quotes = line
+                    .chars()
+                    .enumerate()
+                    .filter(|(_, c)| *c == '\'')
+                    .map(|(i, _)| i)
+                    .collect::<Vec<_>>();
+                let error_start = *quotes.get(2).unwrap();
+                let error_start = error_start + 1;
+                if let Some(error_end) = quotes.get(3) {
+                    let error = &line[error_start..*error_end];
+
+                    if let Some((_, location)) = line.split_once(", ") {
+                        if let Some(location) = parse_location(location, project_dir) {
+                            errors.push(types::Message {
+                                error: error.to_string(),
+                                locations: vec![location],
+                            });
+                        }
+                    }
+                } else {
+                    // muiti line error explaination
+                    let error = &line[error_start..];
+                    'pani: for y in 1.. {
+                        let y = i + y;
+                        let Some(line) = lines.get(y) else {
+                            break 'pani;
+                        };
+
+                        if let Some(location) = line.strip_prefix("', ") {
+                            if let Some(location) = parse_location(location, project_dir) {
+                                errors.push(types::Message {
+                                    error: error.to_string(),
+                                    locations: vec![location],
+                                });
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -141,6 +182,46 @@ mod tests {
                         }]
                     }
                 ]
+            }
+        )
+    }
+
+    #[test]
+    fn should_detect_failing_assert_1() {
+        static LOG: &'static str = include_str!("../../tests/cargo_test_1.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![types::Message {
+                    error: "assertion failed: false".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 64,
+                        col: 9
+                    }]
+                }]
+            }
+        )
+    }
+
+    #[test]
+    fn should_detect_failing_assert_2() {
+        static LOG: &'static str = include_str!("../../tests/cargo_test_2.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![types::Message {
+                    error: "assertion failed: `(left == right)`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 174,
+                        col: 9
+                    }]
+                }]
             }
         )
     }
