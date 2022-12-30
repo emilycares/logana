@@ -14,27 +14,26 @@ fn main() {
     let args = Args::parse();
     let mut buffer = String::new();
 
-    match args.input {
+    match &args.input {
         InputKind::Stdin => match io::stdin().read_to_string(&mut buffer) {
             Ok(_log) => {
-                let report = analyse(&args.parser, &buffer);
+                let report = analyse(&args, &buffer);
 
                 file::save_analyse(report);
             }
             Err(_) => println!("Unable to read user input."),
         },
         InputKind::Command => {
-            if let Ok(lines) = command::run_command_and_collect(args.command) {
-                let report = analyse(&args.parser, &lines);
+            if let Ok(lines) = command::run_command_and_collect(&args.command) {
+                let report = analyse(&args, &lines);
                 file::save_analyse(report);
             }
         }
         InputKind::Tmux => {
             if let Some(content) = loader::fetch::get_tmux_pane_content(args.target.as_str()) {
-                let parser = args.parser;
                 if let Some(report) = loader::split::split_builds(content.as_str(), &args.splitby)
                     .iter()
-                    .map(|build| analyse(&parser, build))
+                    .map(|build| analyse(&args, build))
                     // filter out empty reports
                     .filter(|analyse| !analyse.errors.is_empty())
                     .last()
@@ -46,11 +45,12 @@ fn main() {
     };
 }
 
-fn analyse(parser: &ParserKind, input: &String) -> types::AnalyseReport {
+fn analyse(args: &Args, input: &String) -> types::AnalyseReport {
     if let Ok(dir) = std::env::current_dir() {
         if let Some(dir) = dir.to_str() {
-            return match parser {
+            return match args.parser {
                 ParserKind::Maven => analyser::maven::analyse(input, dir),
+                ParserKind::Java => analyser::java::analyse(input, dir, &args.package),
                 ParserKind::KarmaJasmine => analyser::karma_jasmine::analyse(input, dir),
                 ParserKind::Cargo => analyser::cargo::analyse(input, dir),
                 ParserKind::Unknown => {

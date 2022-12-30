@@ -3,7 +3,7 @@ use regex::Regex;
 use std::io::{BufRead, BufReader};
 
 use subprocess::{Exec, Redirection};
-pub fn run_command_and_collect(command: String) -> Result<String, std::io::Error> {
+pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> {
     let stream = Exec::shell(command)
         .stdout(Redirection::Pipe)
         .stderr(Redirection::Merge)

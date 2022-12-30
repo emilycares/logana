@@ -23,11 +23,16 @@ pub struct Args {
     /// Your shell PS1 in order to split logs for tmux
     #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
     pub splitby: String,
+    
+    /// The java package of your java project
+    #[clap(long, default_value = "", required_if_eq("parser", "java"))]
+    pub package: String,
 }
 
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
     Maven,
+    Java,
     KarmaJasmine,
     Cargo,
     Unknown,
