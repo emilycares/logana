@@ -64,7 +64,7 @@ use crate::types;
 }
 
 #[must_use] pub fn parse_exception(log: &Vec<&str>, project_dir: &str) -> Option<types::Message> {
-    let first_line = log.first().expect("A exeption should have a fist line");
+    let first_line = log.first().expect("A exception should have a fist line");
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
     };

@@ -85,7 +85,7 @@ pub fn get_row(row: &str) -> Option<usize> {
 
 #[must_use]
 pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
-    let first_line = log.first().expect("An exeption log should contain lines");
+    let first_line = log.first().expect("An exception log should contain lines");
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
     };

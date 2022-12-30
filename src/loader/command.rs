@@ -10,7 +10,7 @@ pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> 
         .stream_stdout()
         .expect("To get output from program");
 
-    clearscreen::clear().expect("The clearscreen lib shoudl be able to clear the screen");
+    clearscreen::clear().expect("The clearscreen lib should be able to clear the screen");
 
     let reader = BufReader::new(stream);
 
