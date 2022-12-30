@@ -1,7 +1,5 @@
-default:
-    echo 'Hello, world!'
 clippy:
-  cargo clippy --fix -- \
-  -W clippy::padantic \
+  cargo clippy --color always --fix --allow-staged --allow-dirty -- \
+  -W clippy::pedantic \
   -W clippy::nursery \
-  -W clippy::unwrap_used \
+  -W clippy::unwrap_used

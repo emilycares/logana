@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Location {
     pub path: String,
     pub row: usize,
@@ -13,7 +13,7 @@ impl Display for Location {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Message {
     pub error: String,
     pub locations: Vec<Location>,
@@ -22,20 +22,20 @@ pub struct Message {
 impl Display for Message {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if let Some(location) = self.locations.first() {
-            write!(f, "{}|{}", location, self.error)
+            write!(f, "{location}|{}", self.error)
         } else {
             write!(f, "")
         }
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct AnalyseReport {
     pub errors: Vec<Message>,
 }
 
 impl AnalyseReport {
-    pub fn new() -> Self {
+    #[must_use] pub const fn new() -> Self {
         Self { errors: vec![] }
     }
 }
@@ -43,10 +43,10 @@ impl AnalyseReport {
 impl Display for AnalyseReport {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.errors.iter().fold(Ok(()), |result, message| {
-            if !message.locations.is_empty() {
-                result.and_then(|_| writeln!(f, "{}", message))
-            } else {
+            if message.locations.is_empty() {
                 result
+            } else {
+                result.and_then(|_| writeln!(f, "{message}"))
             }
         })
     }

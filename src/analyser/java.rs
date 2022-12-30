@@ -4,9 +4,10 @@ use subprocess::{Exec, Redirection};
 
 use crate::types;
 
+#[must_use]
 pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseReport {
     let log = log.lines().collect();
-    let errors = get_exceptions(log, project_dir, package);
+    let errors = get_exceptions(&log, project_dir, package);
 
     types::AnalyseReport { errors }
 }
@@ -15,26 +16,30 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseRep
 ///
 /// To Archive this we cut of the
 /// - file with exetension
-/// - project_dir
+/// - `project_dir`
 /// - "/src/java/main"
 /// and replace slash with dots
-pub fn get_package(file: &str, project_dir: &str) -> String {
+#[must_use]
+pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
     let file = Path::new(file);
-    let file_name = file.file_name().unwrap().to_str().unwrap();
+    let file_name = file.file_name().expect("The file that was supplied is not a file");
+    let file_name = file_name.to_str().expect("The file that was supplied contains ileagal characters in its name");
     let file_related = "/".to_owned() + file_name;
-    let file = file.to_str().unwrap();
-    file.replace(project_dir, "")
+    let file = file.to_str().expect("The file that was supplied contains ileagal characters in its path");
+    Some(file.replace(project_dir, "")
         .replace("src/main/java/", "")
         .replace(&file_related, "")
-        .replace('/', ".")
+        .replace('/', "."))
 }
 
 /// Will return the file for a class
+#[must_use]
 pub fn get_file(class: &str, project_dir: &str) -> String {
     let inter = class.replace('.', "/");
     format!("{project_dir}/src/main/java/{inter}.java")
 }
 
+#[must_use]
 pub fn get_project_files(project_dir: &str) -> Vec<String> {
     let out = Exec::cmd("find")
         .arg(project_dir)
@@ -47,11 +52,12 @@ pub fn get_project_files(project_dir: &str) -> Vec<String> {
         .expect("To get output")
         .stdout_str();
 
-    let out: Vec<String> = out.lines().map(|s| s.to_string()).collect();
+    let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
 
     out
 }
 
+#[must_use]
 pub fn remove_function(path: &str) -> &str {
     let dots = path
         .chars()
@@ -59,11 +65,12 @@ pub fn remove_function(path: &str) -> &str {
         .filter(|(_, c)| *c == '.')
         .map(|(i, _)| i)
         .collect::<Vec<_>>();
-    let last_dont_index = dots.last().unwrap();
+    let last_dont_index = dots.last().expect("A package should contain dots");
 
     &path[0..*last_dont_index]
 }
 
+#[must_use]
 pub fn get_row(row: &str) -> Option<usize> {
     let row = &row[0..row.len() - 1];
 
@@ -76,8 +83,9 @@ pub fn get_row(row: &str) -> Option<usize> {
     Some(row)
 }
 
+#[must_use]
 pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
-    let first_line = log.get(0).unwrap();
+    let first_line = log.first().expect("An exeption log should contain lines");
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
     };
@@ -116,7 +124,8 @@ pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option
     })
 }
 
-pub fn get_exceptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
+#[must_use]
+pub fn get_exceptions(log: &Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
     let mut errors = vec![];
     'log: for i in 1.. {
         let Some(line) = log.get(i) else {
@@ -125,7 +134,9 @@ pub fn get_exceptions(log: Vec<&str>, project_dir: &str, package: &str) -> Vec<t
 
         let line = line.trim();
 
-        if (line.contains("Error: ") || line.contains("Exception: ")) && !line.starts_with("Caused by:") {
+        if (line.contains("Error: ") || line.contains("Exception: "))
+            && !line.starts_with("Caused by:")
+        {
             let mut end = 0;
             'exception: for y in 1.. {
                 let y = i + y;
@@ -166,7 +177,7 @@ mod tests {
 
     #[test]
     fn should_find_build_error() {
-        static LOG: &'static str = include_str!("../../tests/java_1.log");
+        static LOG: &str = include_str!("../../tests/java_1.log");
         let result = analyse(LOG, "/tmp/project", "my.rootpackage.name");
 
         assert_eq!( result, types::AnalyseReport {
@@ -197,7 +208,7 @@ mod tests {
                     ]
                 }
             ]
-        })
+        });
     }
 
     #[test]
@@ -205,9 +216,9 @@ mod tests {
         let project_dir = "/tmp/project/";
         let file = "/tmp/project/src/main/java/my/rootpackage/name/MyLibrary.java";
         assert_eq!(
-            "my.rootpackage.name".to_string(),
+            Some("my.rootpackage.name".to_string()),
             get_package(file, project_dir)
-            );
+        );
     }
 
     #[test]
@@ -217,14 +228,14 @@ mod tests {
         assert_eq!(
             "/tmp/project/src/main/java/my/rootpackage/name/AbcController.java".to_string(),
             get_file(package, project_dir)
-            );
+        );
     }
 
     #[test]
     fn should_parse_exception_1() {
-        static LOG: &'static str = include_str!("../../tests/java_exeption_1.log");
+        static LOG: &str = include_str!("../../tests/java_exeption_1.log");
         let log: Vec<&str> = LOG.lines().collect();
-        let result = parse_exception(&*log, "/tmp/project", "my.rootpackage.name");
+        let result = parse_exception(&log, "/tmp/project", "my.rootpackage.name");
         assert_eq!(result, Some(types::Message {
             error: "java.lang.NullPointerException: Cannot invoke \"String.split(String)\" because \"abc\" is null".to_string(),
             locations: vec![types::Location {
