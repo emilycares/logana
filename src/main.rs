@@ -14,45 +14,43 @@ fn main() {
     let args = Args::parse();
     let mut buffer = String::new();
 
-    match args.input {
-        InputKind::Stdin => match io::stdin().read_to_string(&mut buffer) {
-            Ok(_log) => {
-                let report = analyse(&args.parser, &buffer);
+    match &args.input {
+        InputKind::Stdin => io::stdin().read_to_string(&mut buffer).map_or_else(
+            |_| {
+                let report = analyse(&args, &buffer);
 
-                file::save_analyse(report);
-            }
-            Err(_) => println!("Unable to read user input."),
-        },
+                file::save_analyse(&report);
+            },
+            |_| println!("Unable to read user input."),
+        ),
         InputKind::Command => {
-            if let Ok(lines) = command::run_command_and_collect(args.command) {
-                let report = analyse(&args.parser, &lines);
-                file::save_analyse(report);
+            if let Ok(lines) = command::run_command_and_collect(&args.command) {
+                let report = analyse(&args, &lines);
+                file::save_analyse(&report);
             }
         }
         InputKind::Tmux => {
             if let Some(content) = loader::fetch::get_tmux_pane_content(args.target.as_str()) {
-                let parser = args.parser;
-                if let Some(report) = loader::split::split_builds(content.as_str(), &args.splitby)
+                if let Some(report) = loader::split::builds(content.as_str(), &args.splitby)
                     .iter()
-                    .map(|build| analyse(&parser, build))
+                    .map(|build| analyse(&args, build))
                     // filter out empty reports
-                    .filter(|analyse| {
-                        !analyse.compiler_errors.is_empty() || !analyse.test_failures.is_empty()
-                    })
+                    .filter(|analyse| !analyse.errors.is_empty())
                     .last()
                 {
-                    file::save_analyse(report);
+                    file::save_analyse(&report);
                 }
             }
         }
     };
 }
 
-fn analyse(parser: &ParserKind, input: &String) -> types::AnalyseReport {
+fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
     if let Ok(dir) = std::env::current_dir() {
         if let Some(dir) = dir.to_str() {
-            return match parser {
+            return match args.parser {
                 ParserKind::Maven => analyser::maven::analyse(input, dir),
+                ParserKind::Java => analyser::java::analyse(input, dir, &args.package),
                 ParserKind::KarmaJasmine => analyser::karma_jasmine::analyse(input, dir),
                 ParserKind::Cargo => analyser::cargo::analyse(input, dir),
                 ParserKind::Unknown => {
@@ -61,10 +59,7 @@ fn analyse(parser: &ParserKind, input: &String) -> types::AnalyseReport {
                     types::AnalyseReport::default()
                 }
             };
-        } else {
-            types::AnalyseReport::default()
         }
-    } else {
-        types::AnalyseReport::default()
     }
+    types::AnalyseReport::default()
 }

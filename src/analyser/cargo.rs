@@ -1,8 +1,8 @@
 use crate::types;
 
+#[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut compiler_errors: Vec<types::Message> = vec![];
-    let test_failures: Vec<types::Message> = vec![];
+    let mut errors: Vec<types::Message> = vec![];
     let lines: Vec<&str> = log.lines().collect();
 
     for i in 0..lines.len() {
@@ -18,7 +18,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                             let location = &location_line[4..];
 
                             if let Some(location) = parse_location(location, project_dir) {
-                                compiler_errors.push(types::Message {
+                                errors.push(types::Message {
                                     error: error.to_string(),
                                     locations: vec![location],
                                 });
@@ -27,26 +27,68 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     }
                 }
             }
+
+            if line.starts_with("thread ") && line.contains(" panicked at ") {
+                let quotes = line
+                    .chars()
+                    .enumerate()
+                    .filter(|(_, c)| *c == '\'')
+                    .map(|(i, _)| i)
+                    .collect::<Vec<_>>();
+                if let Some(error_start) = quotes.get(2) {
+                    let error_start = error_start + 1;
+                    if let Some(error_end) = quotes.get(3) {
+                        let error = &line[error_start..*error_end];
+
+                        if let Some((_, location)) = line.split_once(", ") {
+                            if let Some(location) = parse_location(location, project_dir) {
+                                errors.push(types::Message {
+                                    error: error.to_string(),
+                                    locations: vec![location],
+                                });
+                            }
+                        }
+                    } else {
+                        // muiti line error excplaination
+                        let error = &line[error_start..];
+                        'pani: for y in 1.. {
+                            let y = i + y;
+                            let Some(line) = lines.get(y) else {
+                            break 'pani;
+                        };
+
+                            if let Some(location) = line.strip_prefix("', ") {
+                                if let Some(location) = parse_location(location, project_dir) {
+                                    errors.push(types::Message {
+                                        error: error.to_string(),
+                                        locations: vec![location],
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    types::AnalyseReport {
-        compiler_errors,
-        test_failures,
-    }
+    types::AnalyseReport { errors }
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
     let parts: Vec<&str> = location.split(':').collect();
 
     if let Some(path) = parts.first() {
-        let path = path.to_string();
+        let mut path = (*path).to_string();
+        if let Some(pathr) = path.strip_prefix("./") {
+            path = pathr.to_string();
+        }
         if let Some(row) = parts.get(1) {
             if let Ok(row) = row.parse::<usize>() {
                 if let Some(col) = parts.get(2) {
                     if let Ok(col) = col.parse::<usize>() {
                         return Some(types::Location {
-                            path: format!("{}/{}", project_dir, path),
+                            path: format!("{project_dir}/{path}"),
                             row,
                             col,
                         });
@@ -61,16 +103,17 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
 #[cfg(test)]
 mod tests {
     use crate::{analyser::cargo::analyse, types};
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn should_find_clippy_error() {
-        static LOG: &'static str = include_str!("../../tests/cargo_clippy_1.log");
+        static LOG: &str = include_str!("../../tests/cargo_clippy_1.log");
         let result = analyse(LOG, "/tmp/project");
 
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![
+                errors: vec![
                     types::Message {
                         error: "unused variable: `i`".to_string(),
                         locations: vec![types::Location {
@@ -143,40 +186,98 @@ mod tests {
                             col: 17
                         }]
                     }
-                ],
-                test_failures: vec![],
+                ]
             }
-        )
+        );
     }
 
     #[test]
-    fn should_find_build_error() {
-        static LOG: &'static str = include_str!("../../tests/cargo_split_1.log");
+    fn should_detect_failing_assert_1() {
+        static LOG: &str = include_str!("../../tests/cargo_test_1.log");
         let result = analyse(LOG, "/tmp/project");
 
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![
-                    types::Message {
-                        error: "cannot find value `asd` in this scope".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/main.rs".to_string(),
-                            row: 2,
-                            col: 5
-                        }]
-                    },
-                    types::Message {
-                        error: "cannot find value `asd` in this scope".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/main.rs".to_string(),
-                            row: 2,
-                            col: 5
-                        }]
-                    },
-                ],
-                test_failures: vec![]
+                errors: vec![types::Message {
+                    error: "assertion failed: false".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 64,
+                        col: 9
+                    }]
+                }]
             }
-        )
+        );
+    }
+
+    #[test]
+    fn should_detect_failing_assert_2() {
+        static LOG: &str = include_str!("../../tests/cargo_test_2.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![types::Message {
+                    error: "assertion failed: `(left == right)`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 174,
+                        col: 9
+                    }]
+                }]
+            }
+        );
+    }
+
+    #[test]
+    fn should_find_build_error() {
+        static LOG: &str = include_str!("../../tests/cargo_split_1.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![
+                    types::Message {
+                        error: "cannot find value `asd` in this scope".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/main.rs".to_string(),
+                            row: 2,
+                            col: 5
+                        }]
+                    },
+                    types::Message {
+                        error: "cannot find value `asd` in this scope".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/main.rs".to_string(),
+                            row: 2,
+                            col: 5
+                        }]
+                    },
+                ]
+            }
+        );
+    }
+
+    #[test]
+    fn should_find_typos_error() {
+        static LOG: &str = include_str!("../../tests/cargo_typos.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![types::Message {
+                    error: "`ba` should be `by`, `be`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/tests/java_1.log".to_string(),
+                        row: 13,
+                        col: 38
+                    }]
+                }]
+            }
+        );
     }
 }

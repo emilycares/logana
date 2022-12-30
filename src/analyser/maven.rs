@@ -1,8 +1,7 @@
 use crate::types;
 
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut compiler_errors: Vec<types::Message> = vec![];
-    let mut test_failures: Vec<types::Message> = vec![];
+#[must_use] pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+    let mut errors: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 
     let lines: Vec<&str> = log.lines().collect();
@@ -20,12 +19,12 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
             }
 
             match phase {
-                MavenPhase::Scanning => {}
+                MavenPhase::Scanning | MavenPhase::Done => {}
                 MavenPhase::Building => {
-                    let beginning = format!("[ERROR] {}", project_dir);
+                    let beginning = format!("[ERROR] {project_dir}");
                     if line.starts_with(&beginning) {
                         if let Some(message) = parse_copilation_error(line) {
-                            compiler_errors.push(message);
+                            errors.push(message);
                         }
                     }
                 }
@@ -35,7 +34,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     {
                         if let Some((_, error)) = line.split_once(':') {
                             let error = &error[1..];
-                            for y in 1.. {
+                            'er: for y in 1.. {
                                 let i = i + y;
                                 if let Some(line) = lines.get(i) {
                                     if !line.starts_with("\tat ") {
@@ -43,25 +42,22 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                                     }
                                     let line = &line[4..];
                                     if let Some(location) = parse_test_location(line, project_dir) {
-                                        test_failures.push(types::Message {
+                                        errors.push(types::Message {
                                             error: error.to_string(),
                                             locations: vec![location],
-                                        })
+                                        });
+                                        break 'er;
                                     }
                                 }
                             }
                         }
                     }
                 }
-                MavenPhase::Done => {}
             }
         }
     }
 
-    types::AnalyseReport {
-        compiler_errors,
-        test_failures,
-    }
+    types::AnalyseReport { errors }
 }
 
 fn parse_copilation_error(error: &str) -> Option<types::Message> {
@@ -156,56 +152,53 @@ mod tests {
 
     #[test]
     fn should_find_syntax_error() {
-        static LOG: &'static str = include_str!("../../tests/maven_copilation_1.log");
+        static LOG: &str = include_str!("../../tests/maven_copilation_1.log");
         let result = analyse(LOG, "/tmp/project");
 
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![types::Message {
+                errors: vec![types::Message {
                     error: "';' expected".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
                         row: 18,
                         col: 54
                     }]
-                }],
-                test_failures: vec![]
+                }]
             }
-        )
+        );
     }
 
     #[test]
     fn should_find_unknown_symbol() {
-        static LOG: &'static str = include_str!("../../tests/maven_copilation_2.log");
+        static LOG: &str = include_str!("../../tests/maven_copilation_2.log");
         let result = analyse(LOG, "/tmp/project");
 
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![types::Message {
+                errors: vec![types::Message {
                     error: "cannot find symbol".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
                         row: 45,
                         col: 4
                     }]
-                }],
-                test_failures: vec![]
+                }]
             }
-        )
+        );
     }
 
     #[test]
     fn should_find_failed_test() {
-        static LOG: &'static str = include_str!("../../tests/maven_test_1.log");
+        static LOG: &str = include_str!("../../tests/maven_test_1.log");
         let result = analyse(LOG, "/tmp/project");
 
         assert_eq!(
             result,
             types::AnalyseReport {
-                compiler_errors: vec![],
-                test_failures: vec![
+                errors: vec![
                     types::Message {
                         error: "expected: <true> but was: <false>".to_string(),
                         locations: vec![
@@ -228,7 +221,7 @@ mod tests {
                     }
                 ]
             }
-        )
+        );
     }
 
     #[test]
@@ -245,6 +238,6 @@ mod tests {
                 row: 34,
                 col: 0
             })
-        )
+        );
     }
 }

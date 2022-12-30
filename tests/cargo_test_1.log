@@ -1,0 +1,33 @@
+    Blocking waiting for file lock on build directory
+   Compiling logana v0.1.0 (/home/michael/Documents/rust/logana)
+    Finished test [unoptimized + debuginfo] target(s) in 1.31s
+     Running unittests src/main.rs (target/debug/deps/logana-9a3a20eec024d0d3)
+
+running 16 tests
+thread 'analyser::cargo::tests::test' panicked at 'assertion failed: false', src/analyser/cargo.rs:64:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test analyser::cargo::tests::should_find_clippy_error ... ok
+test analyser::cargo::tests::should_find_build_error ... ok
+test analyser::java::tests::get_file_test ... ok
+test analyser::cargo::tests::test ... FAILED
+test analyser::java::tests::get_package_test ... ok
+test analyser::karma_jasmine::tests::should_find_syntax_error ... ok
+test analyser::karma_jasmine::tests::should_parse_exception_1 ... ok
+test analyser::karma_jasmine::tests::should_parse_exception_2 ... ok
+test analyser::java::tests::should_parse_exception_1 ... ok
+test analyser::maven::tests::parse_test_location_test ... ok
+test analyser::maven::tests::should_find_failed_test ... ok
+test analyser::maven::tests::should_find_syntax_error ... ok
+test analyser::maven::tests::should_find_unknown_symbol ... ok
+test loader::split::tests::should_split_builds_2 ... ok
+test loader::split::tests::should_split_builds ... ok
+test analyser::java::tests::should_find_build_error ... ok
+
+failures:
+
+failures:
+    analyser::cargo::tests::test
+
+test result: FAILED. 15 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--bin logana

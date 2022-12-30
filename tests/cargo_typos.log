@@ -1,0 +1,6 @@
+error: `ba` should be `by`, `be`
+  --> ./tests/java_1.log:13:38
+   |
+13 |   > Git branch: main, commit: f2656d8ba
+   |                                      ^^
+   
