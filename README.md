@@ -19,3 +19,10 @@ Currently, it is only a small test thing that I am working on. But currently I u
 mvn clean install |& logana --parser maven --input stdin
 ```
 It will create a output file named ".logana-report".
+
+## Editor support
+The editor support alows the editor to parse the ".logana-report" into its now error list.
+Plugins are available here:
+
+- neovim [https://github.com/micmine/logana.nvim](https://github.com/micmine/logana.nvim)
+- jetbrains [https://github.com/micmine/logana-jetbrains](https://github.com/micmine/logana-jetbrains)
