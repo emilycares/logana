@@ -16,6 +16,6 @@ For my rust development, I have tried out https://github.com/Canop/bacon that wa
 ## Usage
 Currently, it is only a small test thing that I am working on. But currently I use it like this
 ``` bash
-mvn clean install |& ~/Documents/rust/logana/target/debug/logana --parser maven --input stdin
+mvn clean install |& logana --parser maven --input stdin
 ```
 It will create a output file named ".logana-report".
