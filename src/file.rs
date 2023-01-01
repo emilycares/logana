@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
+/// Saves the report file
 pub fn save_analyse(content: &types::AnalyseReport) {
     let path = Path::new(".logana-report");
 

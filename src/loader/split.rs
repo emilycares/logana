@@ -1,9 +1,12 @@
-#[must_use] pub fn builds<'a>(log: &'a str, split_symbol: &str) -> Vec<String> {
+/// A utility function to split multipel builds
+#[must_use]
+pub fn builds(log: &str, split_symbol: &str) -> Vec<String> {
     let mut out = vec![];
     let lines: Vec<&str> = log.split('\n').collect();
     let last = lines.len();
 
-    let split_lines: Vec<usize> = lines.clone()
+    let split_lines: Vec<usize> = lines
+        .clone()
         .into_iter()
         .enumerate()
         .filter(|(_, line)| line.trim().starts_with(split_symbol))

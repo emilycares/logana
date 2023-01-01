@@ -1,9 +1,10 @@
 use std::path::Path;
 
-use subprocess::{Exec, Redirection};
+
 
 use crate::types;
 
+/// Contains the analyser code for the [`crate::config::ParserKind::Java`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseReport {
     let log = log.lines().collect();
@@ -22,43 +23,51 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseRep
 #[must_use]
 pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
     let file = Path::new(file);
-    let file_name = file.file_name().expect("The file that was supplied is not a file");
-    let file_name = file_name.to_str().expect("The file that was supplied contains ileagal characters in its name");
+    let file_name = file
+        .file_name()
+        .expect("The file that was supplied is not a file");
+    let file_name = file_name
+        .to_str()
+        .expect("The file that was supplied contains ileagal characters in its name");
     let file_related = "/".to_owned() + file_name;
-    let file = file.to_str().expect("The file that was supplied contains ileagal characters in its path");
-    Some(file.replace(project_dir, "")
-        .replace("src/main/java/", "")
-        .replace(&file_related, "")
-        .replace('/', "."))
+    let file = file
+        .to_str()
+        .expect("The file that was supplied contains ileagal characters in its path");
+    Some(
+        file.replace(project_dir, "")
+            .replace("src/main/java/", "")
+            .replace(&file_related, "")
+            .replace('/', "."),
+    )
 }
 
 /// Will return the file for a class
 #[must_use]
-pub fn get_file(class: &str, project_dir: &str) -> String {
+fn get_file(class: &str, project_dir: &str) -> String {
     let inter = class.replace('.', "/");
     format!("{project_dir}/src/main/java/{inter}.java")
 }
 
+/// Returns all java files for project
+//fn get_project_files(project_dir: &str) -> Vec<String> {
+    //let out = Exec::cmd("find")
+        //.arg(project_dir)
+        //.arg("-type")
+        //.arg("f")
+        //.arg("-name")
+        //.arg("*.java")
+        //.stdout(Redirection::Pipe)
+        //.capture()
+        //.expect("To get output")
+        //.stdout_str();
+
+    //let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
+
+    //out
+//}
+
 #[must_use]
-pub fn get_project_files(project_dir: &str) -> Vec<String> {
-    let out = Exec::cmd("find")
-        .arg(project_dir)
-        .arg("-type")
-        .arg("f")
-        .arg("-name")
-        .arg("*.java")
-        .stdout(Redirection::Pipe)
-        .capture()
-        .expect("To get output")
-        .stdout_str();
-
-    let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
-
-    out
-}
-
-#[must_use]
-pub fn remove_function(path: &str) -> &str {
+fn remove_function(path: &str) -> &str {
     let dots = path
         .chars()
         .enumerate()
@@ -71,7 +80,7 @@ pub fn remove_function(path: &str) -> &str {
 }
 
 #[must_use]
-pub fn get_row(row: &str) -> Option<usize> {
+fn get_row(row: &str) -> Option<usize> {
     let row = &row[0..row.len() - 1];
 
     let Some((_, row)) = row.split_once(':') else {
@@ -84,7 +93,7 @@ pub fn get_row(row: &str) -> Option<usize> {
 }
 
 #[must_use]
-pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
+fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
     let first_line = log.first().expect("An exception log should contain lines");
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
@@ -125,7 +134,7 @@ pub fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option
 }
 
 #[must_use]
-pub fn get_exceptions(log: &Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
+fn get_exceptions(log: &Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
     let mut errors = vec![];
     'log: for i in 1.. {
         let Some(line) = log.get(i) else {

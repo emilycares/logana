@@ -1,5 +1,5 @@
 use clap::Parser;
-use std::{str::FromStr};
+use std::str::FromStr;
 
 /// A build log analysis tool
 #[derive(Parser, Debug)]
@@ -30,13 +30,17 @@ pub struct Args {
     pub package: String,
 }
 
+/// Pecifies witch parser to use 
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
+    /// The parser for maven
     Maven,
+    /// The parser for java
     Java,
+    /// The parser for Karma with Jasmine
     KarmaJasmine,
+    /// The parser for cargo
     Cargo,
-    Unknown,
 }
 
 impl FromStr for ParserKind {
@@ -47,39 +51,39 @@ impl FromStr for ParserKind {
             "maven" => Ok(Self::Maven),
             "java" => Ok(Self::Java),
             "karma-jasmine" => Ok(Self::KarmaJasmine),
-            "cargo" => Ok(Self::Cargo),
-            "typos" => Ok(Self::Cargo),
-            &_ => Err(())
+            "cargo" | "typos" => Ok(Self::Cargo),
+            &_ => Err(()),
         }
     }
 }
 
+/// Specifies the input of the parser
 #[derive(clap::ValueEnum, Clone, Debug, Default, PartialEq, Eq)]
 pub enum InputKind {
+    /// Take input from stdin and stderr
     #[default]
     Stdin,
+    /// Take input from a tmux pane
     Tmux,
+    /// Take input from a command that logana will execute
     Command,
 }
 
 impl Args {
-    pub fn validate(args: &mut Args) {
+    /// Provides fallbacks for cli arguments
+    pub fn validate(args: &mut Self) {
         if args.parser.is_none() {
             let Some(command) = &args.command else {
                 return;
             };
 
-            if let Some((first_word, _)) = command.split_once(" ") {
+            if let Some((first_word, _)) = command.split_once(' ') {
                 args.parser = ParserKind::from_str(first_word).ok();
             };
         }
 
-        if args.input.is_none() {
-            if args.command.is_some() {
-                args.input = Some(InputKind::Command);
-            }
+        if args.input.is_none() && args.command.is_some() {
+            args.input = Some(InputKind::Command);
         }
-
-        return;
     }
 }

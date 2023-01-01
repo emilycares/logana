@@ -1,5 +1,6 @@
 use crate::types;
 
+/// Contains the analyser code for the [`crate::config::ParserKind::Cargo`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut errors: Vec<types::Message> = vec![];

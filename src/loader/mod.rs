@@ -1,3 +1,6 @@
+/// Loads the log for [`crate::config::InputKind::Command`]
 pub mod command;
-pub mod fetch;
+/// Loads the log for [`crate::config::InputKind::Tmux`]
+pub mod tmux;
+/// A util function for splitting builds
 pub mod split;

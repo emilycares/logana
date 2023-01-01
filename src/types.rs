@@ -1,9 +1,13 @@
 use std::fmt::Display;
 
+/// A file with position
 #[derive(Debug, PartialEq, Eq)]
 pub struct Location {
+    /// File location
     pub path: String,
+    /// Row of file
     pub row: usize,
+    /// Column of file
     pub col: usize,
 }
 
@@ -13,9 +17,12 @@ impl Display for Location {
     }
 }
 
+/// An error message
 #[derive(Debug, PartialEq, Eq)]
 pub struct Message {
+    /// The discription of the error
     pub error: String,
+    /// All relevant fiel references of an error
     pub locations: Vec<Location>,
 }
 
@@ -29,13 +36,17 @@ impl Display for Message {
     }
 }
 
+/// A report with all its errors
 #[derive(Debug, PartialEq, Eq)]
 pub struct AnalyseReport {
+    /// All errors
     pub errors: Vec<Message>,
 }
 
 impl AnalyseReport {
-    #[must_use] pub const fn new() -> Self {
+    /// Returns a new `AnalyseReport`
+    #[must_use]
+    pub const fn new() -> Self {
         Self { errors: vec![] }
     }
 }

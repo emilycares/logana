@@ -4,10 +4,20 @@ use clap::Parser;
 use config::{Args, InputKind, ParserKind};
 use loader::command;
 
+/// Contains the analyser for all [`crate::config::ParserKind`]
+#[warn(missing_docs)]
 pub mod analyser;
+/// All cli replated code
+#[warn(missing_docs)]
 pub mod config;
+/// All code related to create .logana-report
+#[warn(missing_docs)]
 pub mod file;
+/// Loads the log for every [`crate::config::InputKind`]
+#[warn(missing_docs)]
 pub mod loader;
+/// The shared type definitions for analyser
+#[warn(missing_docs)]
 pub mod types;
 
 fn main() {
@@ -26,14 +36,14 @@ fn main() {
         ),
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
-                if let Ok(lines) = command::run_command_and_collect(&command) {
+                if let Ok(lines) = command::run_command_and_collect(command) {
                     let report = analyse(&args, &lines);
                     file::save_analyse(&report);
                 }
             }
         }
         Some(InputKind::Tmux) => {
-            if let Some(content) = loader::fetch::get_tmux_pane_content(args.target.as_str()) {
+            if let Some(content) = loader::tmux::get_tmux_pane_content(args.target.as_str()) {
                 if let Some(report) = loader::split::builds(content.as_str(), &args.splitby)
                     .iter()
                     .map(|build| analyse(&args, build))
@@ -59,7 +69,7 @@ fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
                 Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
                 Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, dir),
                 Some(ParserKind::Cargo) => analyser::cargo::analyse(input, dir),
-                None | Some(ParserKind::Unknown) => {
+                None => {
                     println!("There was no --parser defined and it could not be guessed");
 
                     types::AnalyseReport::default()

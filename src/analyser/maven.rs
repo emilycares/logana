@@ -1,6 +1,8 @@
 use crate::types;
 
-#[must_use] pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+/// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
+#[must_use]
+pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut errors: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 

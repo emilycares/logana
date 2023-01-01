@@ -3,6 +3,8 @@ use regex::Regex;
 use std::io::{BufRead, BufReader};
 
 use subprocess::{Exec, Redirection};
+
+/// Runs the passed command in a shell
 pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> {
     let stream = Exec::shell(command)
         .stdout(Redirection::Pipe)
@@ -29,7 +31,8 @@ pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> 
 
 fn strip_color(text: &str) -> String {
     lazy_static! {
-        static ref RE: Regex = Regex::new("\\x1B\\[(?:;?[0-9]{1,3})+[mGK]").expect("Unbale to create regex to strip color");
+        static ref RE: Regex = Regex::new("\\x1B\\[(?:;?[0-9]{1,3})+[mGK]")
+            .expect("Unbale to create regex to strip color");
     }
     RE.replace_all(text, String::new()).to_string()
 }
