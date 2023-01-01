@@ -11,11 +11,12 @@ pub mod loader;
 pub mod types;
 
 fn main() {
-    let args = Args::parse();
+    let mut args = Args::parse();
+    Args::validate(&mut args);
     let mut buffer = String::new();
 
     match &args.input {
-        InputKind::Stdin => io::stdin().read_to_string(&mut buffer).map_or_else(
+        Some(InputKind::Stdin) => io::stdin().read_to_string(&mut buffer).map_or_else(
             |_| {
                 let report = analyse(&args, &buffer);
 
@@ -23,13 +24,15 @@ fn main() {
             },
             |_| println!("Unable to read user input."),
         ),
-        InputKind::Command => {
-            if let Ok(lines) = command::run_command_and_collect(&args.command) {
-                let report = analyse(&args, &lines);
-                file::save_analyse(&report);
+        Some(InputKind::Command) => {
+            if let Some(command) = &args.command {
+                if let Ok(lines) = command::run_command_and_collect(&command) {
+                    let report = analyse(&args, &lines);
+                    file::save_analyse(&report);
+                }
             }
         }
-        InputKind::Tmux => {
+        Some(InputKind::Tmux) => {
             if let Some(content) = loader::fetch::get_tmux_pane_content(args.target.as_str()) {
                 if let Some(report) = loader::split::builds(content.as_str(), &args.splitby)
                     .iter()
@@ -42,6 +45,9 @@ fn main() {
                 }
             }
         }
+        None => {
+            println!("There was no --input defined and it could not be guessed");
+        }
     };
 }
 
@@ -49,12 +55,12 @@ fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
     if let Ok(dir) = std::env::current_dir() {
         if let Some(dir) = dir.to_str() {
             return match args.parser {
-                ParserKind::Maven => analyser::maven::analyse(input, dir),
-                ParserKind::Java => analyser::java::analyse(input, dir, &args.package),
-                ParserKind::KarmaJasmine => analyser::karma_jasmine::analyse(input, dir),
-                ParserKind::Cargo => analyser::cargo::analyse(input, dir),
-                ParserKind::Unknown => {
-                    println!("Unknown parser the valid options are \"Cargo\", \"Maven\" and \"KarmaJasmine\"");
+                Some(ParserKind::Maven) => analyser::maven::analyse(input, dir),
+                Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
+                Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, dir),
+                Some(ParserKind::Cargo) => analyser::cargo::analyse(input, dir),
+                None | Some(ParserKind::Unknown) => {
+                    println!("There was no --parser defined and it could not be guessed");
 
                     types::AnalyseReport::default()
                 }
