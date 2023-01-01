@@ -9,6 +9,11 @@ Currently, it only supports
 -   [https://github.com/crate-ci/typos](https://github.com/crate-ci/typos)
     with plans for more.
 
+## Compatibility
+Regularly tested on
+- linux
+- Windows 10
+
 ## Installation
 Install the rust.
 ``` bash
