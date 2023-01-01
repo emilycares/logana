@@ -20,9 +20,9 @@ impl Display for Location {
 /// An error message
 #[derive(Debug, PartialEq, Eq)]
 pub struct Message {
-    /// The discription of the error
+    /// The description of the error
     pub error: String,
-    /// All relevant fiel references of an error
+    /// All relevant file references of an error
     pub locations: Vec<Location>,
 }
 
