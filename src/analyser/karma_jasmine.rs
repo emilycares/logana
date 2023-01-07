@@ -4,9 +4,11 @@ use crate::types;
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut errors: Vec<types::Message> = vec![];
-    let lines: Vec<&str> = log.lines().collect();
+    let lines = log.lines().collect::<Vec<&str>>();
+    let lines = lines.as_slice();
+    let line_len = &lines.len();
 
-    for i in 0..lines.len() {
+    for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
             let line_trimmed = line.trim();
             if line_trimmed.starts_with("Error: ")
@@ -28,7 +30,8 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
 
                     exception.push(line);
                 }
-                if let Some(message) = parse_exception(&exception, project_dir) {
+                let exception = exception.as_slice();
+                if let Some(message) = parse_exception(exception, project_dir) {
                     errors.push(message);
                 }
             }
@@ -66,7 +69,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
 }
 
 #[must_use]
-fn parse_exception(log: &Vec<&str>, project_dir: &str) -> Option<types::Message> {
+fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
     let first_line = log.first().expect("A exception should have a fist line");
     let Some((_, error)) = first_line.split_once(": ") else {
         return None;
@@ -184,7 +187,7 @@ mod tests {
     #[test]
     fn should_parse_exception_1() {
         static LOG: &str = include_str!("../../tests/karma_jasmine_exeption_1.log");
-        let result = parse_exception(&LOG.lines().collect(), "/tmp/project");
+        let result = parse_exception(LOG.lines().collect::<Vec<&str>>().as_slice(), "/tmp/project");
         assert_eq!(result, Some(types::Message {
             error: "Cannot read property 'component' of undefined".to_string(), 
             locations: vec![types::Location {
@@ -198,7 +201,7 @@ mod tests {
     #[test]
     fn should_parse_exception_2() {
         static LOG: &str = include_str!("../../tests/karma_jasmine_exeption_2.log");
-        let result = parse_exception(&LOG.lines().collect(), "/tmp/project");
+        let result = parse_exception(LOG.lines().collect::<Vec<&str>>().as_slice(), "/tmp/project");
 
         assert_eq!(result, Some(types::Message {
             error: "Expected '12.08.2021 08:01:06' to equal '12.08.2021 09:01:06'.".to_string(), 

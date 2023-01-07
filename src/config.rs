@@ -35,6 +35,8 @@ pub struct Args {
 pub enum ParserKind {
     /// The parser for maven
     Maven,
+    /// The parser for gradle
+    Gradle,
     /// The parser for java
     Java,
     /// The parser for Karma with Jasmine
@@ -52,6 +54,7 @@ impl FromStr for ParserKind {
             "java" => Ok(Self::Java),
             "karma-jasmine" => Ok(Self::KarmaJasmine),
             "cargo" | "typos" => Ok(Self::Cargo),
+            "gradle" | "./gradlew" => Ok(Self::Gradle),
             &_ => Err(()),
         }
     }

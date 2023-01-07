@@ -1,2 +1,4 @@
 /target
 .logana-report
+.idea/
+*.iml

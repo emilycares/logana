@@ -7,8 +7,10 @@ use crate::types;
 /// Contains the analyser code for the [`crate::config::ParserKind::Java`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseReport {
-    let log = log.lines().collect();
-    let errors = get_exceptions(&log, project_dir, package);
+    let lines = log.lines().collect::<Vec<&str>>();
+    let lines = lines.as_slice();
+
+    let errors = get_exceptions(lines, project_dir, package);
 
     types::AnalyseReport { errors }
 }
@@ -134,7 +136,7 @@ fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<typ
 }
 
 #[must_use]
-fn get_exceptions(log: &Vec<&str>, project_dir: &str, package: &str) -> Vec<types::Message> {
+fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::Message> {
     let mut errors = vec![];
     'log: for i in 1.. {
         let Some(line) = log.get(i) else {

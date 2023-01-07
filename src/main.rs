@@ -66,6 +66,7 @@ fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
         if let Some(dir) = dir.to_str() {
             return match args.parser {
                 Some(ParserKind::Maven) => analyser::maven::analyse(input, dir),
+                Some(ParserKind::Gradle) => analyser::gradle::analyse(input, dir),
                 Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
                 Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, dir),
                 Some(ParserKind::Cargo) => analyser::cargo::analyse(input, dir),

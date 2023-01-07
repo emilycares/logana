@@ -1,0 +1,22 @@
+
+> Task :app:compileJava FAILED
+/home/michael/tmp/gradle-test/app/src/main/java/gradle/test/App.java:8: error: ';' expected
+        return "Hello World!"
+                             ^
+1 error
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 558ms
+1 actionable task: 1 executed

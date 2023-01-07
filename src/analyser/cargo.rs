@@ -4,9 +4,11 @@ use crate::types;
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
     let mut errors: Vec<types::Message> = vec![];
-    let lines: Vec<&str> = log.lines().collect();
+    let lines = log.lines().collect::<Vec<&str>>();
+    let lines = lines.as_slice();
+    let line_len = &lines.len();
 
-    for i in 0..lines.len() {
+    for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
             if line.starts_with("error: ")
                 || line.starts_with("error[")
