@@ -7,16 +7,15 @@ pub fn get_tmux_pane_content(target: &str) -> Option<String> {
     match tmux
         .capture_pane()
         .stdout()
-        //.escape_sequences() // shell colors
+        .escape_sequences() // shell colors
         .start_line("-")
         .join()
         .target_pane(target)
         .output()
-    {
-        Ok(o) => Some(o.to_string()),
-        Err(_) => {
-            println!("Unable to read from tmux target: {}", target);
-            None
-        }
-    }
+        .map_or_else(
+            |o| Some(o.to_string()),
+            |e| {
+                Some(e.to_string())
+            },
+        )
 }

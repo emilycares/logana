@@ -19,10 +19,19 @@ pub struct Args {
     /// The tmux pane
     #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
     pub target: String,
+    
+    /// Incremental analyse
+    #[clap(short, long, default_value = "false")]
+    pub live: bool,
 
     /// Your shell PS1 in order to split logs for tmux
-    #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
+    #[clap(short, long, default_value = "", required_if_eq("input", "tmux"), required_if_eq("live", "true"))]
     pub splitby: String,
+
+    /// The java package of your java project
+    #[clap(long, default_value = "", required_if_eq("parser", "java"))]
+    pub package: String,
+    
 }
 
 #[derive(clap::ValueEnum, Clone, Debug)]

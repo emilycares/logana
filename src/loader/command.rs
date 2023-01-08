@@ -3,7 +3,34 @@ use regex::Regex;
 use std::io::{BufRead, BufReader};
 
 use subprocess::{Exec, Redirection};
-pub fn run_command_and_collect(command: String) -> Result<String, std::io::Error> {
+
+/// Runs the passed command in a shell
+pub fn run_command_and_collect(command: &str) -> Result<Vec<String>, std::io::Error> {
+    let stream = Exec::shell(command)
+        .stdout(Redirection::Pipe)
+        .stderr(Redirection::Merge)
+        .stream_stdout()
+        .expect("To get output from program");
+
+    clearscreen::clear().expect("The clearscreen lib should be able to clear the screen");
+
+    let reader = BufReader::new(stream);
+
+    let mut lines = vec![];
+
+    reader.lines().for_each(|line| {
+        let line = line.expect("Line should be ok");
+        println!("{line}");
+        let line = strip_color(&line);
+
+        lines.push(line.to_string() + "\n");
+    });
+
+    Ok(lines)
+}
+
+/// Runs the passed command in a shell
+pub async fn run_command(command: String, tx: tokio::sync::mpsc::Sender<String>) {
     let stream = Exec::shell(command)
         .stdout(Redirection::Pipe)
         .stderr(Redirection::Merge)
@@ -16,15 +43,20 @@ pub fn run_command_and_collect(command: String) -> Result<String, std::io::Error
 
     let mut output = String::from("");
 
-    reader.lines().for_each(|line| {
-        let line = line.unwrap();
-        println!("{}", line);
+    for line in reader.lines() {
+        let line = line.expect("Line should be ok");
+        println!("{line}");
         let line = strip_color(&line);
 
         output = output.clone() + &line + "\n";
-    });
 
-    Ok(output)
+        match tx.send(output.clone()).await {
+            Ok(_) => {}
+            Err(e) => {
+                println!("Falied to send message: {}", e)
+            }
+        }
+    }
 }
 
 fn strip_color(text: &str) -> String {

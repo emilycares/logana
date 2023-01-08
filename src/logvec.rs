@@ -1,39 +1,29 @@
-use tokio_retry::{
-    strategy::{jitter, ExponentialBackoff},
-    Retry,
-};
-
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct LogVec<T> {
-    storage: Vec<T>,
+pub struct LogVec<'a> {
+    storage: Vec<&'a [&'a str]>,
+    current: Vec<&'a str>,
 }
 
-impl<T> LogVec<T> {
+impl<'b> LogVec<'b> {
     pub fn new() -> Self {
-        Self { storage: vec![] }
-    }
-
-    pub fn insert(&mut self, value: T) {
-        self.storage.push(value);
-    }
-
-    /// Try's to get data from storage until it is presents
-    pub async fn get(&self, i: usize) -> Option<&T> {
-        let retry_strategy = ExponentialBackoff::from_millis(500)
-            .map(jitter) // add jitter to delays
-            .take(3); // limit to 3 retries
-
-        let result = Retry::spawn(retry_strategy, || self.get_internal(i)).await;
-
-        result.ok()
-    }
-
-    async fn get_internal(&self, i: usize) -> Result<&T, ()> {
-        if let Some(item) = self.storage.get(i) {
-            return Ok(item);
-        } else {
-            return Err(());
+        Self {
+            storage: vec![],
+            current: vec![],
         }
+    }
+
+    pub fn insert(&mut self, value: &str) {
+        self.current.push(value);
+    }
+
+    pub fn collect(&mut self) -> usize {
+        let slice = self.current.clone().as_slice();
+        self.current = vec![];
+
+        self.storage.push(slice);
+        let index = self.storage.len() - 1;
+
+        return index;
     }
 }
 
@@ -62,25 +52,5 @@ mod tests {
         logvec.insert(value);
 
         assert_eq!(logvec.get(0).await, Some(&value));
-    }
-
-    #[tokio::test]
-    async fn get_not_present_entry() {
-        let mut logvec: LogVec<u8> = LogVec::new();
-
-        let value: u8 = 1;
-
-        let mut logvec_a = Arc::new(Mutex::new(logvec));
-
-        logvec_a.lock().await.insert(value);
-
-        let logvec_b = logvec_a.clone();
-        tokio::spawn(async move {
-            let logvec_b = logvec_b.lock().await;
-            assert_eq!(logvec_b.get(0).await, Some(&value));
-            assert_eq!(logvec_b.get(1).await, Some(&value));
-        });
-
-        logvec_a.lock().await.insert(value);
     }
 }

@@ -1,12 +1,11 @@
 use std::path::Path;
 
-use subprocess::{Exec, Redirection};
-
 use crate::types;
 
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
-    let mut errors: Vec<types::Message> = vec![];
-    let lines: Vec<&str> = log.lines().collect();
+/// Contains the analyser code for the [`crate::config::ParserKind::Java`]
+#[must_use]
+pub fn analyse(lines: &[&str], project_dir: &str, package: &str) -> types::AnalyseReport {
+    let errors = get_exceptions(lines, project_dir, package);
 
     for i in 0..lines.len() {
         if let Some(line) = lines.get(i) {
@@ -49,9 +48,133 @@ pub fn get_project_files(project_dir: &str) -> Vec<String> {
         .expect("To get output")
         .stdout_str();
 
-    let out: Vec<String> = out.lines().map(|s| s.to_string()).collect();
+/// Returns all java files for project
+//fn get_project_files(project_dir: &str) -> Vec<String> {
+//let out = Exec::cmd("find")
+//.arg(project_dir)
+//.arg("-type")
+//.arg("f")
+//.arg("-name")
+//.arg("*.java")
+//.stdout(Redirection::Pipe)
+//.capture()
+//.expect("To get output")
+//.stdout_str();
 
-    out
+//let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
+
+//out
+//}
+
+#[must_use]
+fn remove_function(path: &str) -> &str {
+    let dots = path
+        .chars()
+        .enumerate()
+        .filter(|(_, c)| *c == '.')
+        .map(|(i, _)| i)
+        .collect::<Vec<_>>();
+    let last_dont_index = dots.last().expect("A package should contain dots");
+
+    &path[0..*last_dont_index]
+}
+
+#[must_use]
+fn get_row(row: &str) -> Option<usize> {
+    let row = &row[0..row.len() - 1];
+
+    let Some((_, row)) = row.split_once(':') else {
+        return None;
+    };
+
+    let row = row.parse::<usize>().unwrap_or_default();
+
+    Some(row)
+}
+
+#[must_use]
+fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
+    let first_line = log.first().expect("An exception log should contain lines");
+    let Some((_, error)) = first_line.split_once(": ") else {
+        return None;
+    };
+
+    let mut locations = vec![];
+
+    'locations: for i in 1.. {
+        let Some(line) = log.get(i) else {
+
+            break 'locations;
+        };
+
+        let line = line.trim();
+        let line: &str = &line[3..line.len()];
+
+        if !line.starts_with(package) {
+            continue;
+        }
+
+        let Some((path, row)) = line.split_once('(') else {
+            continue;
+        };
+
+        let path = get_file(remove_function(path), project_dir);
+
+        // When there is no row then it is not in source
+        if let Some(row) = get_row(row) {
+            let location = types::Location { path, row, col: 0 };
+            locations.push(location);
+        }
+    }
+
+    Some(types::Message {
+        error: error.to_string(),
+        locations,
+    })
+}
+
+#[must_use]
+fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::Message> {
+    let mut errors = vec![];
+    'log: for i in 1.. {
+        let Some(line) = log.get(i) else {
+            break 'log;
+        };
+
+        let line = line.trim();
+
+        if (line.contains("Error: ") || line.contains("Exception: "))
+            && !line.starts_with("Caused by:")
+        {
+            let mut end = 0;
+            'exception: for y in 1.. {
+                let y = i + y;
+                let Some(line) = log.get(y) else {
+                    break 'exception;
+                };
+
+                if !line.trim().starts_with("at ") {
+                    if let Some(line) = log.get(y + 1) {
+                        if !line.trim().starts_with("at ") {
+                            break 'exception;
+                        }
+                    };
+                }
+
+                end = y;
+            }
+
+            if end != 0 {
+                let end = end + 1;
+                let exception_log = &log[i..end];
+                if let Some(error) = parse_exception(exception_log, project_dir, package) {
+                    errors.push(error);
+                }
+            }
+        }
+    }
+
+    errors
 }
 
 #[cfg(test)]

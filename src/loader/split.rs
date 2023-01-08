@@ -1,6 +1,7 @@
-pub fn split_builds<'a>(log: &'a str, split_symbol: &str) -> Vec<String> {
+/// A utility function to split multipel builds
+#[must_use]
+pub fn builds(lines: &[&str], split_symbol: &str) -> Vec<String> {
     let mut out = vec![];
-    let lines: Vec<&str> = log.split('\n').collect();
     let last = lines.len();
 
     let split_lines: Vec<usize> = lines
