@@ -73,7 +73,9 @@ mod tests {
     #[test]
     fn should_find_syntax_error() {
         static LOG: &str = include_str!("../../tests/gradle_java_syntax.log");
-        let result = analyse(LOG, "/home/michael/tmp/gradle-test");
+        let lines: Vec<&str> = LOG.lines().collect();
+        let lines = lines.as_slice();
+        let result = analyse(lines, "/home/michael/tmp/gradle-test");
 
         assert_eq!(
             result,

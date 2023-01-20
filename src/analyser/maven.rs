@@ -8,7 +8,7 @@ pub fn analyse(lines: &[&str], project_dir: &str) -> types::AnalyseReport {
 
     let line_len = &lines.len();
 
-    for i in 0..lines.len() {
+    for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
             if line.starts_with("[INFO] Building") {
                 phase = MavenPhase::Building;
@@ -21,9 +21,9 @@ pub fn analyse(lines: &[&str], project_dir: &str) -> types::AnalyseReport {
             }
 
             match phase {
-                MavenPhase::Scanning => {}
+                MavenPhase::Scanning | MavenPhase::Done => {}
                 MavenPhase::Building => {
-                    let beginning = format!("[ERROR] {}", project_dir);
+                    let beginning = format!("[ERROR] {project_dir}");
                     if line.starts_with(&beginning) {
                         if let Some(message) = parse_copilation_error(line) {
                             errors.push(message);
@@ -36,7 +36,7 @@ pub fn analyse(lines: &[&str], project_dir: &str) -> types::AnalyseReport {
                     {
                         if let Some((_, error)) = line.split_once(':') {
                             let error = &error[1..];
-                            for y in 1.. {
+                            'er: for y in 1.. {
                                 let i = i + y;
                                 if let Some(line) = lines.get(i) {
                                     if !line.starts_with("\tat ") {
@@ -47,14 +47,14 @@ pub fn analyse(lines: &[&str], project_dir: &str) -> types::AnalyseReport {
                                         errors.push(types::Message {
                                             error: error.to_string(),
                                             locations: vec![location],
-                                        })
+                                        });
+                                        break 'er;
                                     }
                                 }
                             }
                         }
                     }
                 }
-                MavenPhase::Done => {}
             }
         }
     }
@@ -154,8 +154,10 @@ mod tests {
 
     #[test]
     fn should_find_syntax_error() {
-        static LOG: &'static str = include_str!("../../tests/maven_copilation_1.log");
-        let result = analyse(LOG, "/tmp/project");
+        static LOG: &str = include_str!("../../tests/maven_copilation_1.log");
+        let lines: Vec<&str> = LOG.lines().collect();
+        let lines = lines.as_slice();
+        let result = analyse(lines, "/tmp/project");
 
         assert_eq!(
             result,
@@ -169,13 +171,15 @@ mod tests {
                     }]
                 }]
             }
-        )
+        );
     }
 
     #[test]
     fn should_find_unknown_symbol() {
-        static LOG: &'static str = include_str!("../../tests/maven_copilation_2.log");
-        let result = analyse(LOG, "/tmp/project");
+        static LOG: &str = include_str!("../../tests/maven_copilation_2.log");
+        let lines: Vec<&str> = LOG.lines().collect();
+        let lines = lines.as_slice();
+        let result = analyse(lines, "/tmp/project");
 
         assert_eq!(
             result,
@@ -189,13 +193,15 @@ mod tests {
                     }]
                 }]
             }
-        )
+        );
     }
 
     #[test]
     fn should_find_failed_test() {
-        static LOG: &'static str = include_str!("../../tests/maven_test_1.log");
-        let result = analyse(LOG, "/tmp/project");
+        static LOG: &str = include_str!("../../tests/maven_test_1.log");
+        let lines: Vec<&str> = LOG.lines().collect();
+        let lines = lines.as_slice();
+        let result = analyse(lines, "/tmp/project");
 
         assert_eq!(
             result,
@@ -223,7 +229,7 @@ mod tests {
                     }
                 ]
             }
-        )
+        );
     }
 
     #[test]
@@ -240,6 +246,6 @@ mod tests {
                 row: 34,
                 col: 0
             })
-        )
+        );
     }
 }
