@@ -4,7 +4,7 @@ use crate::config::{Args, InputKind, ParserKind};
 use crate::loader::command;
 use crate::{analyser, file, loader, types};
 
-/// Handels log input
+/// Handles log input
 pub fn handle(args: Args) {
     let Some(project_dir) = get_project_dir() else {
         println!("Unable to determine project directory");
@@ -33,7 +33,7 @@ pub fn handle(args: Args) {
                 //}
 
                 //// **Very important**, otherwise you can end up with
-                //// Heartbleed-esque bugs! I'm chosing to shadow `buf` to
+                //// Heartbleed-esque bugs! I'm choosing to shadow `buf` to
                 //// deliberately prevent using it again in this loop.
                 //let buf = &buf[..bytes];
 
@@ -98,14 +98,14 @@ pub fn handle(args: Args) {
     };
 }
 
-/// Splits lines into builds and analyses the lates build
+/// Splits lines into builds and analyses the latest build
 #[must_use] pub fn split_analyse(
     args: &Args,
     project_dir: &str,
     lines: &[&str],
 ) -> Option<types::AnalyseReport> {
     let Some(splitby) = &args.splitby else {
-        println!("Unable to split builds on splitby was passed and it could not be guessed succesfuly");
+        println!("Unable to split builds on splitby was passed and it could not be guessed successfully");
         return None;
     };
 

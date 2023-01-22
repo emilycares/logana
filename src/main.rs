@@ -10,7 +10,7 @@ pub mod config;
 /// All code related to create .logana-report
 #[warn(missing_docs)]
 pub mod file;
-/// Handels the log input [`crate::config::InputKind`]
+/// Handles the log input [`crate::config::InputKind`]
 #[warn(missing_docs)]
 pub mod input;
 /// Loads the log for every [`crate::config::InputKind`]

@@ -9,3 +9,5 @@ test:
   logana -c "cargo test --color always"
 test-spec:
   logana -c "cargo test input::tests::split_analyse_should_work_as_intended --color always -- --nocapture"
+typos:
+  logana --parser cargo -c "typos"
