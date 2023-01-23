@@ -83,13 +83,20 @@ fn parse_copilation_error(error: &str) -> Option<types::Message> {
 }
 
 fn parse_coppilation_location(location: &str) -> Option<types::Location> {
+    let mut location = location;
+    let mut drive = "";
+    if location.chars().nth(1) == Some(':') {
+        drive = &location[0..2];
+        location = &location[2..];
+    }
+
     if let Some((path, row_col)) = location.split_once(':') {
         let row_col = &row_col[1..];
         let row_col = &row_col[..row_col.len() - 1];
 
         if let Some((row, col)) = row_col.split_once(',') {
             return Some(types::Location {
-                path: path.to_string(),
+                path: format!("{}{}", drive, path.to_string()),
                 col: col.parse().unwrap_or_default(),
                 row: row.parse().unwrap_or_default(),
             });
@@ -188,6 +195,26 @@ mod tests {
                         path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
                         row: 45,
                         col: 4
+                    }]
+                }]
+            }
+        );
+    }
+
+    #[test]
+    fn should_find_expected_symbol_on_windows() {
+        static LOG: &str = include_str!("../../tests/maven_copilation_3.log");
+        let result = analyse(LOG, "C:\\Users\\michael\\testproject");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![types::Message {
+                    error: "error: ';' expected".to_string(),
+                    locations: vec![types::Location {
+                        path: "C:\\Users\\michael\\testproject\\src\\main\\java\\com\\micmine\\test\\Service.java".to_string(),
+                        row: 604,
+                        col: 98
                     }]
                 }]
             }

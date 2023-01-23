@@ -30,7 +30,7 @@ pub struct Args {
     pub package: String,
 }
 
-/// Pecifies witch parser to use 
+/// Pecifies witch parser to use
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
     /// The parser for maven

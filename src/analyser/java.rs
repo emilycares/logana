@@ -1,7 +1,5 @@
 use std::path::Path;
 
-
-
 use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Java`]
@@ -52,20 +50,20 @@ fn get_file(class: &str, project_dir: &str) -> String {
 
 /// Returns all java files for project
 //fn get_project_files(project_dir: &str) -> Vec<String> {
-    //let out = Exec::cmd("find")
-        //.arg(project_dir)
-        //.arg("-type")
-        //.arg("f")
-        //.arg("-name")
-        //.arg("*.java")
-        //.stdout(Redirection::Pipe)
-        //.capture()
-        //.expect("To get output")
-        //.stdout_str();
+//let out = Exec::cmd("find")
+//.arg(project_dir)
+//.arg("-type")
+//.arg("f")
+//.arg("-name")
+//.arg("*.java")
+//.stdout(Redirection::Pipe)
+//.capture()
+//.expect("To get output")
+//.stdout_str();
 
-    //let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
+//let out: Vec<String> = out.lines().map(std::string::ToString::to_string).collect();
 
-    //out
+//out
 //}
 
 #[must_use]

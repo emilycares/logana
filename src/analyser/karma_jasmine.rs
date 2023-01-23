@@ -187,7 +187,10 @@ mod tests {
     #[test]
     fn should_parse_exception_1() {
         static LOG: &str = include_str!("../../tests/karma_jasmine_exeption_1.log");
-        let result = parse_exception(LOG.lines().collect::<Vec<&str>>().as_slice(), "/tmp/project");
+        let result = parse_exception(
+            LOG.lines().collect::<Vec<&str>>().as_slice(),
+            "/tmp/project",
+        );
         assert_eq!(result, Some(types::Message {
             error: "Cannot read property 'component' of undefined".to_string(), 
             locations: vec![types::Location {
@@ -201,7 +204,10 @@ mod tests {
     #[test]
     fn should_parse_exception_2() {
         static LOG: &str = include_str!("../../tests/karma_jasmine_exeption_2.log");
-        let result = parse_exception(LOG.lines().collect::<Vec<&str>>().as_slice(), "/tmp/project");
+        let result = parse_exception(
+            LOG.lines().collect::<Vec<&str>>().as_slice(),
+            "/tmp/project",
+        );
 
         assert_eq!(result, Some(types::Message {
             error: "Expected '12.08.2021 08:01:06' to equal '12.08.2021 09:01:06'.".to_string(), 
