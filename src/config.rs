@@ -6,7 +6,7 @@ use std::str::FromStr;
 #[clap(author, version, about, long_about = None)]
 pub struct Args {
     /// The type of log input "Cargo", "Maven" or "KarmaJasmine"
-    #[clap(short, long, value_enum)]
+    #[clap(short, long, value_enum, required_if_eq_any([("input", "stdin"), ("input", "tmux"), ("input", "wezterm")]))]
     pub parser: Option<ParserKind>,
 
     /// The input method that should be used to collect the log.
@@ -18,11 +18,11 @@ pub struct Args {
     pub command: Option<String>,
 
     /// The tmux pane
-    #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
+    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm")]))]
     pub target: String,
 
     /// Your shell PS1 in order to split logs for tmux
-    #[clap(short, long, default_value = "", required_if_eq("input", "tmux"))]
+    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm")]))]
     pub splitby: String,
 
     /// The java package of your java project
@@ -68,6 +68,8 @@ pub enum InputKind {
     Stdin,
     /// Take input from a tmux pane
     Tmux,
+    /// Take input from a wezterm pane
+    Wezterm,
     /// Take input from a command that logana will execute
     Command,
 }

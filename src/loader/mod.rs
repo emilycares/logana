@@ -4,3 +4,5 @@ pub mod command;
 pub mod split;
 /// Loads the log for [`crate::config::InputKind::Tmux`]
 pub mod tmux;
+/// Loads the log for [`crate::config::InputKind::Wezterm`]
+pub mod wezterm;

@@ -1,3 +1,5 @@
+use lazy_static::lazy_static;
+use regex::Regex;
 use std::io::{self, Read};
 
 use clap::Parser;
@@ -26,14 +28,12 @@ fn main() {
     let mut buffer = String::new();
 
     match &args.input {
-        Some(InputKind::Stdin) => io::stdin().read_to_string(&mut buffer).map_or_else(
-            |_| {
-                let report = analyse(&args, &buffer);
+        Some(InputKind::Stdin) => {
+            io::stdin().read_to_string(&mut buffer).unwrap_or_default();
+            let report = analyse(&args, &buffer);
 
-                file::save_analyse(&report);
-            },
-            |_| println!("Unable to read user input."),
-        ),
+            file::save_analyse(&report);
+        }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
                 if let Ok(lines) = command::run_command_and_collect(command) {
@@ -42,14 +42,23 @@ fn main() {
                 }
             }
         }
-        Some(InputKind::Tmux) => {
-            if let Some(content) = loader::tmux::get_tmux_pane_content(args.target.as_str()) {
-                if let Some(report) = loader::split::builds(content.as_str(), &args.splitby)
-                    .iter()
-                    .map(|build| analyse(&args, build))
-                    // filter out empty reports
-                    .filter(|analyse| !analyse.errors.is_empty())
-                    .last()
+        Some(InputKind::Wezterm | InputKind::Tmux) => {
+            let content = match &args.input {
+                Some(InputKind::Wezterm) => {
+                    loader::wezterm::get_wezterm_pane_content(args.target.as_str())
+                }
+                Some(InputKind::Tmux) => loader::tmux::get_tmux_pane_content(args.target.as_str()),
+                _ => None,
+            };
+            if let Some(content) = content {
+                if let Some(report) = loader::split::builds(
+                    command::strip_color(content.as_str()).as_str(),
+                    &args.splitby,
+                )
+                .iter()
+                .map(|build| analyse(&args, &remove_first_line(build)))
+                .filter(|analyse| !analyse.errors.is_empty())
+                .last()
                 {
                     file::save_analyse(&report);
                 }
@@ -59,6 +68,13 @@ fn main() {
             println!("There was no --input defined and it could not be guessed");
         }
     };
+}
+
+fn remove_first_line(log: &str) -> String {
+    lazy_static! {
+        static ref RE: Regex = Regex::new("^.*\\n").expect("Unbale to create regex to strip color");
+    }
+    RE.replace_all(log, String::new()).to_string()
 }
 
 fn analyse(args: &Args, input: &str) -> types::AnalyseReport {

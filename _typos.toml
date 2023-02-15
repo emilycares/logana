@@ -1,2 +1,6 @@
 [files]
 extend-exclude = ["tests/*.log"]
+
+[default.extend-words]
+# Ignore testcase word
+ba = "ba"

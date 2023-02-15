@@ -2,3 +2,4 @@
 .logana-report
 .idea/
 *.iml
+tarpaulin-report.html

@@ -96,7 +96,7 @@ fn parse_coppilation_location(location: &str) -> Option<types::Location> {
 
         if let Some((row, col)) = row_col.split_once(',') {
             return Some(types::Location {
-                path: format!("{}{}", drive, path.to_string()),
+                path: format!("{drive}{path}"),
                 col: col.parse().unwrap_or_default(),
                 row: row.parse().unwrap_or_default(),
             });
@@ -112,8 +112,7 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
             let class_path = class_path.replace('.', "/");
             if let Some(row) = parse_row_from_test_location(location) {
                 let path = format!(
-                    "{}/src/test/java/{}{}.java",
-                    project_dir, class_path, class_name
+                    "{project_dir}/src/test/java/{class_path}{class_name}.java"
                 );
 
                 return Some(types::Location {
