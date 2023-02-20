@@ -1,5 +1,3 @@
-use lazy_static::lazy_static;
-use regex::Regex;
 use std::io::{self, Read};
 
 use clap::Parser;
@@ -56,7 +54,7 @@ fn main() {
                     &args.splitby,
                 )
                 .iter()
-                .map(|build| analyse(&args, &remove_first_line(build)))
+                .map(|build| analyse(&args, &build))
                 .filter(|analyse| !analyse.errors.is_empty())
                 .last()
                 {
@@ -68,13 +66,6 @@ fn main() {
             println!("There was no --input defined and it could not be guessed");
         }
     };
-}
-
-fn remove_first_line(log: &str) -> String {
-    lazy_static! {
-        static ref RE: Regex = Regex::new("^.*\\n").expect("Unbale to create regex to strip color");
-    }
-    RE.replace_all(log, String::new()).to_string()
 }
 
 fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
