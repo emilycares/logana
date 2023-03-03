@@ -1,0 +1,28 @@
+Chrome Headless 88.0.4298.0 (Windows 10) Date Fromatting functions should return row with blank date FAILED
+        Expected object to have properties
+            occurringTimeString: '12.07.21 13:25'
+        Expected object not to have properties
+            occurringTimeDate: '01.01.1970 01:00:00'
+        Expected $.occurringTime = null to equal ''.
+        Error: Expected object to have properties
+            occurringTimeString: '12.07.21 13:25'
+        Expected object not to have properties
+            occurringTimeDate: '01.01.1970 01:00:00'
+        Expected $.occurringTime = null to equal ''.
+            at Error.<anonymous> (node_modules/core-js/internals/wrap-error-constructor-with-cause.js:37:1)
+            at new Error (node_modules/core-js/modules/es.error.cause.js:28:36)
+            at <Jasmine>
+            at UserContext.<anonymous> (src/app/some.functions.spec.ts:51:20)
+Chrome Headless 88.0.4298.0 (Windows 10) Date Fromatting functions should return row with formatted date FAILED
+        Expected object to have properties
+            occurringTimeString: '12.07.21 13:25'
+        Expected object not to have properties
+            occurringTimeDate: '12.07.2021 14:25:50'
+        Error: Expected object to have properties
+            occurringTimeString: '12.07.21 13:25'
+        Expected object not to have properties
+            occurringTimeDate: '12.07.2021 14:25:50'
+            at Error.<anonymous> (node_modules/core-js/internals/wrap-error-constructor-with-cause.js:37:1)
+            at new Error (node_modules/core-js/modules/es.error.cause.js:28:36)
+            at <Jasmine>
+            at UserContext.<anonymous> (src/app/some.functions.spec.ts:34:20)

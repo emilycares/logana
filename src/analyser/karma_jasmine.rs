@@ -35,7 +35,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                     errors.push(message);
                 }
             }
-            if line.ends_with(" FAILED[39m") {
+            if line.ends_with(" FAILED") {
                 if let Some(error) = lines.get(i + 1) {
                     let error = error.trim();
 
@@ -43,6 +43,25 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                         let i = i + y;
                         if let Some(line) = lines.get(i) {
                             let line_trimmed = line.trim();
+
+                            if line_trimmed.starts_with("Expected ") {
+                                continue 'search_error;
+                            }
+
+                            if line_trimmed.starts_with("Error: ") {
+                                continue 'search_error;
+                            }
+                            if let Some(previous_line) = lines.get(i - 1) {
+                                let previous_line = previous_line.trim();
+                                if previous_line.starts_with("Expected ")
+                                    || previous_line.starts_with("Error: ")
+                                {
+                                    if !line_trimmed.contains("(src/app") {
+                                        continue 'search_error;
+                                    }
+                                }
+                            }
+
                             if !line_trimmed.starts_with("at ") {
                                 break;
                             }
@@ -58,6 +77,8 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                                     break 'search_error;
                                 }
                             }
+                        } else {
+                            break 'search_error;
                         }
                     }
                 }
@@ -148,6 +169,8 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
 
 #[cfg(test)]
 mod tests {
+    use std::vec;
+
     use crate::{
         analyser::karma_jasmine::{analyse, parse_exception},
         types,
@@ -180,6 +203,44 @@ mod tests {
                         }]
                     }
                 ],
+            }
+        );
+    }
+
+    #[test]
+    fn should_parse_failed_test_2() {
+        static LOG: &str = include_str!("../../tests/karma_jasmine_failed_test_1.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            types::AnalyseReport {
+                errors: vec![
+                    types::Message {
+                        error: "Expected object to have properties".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
+                            row: 51,
+                            col: 20
+                        }]
+                    },
+                    types::Message {
+                        error: "Expected object to have properties".to_string(),
+                        locations: vec![]
+                    },
+                    types::Message {
+                        error: "Expected object to have properties".to_string(),
+                        locations: vec![types::Location {
+                            path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
+                            row: 34,
+                            col: 20
+                        }]
+                    },
+                    types::Message {
+                        error: "Expected object to have properties".to_string(),
+                        locations: vec![]
+                    }
+                ]
             }
         );
     }
@@ -218,4 +279,5 @@ mod tests {
             }]})
         );
     }
+
 }

@@ -111,9 +111,7 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
         if let Some((class_path, _)) = location.split_once(class_name) {
             let class_path = class_path.replace('.', "/");
             if let Some(row) = parse_row_from_test_location(location) {
-                let path = format!(
-                    "{project_dir}/src/test/java/{class_path}{class_name}.java"
-                );
+                let path = format!("{project_dir}/src/test/java/{class_path}{class_name}.java");
 
                 return Some(types::Location {
                     path,

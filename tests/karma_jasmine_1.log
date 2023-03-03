@@ -7,8 +7,8 @@
 06 08 2022 10:19:33.824:INFO [launcher]: Starting browser Chrome
 06 08 2022 10:19:35.189:INFO [Chrome 103.0.5060.134 (Linux x86_64)]: Connected on socket xGTF-4oA0VpUHL8TAAAB with id 90369693
 Chrome 103.0.5060.134 (Linux x86_64): Executed 0 of 5[32m SUCCESS[39m (0 secs / 0 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 1 of 5[32m SUCCESS[39m (0 secs / 0.088 secs)
-[1A[2K[31mChrome 103.0.5060.134 (Linux x86_64) AppComponent should fail FAILED[39m
+Chrome 103.0.5060.134 (Linux x86_64): Executed 1 of 5[32m SUCCESS[39m (0 secs / 0.088 secs)
+Chrome 103.0.5060.134 (Linux x86_64) AppComponent should fail FAILED
 	Expected true to be false.
 	    at <Jasmine>
 	    at UserContext.apply (src/app/app.component.spec.ts:35:18)
@@ -26,9 +26,9 @@ Chrome 103.0.5060.134 (Linux x86_64): Executed 0 of 5[32m SUCCESS[39m (0 secs 
 	    at Zone.runTask (node_modules/zone.js/fesm2015/zone.js:178:47)
 	    at drainMicroTaskQueue (node_modules/zone.js/fesm2015/zone.js:585:35)
 Chrome 103.0.5060.134 (Linux x86_64): Executed 2 of 5[31m (1 FAILED)[39m (0 secs / 0.091 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 3 of 5[31m (1 FAILED)[39m (0 secs / 0.103 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 4 of 5[31m (1 FAILED)[39m (0 secs / 0.111 secs)
-[1A[2K[31mChrome 103.0.5060.134 (Linux x86_64) OtherServiceService should be created FAILED[39m
+Chrome 103.0.5060.134 (Linux x86_64): Executed 3 of 5[31m (1 FAILED)[39m (0 secs / 0.103 secs)
+Chrome 103.0.5060.134 (Linux x86_64): Executed 4 of 5[31m (1 FAILED)[39m (0 secs / 0.111 secs)
+Chrome 103.0.5060.134 (Linux x86_64) OtherServiceService should be created FAILED
 	Expected OtherServiceService({  }) to be false.
 	    at <Jasmine>
 	    at UserContext.apply (src/app/components/other-service.service.spec.ts:14:21)
@@ -43,5 +43,5 @@ Chrome 103.0.5060.134 (Linux x86_64): Executed 2 of 5[31m (1 FAILED)[39m (0 se
 	    at Zone.runTask (node_modules/zone.js/fesm2015/zone.js:178:47)
 	    at drainMicroTaskQueue (node_modules/zone.js/fesm2015/zone.js:585:35)
 Chrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0 secs / 0.116 secs)
-[1A[2KChrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0.153 secs / 0.116 secs)
-[31mTOTAL: 2 FAILED, 3 SUCCESS[39m
+Chrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0.153 secs / 0.116 secs)
+TOTAL: 2 FAILED, 3 SUCCESS[39m
