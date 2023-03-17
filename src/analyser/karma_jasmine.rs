@@ -2,7 +2,7 @@ use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::KarmaJasmine`]
 #[must_use]
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
@@ -53,12 +53,11 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
                             }
                             if let Some(previous_line) = lines.get(i - 1) {
                                 let previous_line = previous_line.trim();
-                                if previous_line.starts_with("Expected ")
-                                    || previous_line.starts_with("Error: ")
+                                if (previous_line.starts_with("Expected ")
+                                    || previous_line.starts_with("Error: "))
+                                    && !line_trimmed.contains("(src/app")
                                 {
-                                    if !line_trimmed.contains("(src/app") {
-                                        continue 'search_error;
-                                    }
+                                    continue 'search_error;
                                 }
                             }
 
@@ -86,7 +85,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport { errors }
+    errors
 }
 
 #[must_use]
@@ -183,27 +182,25 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![
-                    types::Message {
-                        error: "Expected true to be false.".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/app/app.component.spec.ts".to_string(),
-                            row: 35,
-                            col: 18
-                        }]
-                    },
-                    types::Message {
-                        error: "Expected OtherServiceService({  }) to be false.".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/app/components/other-service.service.spec.ts"
-                                .to_string(),
-                            row: 14,
-                            col: 21
-                        }]
-                    }
-                ],
-            }
+            vec![
+                types::Message {
+                    error: "Expected true to be false.".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/app/app.component.spec.ts".to_string(),
+                        row: 35,
+                        col: 18
+                    }]
+                },
+                types::Message {
+                    error: "Expected OtherServiceService({  }) to be false.".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/app/components/other-service.service.spec.ts"
+                            .to_string(),
+                        row: 14,
+                        col: 21
+                    }]
+                }
+            ],
         );
     }
 
@@ -214,34 +211,32 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![
-                    types::Message {
-                        error: "Expected object to have properties".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
-                            row: 51,
-                            col: 20
-                        }]
-                    },
-                    types::Message {
-                        error: "Expected object to have properties".to_string(),
-                        locations: vec![]
-                    },
-                    types::Message {
-                        error: "Expected object to have properties".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
-                            row: 34,
-                            col: 20
-                        }]
-                    },
-                    types::Message {
-                        error: "Expected object to have properties".to_string(),
-                        locations: vec![]
-                    }
-                ]
-            }
+            vec![
+                types::Message {
+                    error: "Expected object to have properties".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
+                        row: 51,
+                        col: 20
+                    }]
+                },
+                types::Message {
+                    error: "Expected object to have properties".to_string(),
+                    locations: vec![]
+                },
+                types::Message {
+                    error: "Expected object to have properties".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
+                        row: 34,
+                        col: 20
+                    }]
+                },
+                types::Message {
+                    error: "Expected object to have properties".to_string(),
+                    locations: vec![]
+                }
+            ]
         );
     }
 
@@ -279,5 +274,4 @@ mod tests {
             }]})
         );
     }
-
 }

@@ -2,7 +2,7 @@ use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Cargo`]
 #[must_use]
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
@@ -75,7 +75,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport { errors }
+    errors
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
@@ -115,82 +115,80 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![
-                    types::Message {
-                        error: "unused variable: `i`".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/split.rs".to_string(),
-                            row: 9,
-                            col: 19
-                        }]
-                    },
-                    types::Message {
-                        error: "unused variable: `last`".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/split.rs".to_string(),
-                            row: 4,
-                            col: 9
-                        }]
-                    },
-                    types::Message {
-                        error: "unused variable: `split_lines`".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/split.rs".to_string(),
-                            row: 6,
-                            col: 9
-                        }]
-                    },
-                    types::Message {
-                        error: "variable does not need to be mutable".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/split.rs".to_string(),
-                            row: 2,
-                            col: 9
-                        }]
-                    },
-                    types::Message {
-                        error: "function `get_pane_content` is never used".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/fetch.rs".to_string(),
-                            row: 4,
-                            col: 8
-                        }]
-                    },
-                    types::Message {
-                        error: "function `split_builds` is never used".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/loader/split.rs".to_string(),
-                            row: 1,
-                            col: 8
-                        }]
-                    },
-                    types::Message {
-                        error: "single-character string constant used as pattern".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/analyser/cargo.rs".to_string(),
-                            row: 43,
-                            col: 43
-                        }]
-                    },
-                    types::Message {
-                        error: "accessing first element with `parts.get(0)`".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/analyser/cargo.rs".to_string(),
-                            row: 45,
-                            col: 25
-                        }]
-                    },
-                    types::Message {
-                        error: "you are deriving `PartialEq` and can implement `Eq`".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/types.rs".to_string(),
-                            row: 3,
-                            col: 17
-                        }]
-                    }
-                ]
-            }
+            vec![
+                types::Message {
+                    error: "unused variable: `i`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/split.rs".to_string(),
+                        row: 9,
+                        col: 19
+                    }]
+                },
+                types::Message {
+                    error: "unused variable: `last`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/split.rs".to_string(),
+                        row: 4,
+                        col: 9
+                    }]
+                },
+                types::Message {
+                    error: "unused variable: `split_lines`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/split.rs".to_string(),
+                        row: 6,
+                        col: 9
+                    }]
+                },
+                types::Message {
+                    error: "variable does not need to be mutable".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/split.rs".to_string(),
+                        row: 2,
+                        col: 9
+                    }]
+                },
+                types::Message {
+                    error: "function `get_pane_content` is never used".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/fetch.rs".to_string(),
+                        row: 4,
+                        col: 8
+                    }]
+                },
+                types::Message {
+                    error: "function `split_builds` is never used".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/loader/split.rs".to_string(),
+                        row: 1,
+                        col: 8
+                    }]
+                },
+                types::Message {
+                    error: "single-character string constant used as pattern".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 43,
+                        col: 43
+                    }]
+                },
+                types::Message {
+                    error: "accessing first element with `parts.get(0)`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                        row: 45,
+                        col: 25
+                    }]
+                },
+                types::Message {
+                    error: "you are deriving `PartialEq` and can implement `Eq`".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/types.rs".to_string(),
+                        row: 3,
+                        col: 17
+                    }]
+                }
+            ]
         );
     }
 
@@ -201,16 +199,14 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "assertion failed: false".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
-                        row: 64,
-                        col: 9
-                    }]
+            vec![types::Message {
+                error: "assertion failed: false".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                    row: 64,
+                    col: 9
                 }]
-            }
+            }]
         );
     }
 
@@ -221,16 +217,14 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "assertion failed: `(left == right)`".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/analyser/cargo.rs".to_string(),
-                        row: 174,
-                        col: 9
-                    }]
+            vec![types::Message {
+                error: "assertion failed: `(left == right)`".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/analyser/cargo.rs".to_string(),
+                    row: 174,
+                    col: 9
                 }]
-            }
+            }]
         );
     }
 
@@ -241,26 +235,24 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![
-                    types::Message {
-                        error: "cannot find value `asd` in this scope".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/main.rs".to_string(),
-                            row: 2,
-                            col: 5
-                        }]
-                    },
-                    types::Message {
-                        error: "cannot find value `asd` in this scope".to_string(),
-                        locations: vec![types::Location {
-                            path: "/tmp/project/src/main.rs".to_string(),
-                            row: 2,
-                            col: 5
-                        }]
-                    },
-                ]
-            }
+            vec![
+                types::Message {
+                    error: "cannot find value `asd` in this scope".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/main.rs".to_string(),
+                        row: 2,
+                        col: 5
+                    }]
+                },
+                types::Message {
+                    error: "cannot find value `asd` in this scope".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/main.rs".to_string(),
+                        row: 2,
+                        col: 5
+                    }]
+                },
+            ]
         );
     }
 
@@ -271,16 +263,14 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "`ba` should be `by`, `be`".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/tests/java_1.log".to_string(),
-                        row: 13,
-                        col: 38
-                    }]
+            vec![types::Message {
+                error: "`ba` should be `by`, `be`".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/tests/java_1.log".to_string(),
+                    row: 13,
+                    col: 38
                 }]
-            }
+            }]
         );
     }
 }

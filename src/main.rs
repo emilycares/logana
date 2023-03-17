@@ -1,8 +1,10 @@
 use std::io::{self, Read};
 
+use chrono::Local;
 use clap::Parser;
 use config::{Args, InputKind, ParserKind};
 use loader::command;
+use types::AnalyseReport;
 
 /// Contains the analyser for all [`crate::config::ParserKind`]
 #[warn(missing_docs)]
@@ -10,17 +12,18 @@ pub mod analyser;
 /// All cli replated code
 #[warn(missing_docs)]
 pub mod config;
-/// All code related to create .logana-report
-#[warn(missing_docs)]
-pub mod file;
 /// Loads the log for every [`crate::config::InputKind`]
 #[warn(missing_docs)]
 pub mod loader;
+/// Output of logana
+#[warn(missing_docs)]
+pub mod output;
 /// The shared type definitions for analyser
 #[warn(missing_docs)]
 pub mod types;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let mut args = Args::parse();
     Args::validate(&mut args);
     let mut buffer = String::new();
@@ -28,15 +31,15 @@ fn main() {
     match &args.input {
         Some(InputKind::Stdin) => {
             io::stdin().read_to_string(&mut buffer).unwrap_or_default();
-            let report = analyse(&args, &buffer);
+            let report = analyse(&args, "stdin".to_string(), &buffer);
 
-            file::save_analyse(&report);
+            output::produce(&args, &report).await;
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
                 if let Ok(lines) = command::run_command_and_collect(command) {
-                    let report = analyse(&args, &lines);
-                    file::save_analyse(&report);
+                    let report = analyse(&args, format!("command: {command}"), &lines);
+                    output::produce(&args, &report).await;
                 }
             }
         }
@@ -54,11 +57,11 @@ fn main() {
                     &args.splitby,
                 )
                 .iter()
-                .map(|build| analyse(&args, &build))
+                .map(|build| analyse(&args, format!("pane: {}", args.target), build))
                 .filter(|analyse| !analyse.errors.is_empty())
                 .last()
                 {
-                    file::save_analyse(&report);
+                    output::produce(&args, &report).await;
                 }
             }
         }
@@ -68,10 +71,10 @@ fn main() {
     };
 }
 
-fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
+fn analyse(args: &Args, source: String, input: &str) -> types::AnalyseReport {
     if let Ok(dir) = std::env::current_dir() {
         if let Some(dir) = dir.to_str() {
-            return match args.parser {
+            let errors = match args.parser {
                 Some(ParserKind::Maven) => analyser::maven::analyse(input, dir),
                 Some(ParserKind::Gradle) => analyser::gradle::analyse(input, dir),
                 Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
@@ -80,10 +83,23 @@ fn analyse(args: &Args, input: &str) -> types::AnalyseReport {
                 None => {
                     println!("There was no --parser defined and it could not be guessed");
 
-                    types::AnalyseReport::default()
+                    vec![]
                 }
+            };
+
+            return types::AnalyseReport {
+                project: dir.to_string(),
+                date: Local::now(),
+                source,
+                errors,
             };
         }
     }
-    types::AnalyseReport::default()
+
+    AnalyseReport {
+        project: ".".to_string(),
+        date: Local::now(),
+        source,
+        errors: vec![],
+    }
 }

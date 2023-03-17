@@ -2,7 +2,7 @@ use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     let mut phase = MavenPhase::Scanning;
 
@@ -61,7 +61,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport { errors }
+    errors
 }
 
 fn parse_copilation_error(error: &str) -> Option<types::Message> {
@@ -165,16 +165,14 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "';' expected".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
-                        row: 18,
-                        col: 54
-                    }]
+            vec![types::Message {
+                error: "';' expected".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
+                    row: 18,
+                    col: 54
                 }]
-            }
+            }]
         );
     }
 
@@ -185,16 +183,14 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "cannot find symbol".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
-                        row: 45,
-                        col: 4
-                    }]
+            vec![types::Message {
+                error: "cannot find symbol".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/main/java/some/thing/project/Main.java".to_string(),
+                    row: 45,
+                    col: 4
                 }]
-            }
+            }]
         );
     }
 
@@ -205,8 +201,7 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
+             vec![types::Message {
                     error: "error: ';' expected".to_string(),
                     locations: vec![types::Location {
                         path: "C:\\Users\\michael\\testproject\\src\\main\\java\\com\\micmine\\test\\Service.java".to_string(),
@@ -214,7 +209,6 @@ mod tests {
                         col: 98
                     }]
                 }]
-            }
         );
     }
 
@@ -225,8 +219,7 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![
+            vec![
                     types::Message {
                         error: "expected: <true> but was: <false>".to_string(),
                         locations: vec![
@@ -248,7 +241,6 @@ mod tests {
                         ]
                     }
                 ]
-            }
         );
     }
 

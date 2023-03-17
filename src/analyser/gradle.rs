@@ -2,7 +2,7 @@ use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
-pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
+pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
 
     let lines = log.lines().collect::<Vec<&str>>();
@@ -21,7 +21,7 @@ pub fn analyse(log: &str, project_dir: &str) -> types::AnalyseReport {
         }
     }
 
-    types::AnalyseReport { errors }
+    errors
 }
 
 fn parse_error(line: &str, col_line: Option<&str>) -> Option<types::Message> {
@@ -79,18 +79,15 @@ mod tests {
 
         assert_eq!(
             result,
-            types::AnalyseReport {
-                errors: vec![types::Message {
-                    error: "error ';' expected".to_string(),
-                    locations: vec![types::Location {
-                        path:
-                            "/home/michael/tmp/gradle-test/app/src/main/java/gradle/test/App.java"
-                                .to_string(),
-                        row: 8,
-                        col: 30
-                    }]
+            vec![types::Message {
+                error: "error ';' expected".to_string(),
+                locations: vec![types::Location {
+                    path: "/home/michael/tmp/gradle-test/app/src/main/java/gradle/test/App.java"
+                        .to_string(),
+                    row: 8,
+                    col: 30
                 }]
-            }
+            }]
         );
     }
 }

@@ -44,4 +44,4 @@ Chrome 103.0.5060.134 (Linux x86_64) OtherServiceService should be created FAILE
 	    at drainMicroTaskQueue (node_modules/zone.js/fesm2015/zone.js:585:35)
 Chrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0 secs / 0.116 secs)
 Chrome 103.0.5060.134 (Linux x86_64): Executed 5 of 5[31m (2 FAILED)[39m (0.153 secs / 0.116 secs)
-TOTAL: 2 FAILED, 3 SUCCESS[39m
+TOTAL: 2 FAILED, 3 SUCCESS

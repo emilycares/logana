@@ -4,13 +4,11 @@ use crate::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Java`]
 #[must_use]
-pub fn analyse(log: &str, project_dir: &str, package: &str) -> types::AnalyseReport {
+pub fn analyse(log: &str, project_dir: &str, package: &str) -> Vec<types::Message> {
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
 
-    let errors = get_exceptions(lines, project_dir, package);
-
-    types::AnalyseReport { errors }
+    get_exceptions(lines, project_dir, package)
 }
 
 /// Will return the package for a file
@@ -189,8 +187,7 @@ mod tests {
         static LOG: &str = include_str!("../../tests/java_1.log");
         let result = analyse(LOG, "/tmp/project", "my.rootpackage.name");
 
-        assert_eq!( result, types::AnalyseReport {
-            errors: vec![
+        assert_eq!( result, vec![
                 types::Message {
                     error: "java.lang.NullPointerException: Cannot invoke \"String.split(String)\" because \"abc\" is null".to_string(),
                     locations: vec![
@@ -217,7 +214,7 @@ mod tests {
                     ]
                 }
             ]
-        });
+        );
     }
 
     #[test]

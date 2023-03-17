@@ -28,6 +28,10 @@ pub struct Args {
     /// The java package of your java project
     #[clap(long, default_value = "", required_if_eq("parser", "java"))]
     pub package: String,
+
+    /// The output method
+    #[clap(short, long, default_value = "file", num_args = 0..)]
+    pub output: Vec<OutputKind>,
 }
 
 /// Pecifies witch parser to use
@@ -72,6 +76,16 @@ pub enum InputKind {
     Wezterm,
     /// Take input from a command that logana will execute
     Command,
+}
+
+/// Specifies the output type for an analysis
+#[derive(clap::ValueEnum, Clone, Debug, Default, PartialEq, Eq)]
+pub enum OutputKind {
+    /// Will writer a .logana-report
+    #[default]
+    File,
+    /// Will write it to stdout
+    Stdout,
 }
 
 impl Args {

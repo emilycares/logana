@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+use chrono::{DateTime, Local};
+
 /// A file with position
 #[derive(Debug, PartialEq, Eq)]
 pub struct Location {
@@ -39,16 +41,14 @@ impl Display for Message {
 /// A report with all its errors
 #[derive(Debug, PartialEq, Eq)]
 pub struct AnalyseReport {
+    /// Specifies the inputmethod
+    pub source: String,
+    /// The praject that this analyse belongs to
+    pub project: String,
+    /// The date that the analyse was done
+    pub date: DateTime<Local>,
     /// All errors
     pub errors: Vec<Message>,
-}
-
-impl AnalyseReport {
-    /// Returns a new `AnalyseReport`
-    #[must_use]
-    pub const fn new() -> Self {
-        Self { errors: vec![] }
-    }
 }
 
 impl Display for AnalyseReport {
@@ -60,11 +60,5 @@ impl Display for AnalyseReport {
                 result.and_then(|_| writeln!(f, "{message}"))
             }
         })
-    }
-}
-
-impl Default for AnalyseReport {
-    fn default() -> Self {
-        Self::new()
     }
 }
