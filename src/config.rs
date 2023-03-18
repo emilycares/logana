@@ -32,6 +32,10 @@ pub struct Args {
     /// The output method
     #[clap(short, long, default_value = "file", num_args = 0..)]
     pub output: Vec<OutputKind>,
+
+    /// Watch files to rerun
+    #[clap(short, long, num_args = 0..,  default_missing_value = "./src")]
+    pub watch: Option<String>,
 }
 
 /// Pecifies witch parser to use

@@ -1,9 +1,14 @@
-use std::io::{self, Read};
+use std::{
+    io::{self, Read},
+    path::Path,
+    time::Duration,
+};
 
 use chrono::Local;
 use clap::Parser;
 use config::{Args, InputKind, ParserKind};
 use loader::command;
+use notify::{PollWatcher, RecursiveMode, Watcher};
 use types::AnalyseReport;
 
 /// Contains the analyser for all [`crate::config::ParserKind`]
@@ -26,8 +31,39 @@ pub mod types;
 async fn main() {
     let mut args = Args::parse();
     Args::validate(&mut args);
-    let mut buffer = String::new();
 
+    handle_input(&args).await;
+
+    if let Some(watch) = &args.watch {
+        let (tx, rx) = std::sync::mpsc::channel();
+
+        let config = notify::Config::default()
+            .with_compare_contents(true)
+            .with_poll_interval(Duration::from_millis(500));
+
+        if let Ok(mut watcher) = PollWatcher::new(tx, config) {
+            if watcher
+                .watch(Path::new(watch), RecursiveMode::Recursive)
+                .is_ok()
+            {
+                for res in rx {
+                    if let Ok(e) = res {
+                        if let Some(path) = e.paths.first() {
+                            if let Ok(meta) = std::fs::metadata(path) {
+                                if meta.is_file() {
+                                    handle_input(&args).await
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+async fn handle_input(args: &Args) {
+    let mut buffer = String::new();
     match &args.input {
         Some(InputKind::Stdin) => {
             io::stdin().read_to_string(&mut buffer).unwrap_or_default();
