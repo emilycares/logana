@@ -17,8 +17,8 @@ pub struct Args {
     #[clap(short, long, default_value = "", required_if_eq("input", "command"))]
     pub command: Option<String>,
 
-    /// The tmux pane
-    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm")]))]
+    /// Additional refernece to selected input
+    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm"), ("input", "file")]))]
     pub target: String,
 
     /// Your shell PS1 in order to split logs for tmux
@@ -80,6 +80,8 @@ pub enum InputKind {
     Wezterm,
     /// Take input from a command that logana will execute
     Command,
+    /// Take input from a specified file
+    File,
 }
 
 /// Specifies the output type for an analysis

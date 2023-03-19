@@ -9,6 +9,7 @@ use clap::Parser;
 use config::{Args, InputKind, ParserKind};
 use loader::command;
 use notify::{PollWatcher, RecursiveMode, Watcher};
+use tokio::fs::read_to_string;
 use types::AnalyseReport;
 
 /// Contains the analyser for all [`crate::config::ParserKind`]
@@ -99,6 +100,13 @@ async fn handle_input(args: &Args) {
                 }
             }
         }
+        Some(InputKind::File) => match read_to_string(&args.target).await {
+            Ok(content) => {
+                let report = analyse(args, format!("file: {}", args.target), &content);
+                output::produce(args, &report).await;
+            }
+            Err(e) => println!("Got the following error wile readindg the target: {e:?}"),
+        },
         None => {
             println!("There was no --input defined and it could not be guessed");
         }
