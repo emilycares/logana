@@ -46,13 +46,11 @@ async fn main() {
                 .watch(Path::new(watch), RecursiveMode::Recursive)
                 .is_ok()
             {
-                for res in rx {
-                    if let Ok(e) = res {
-                        if let Some(path) = e.paths.first() {
-                            if let Ok(meta) = std::fs::metadata(path) {
-                                if meta.is_file() {
-                                    handle_input(&args).await
-                                }
+                for e in rx.into_iter().flatten() {
+                    if let Some(path) = e.paths.first() {
+                        if let Ok(meta) = std::fs::metadata(path) {
+                            if meta.is_file() {
+                                handle_input(&args).await
                             }
                         }
                     }
@@ -67,15 +65,15 @@ async fn handle_input(args: &Args) {
     match &args.input {
         Some(InputKind::Stdin) => {
             io::stdin().read_to_string(&mut buffer).unwrap_or_default();
-            let report = analyse(&args, "stdin".to_string(), &buffer);
+            let report = analyse(args, "stdin".to_string(), &buffer);
 
-            output::produce(&args, &report).await;
+            output::produce(args, &report).await;
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
                 if let Ok(lines) = command::run_command_and_collect(command) {
-                    let report = analyse(&args, format!("command: {command}"), &lines);
-                    output::produce(&args, &report).await;
+                    let report = analyse(args, format!("command: {command}"), &lines);
+                    output::produce(args, &report).await;
                 }
             }
         }
@@ -93,11 +91,11 @@ async fn handle_input(args: &Args) {
                     &args.splitby,
                 )
                 .iter()
-                .map(|build| analyse(&args, format!("pane: {}", args.target), build))
+                .map(|build| analyse(args, format!("pane: {}", args.target), build))
                 .filter(|analyse| !analyse.errors.is_empty())
                 .last()
                 {
-                    output::produce(&args, &report).await;
+                    output::produce(args, &report).await;
                 }
             }
         }
