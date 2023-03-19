@@ -17,7 +17,7 @@ pub struct Args {
     #[clap(short, long, default_value = "", required_if_eq("input", "command"))]
     pub command: Option<String>,
 
-    /// Additional refernece to selected input
+    /// Additional reference to selected input
     #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm"), ("input", "file")]))]
     pub target: String,
 
@@ -102,9 +102,13 @@ impl Args {
                 return;
             };
 
-            if let Some((first_word, _)) = command.split_once(' ') {
-                args.parser = ParserKind::from_str(first_word).ok();
-            };
+            if command.contains(' ') {
+                if let Some((first_word, _)) = command.split_once(' ') {
+                    args.parser = ParserKind::from_str(first_word).ok();
+                }
+            } else {
+                args.parser = ParserKind::from_str(command).ok();
+            }
         }
 
         if args.input.is_none() && args.command.is_some() {

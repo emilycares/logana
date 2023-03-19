@@ -46,7 +46,7 @@ fn combine_lines(start: usize, end: usize, lines: &[&str]) -> String {
 
 #[cfg(test)]
 mod tests {
-    use crate::loader::split::builds;
+    use crate::input::split::builds;
     use pretty_assertions::assert_eq;
 
     #[test]
