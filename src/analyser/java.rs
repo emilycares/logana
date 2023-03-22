@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Java`]
 #[must_use]
@@ -175,10 +175,7 @@ fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::
 
 #[cfg(test)]
 mod tests {
-    use crate::{
-        analyser::java::{analyse, get_file, get_package, parse_exception},
-        types,
-    };
+    use crate::{analyser::java::{analyse, get_file, get_package, parse_exception}, core::types};
 
     use pretty_assertions::assert_eq;
 

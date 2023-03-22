@@ -1,4 +1,4 @@
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Cargo`]
 #[must_use]
@@ -105,8 +105,9 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
 
 #[cfg(test)]
 mod tests {
-    use crate::{analyser::cargo::analyse, types};
     use pretty_assertions::assert_eq;
+
+    use crate::{analyser::cargo::analyse, core::types};
 
     #[test]
     fn should_find_clippy_error() {

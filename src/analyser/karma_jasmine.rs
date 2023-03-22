@@ -1,4 +1,4 @@
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::KarmaJasmine`]
 #[must_use]
@@ -170,10 +170,7 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
 mod tests {
     use std::vec;
 
-    use crate::{
-        analyser::karma_jasmine::{analyse, parse_exception},
-        types,
-    };
+    use crate::{analyser::karma_jasmine::{analyse, parse_exception}, core::types};
 
     #[test]
     fn should_find_syntax_error() {

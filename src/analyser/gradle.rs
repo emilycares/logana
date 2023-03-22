@@ -1,4 +1,4 @@
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
@@ -70,7 +70,8 @@ fn parse_error(line: &str, col_line: Option<&str>) -> Option<types::Message> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{analyser::gradle::analyse, types};
+    use crate::{analyser::gradle::analyse, core::types};
+
 
     #[test]
     fn should_find_syntax_error() {

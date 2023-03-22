@@ -7,9 +7,10 @@ use tokio::{fs::read_to_string, io};
 
 use crate::{
     analyser,
-    config::{Args, InputKind, ParserKind},
-    output,
-    types::{self, AnalyseReport},
+    core::{
+        config::{Args, InputKind, ParserKind},
+        output, types,
+    },
 };
 
 use super::{command, split, tmux, wezterm};
@@ -40,7 +41,7 @@ async fn handle_watch(args: &Args) {
                     if let Some(path) = e.paths.first() {
                         if let Ok(meta) = std::fs::metadata(path) {
                             if meta.is_file() {
-                                handle_input(args).await
+                                handle_input(args).await;
                             }
                         }
                     }
@@ -60,14 +61,13 @@ async fn handle_input(args: &Args) {
                 .unwrap_or_default();
             let report = analyse(args, "stdin".to_string(), &buffer);
 
-            output::produce(args, &report).await;
+            output::produce(args, &report);
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
-                if let Ok(lines) = command::run_command_and_collect(command) {
-                    let report = analyse(args, format!("command: {command}"), &lines);
-                    output::produce(args, &report).await;
-                }
+                let lines = command::run_command_and_collect(command);
+                let report = analyse(args, format!("command: {command}"), &lines);
+                output::produce(args, &report);
             }
         }
         Some(InputKind::Wezterm | InputKind::Tmux) => {
@@ -86,14 +86,14 @@ async fn handle_input(args: &Args) {
                 .filter(|analyse| !analyse.errors.is_empty())
                 .last()
                 {
-                    output::produce(args, &report).await;
+                    output::produce(args, &report);
                 }
             }
         }
         Some(InputKind::File) => match read_to_string(&args.target).await {
             Ok(content) => {
                 let report = analyse(args, format!("file: {}", args.target), &content);
-                output::produce(args, &report).await;
+                output::produce(args, &report);
             }
             Err(e) => println!("Got the following error wile readindg the target: {e:?}"),
         },
@@ -129,7 +129,7 @@ fn analyse(args: &Args, source: String, input: &str) -> types::AnalyseReport {
         }
     }
 
-    AnalyseReport {
+    types::AnalyseReport {
         project: ".".to_string(),
         date: Local::now(),
         source,

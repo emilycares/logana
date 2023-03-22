@@ -1,4 +1,4 @@
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
@@ -153,10 +153,7 @@ enum MavenPhase {
 
 #[cfg(test)]
 mod tests {
-    use crate::{
-        analyser::maven::{analyse, parse_test_location},
-        types,
-    };
+    use crate::{analyser::maven::{analyse, parse_test_location}, core::types};
 
     #[test]
     fn should_find_syntax_error() {

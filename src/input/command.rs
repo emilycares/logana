@@ -5,14 +5,15 @@ use std::io::{BufRead, BufReader};
 use subprocess::{Exec, Redirection};
 
 /// Runs the passed command in a shell
-pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> {
+#[must_use]
+pub fn run_command_and_collect(command: &str) -> String {
     let stream = Exec::shell(command)
         .stdout(Redirection::Pipe)
         .stderr(Redirection::Merge)
         .stream_stdout()
-        .expect("To get output from program");
+        .expect("To get output from program: {command}");
 
-    clearscreen::clear().expect("The clearscreen lib should be able to clear the screen");
+    clearscreen::clear().unwrap_or_default();
 
     let reader = BufReader::new(stream);
 
@@ -26,7 +27,7 @@ pub fn run_command_and_collect(command: &str) -> Result<String, std::io::Error> 
         output.push_str(&strip_color(&line));
     });
 
-    Ok(output)
+    output
 }
 
 /// Remove shell colors
