@@ -4,7 +4,7 @@ use logana::run;
 
 #[tokio::main]
 async fn main() {
-    let mut args = Args::parse();
+    let args = Args::parse();
 
     run(args).await
 }
