@@ -1,0 +1,2 @@
+exercises/012_while2.zig:28:27: note: all non-void values must be used
+exercises/012_while2.zig:28:27: note: this error can be suppressed by assigning the value to '_'

@@ -112,6 +112,7 @@ fn analyse(args: &Args, source: String, input: &str) -> types::AnalyseReport {
                 Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
                 Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, dir),
                 Some(ParserKind::Cargo) => analyser::cargo::analyse(input, dir),
+                Some(ParserKind::Zig) => analyser::zig::analyse(input, dir),
                 None => {
                     println!("There was no --parser defined and it could not be guessed");
 

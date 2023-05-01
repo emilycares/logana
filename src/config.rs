@@ -51,6 +51,8 @@ pub enum ParserKind {
     KarmaJasmine,
     /// The parser for cargo
     Cargo,
+    /// The parser for zig
+    Zig,
 }
 
 impl FromStr for ParserKind {

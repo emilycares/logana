@@ -8,8 +8,15 @@ use std::{fs::File, io::prelude::*, path::Path};
 pub async fn produce(args: &Args, report: &types::AnalyseReport) {
     for kind in &args.output {
         match kind {
-            OutputKind::Stdout => print!("{report}"),
-            OutputKind::File => file(report)
+            OutputKind::Stdout => println!(
+                "{}",
+                format!("{report}")
+                    .split("\n")
+                    .filter(|c| !c.is_empty())
+                    .map(|l| format!("logana: {l}"))
+                    .fold(String::new(), |a, b| a + &b + "\n")
+            ),
+            OutputKind::File => file(report),
         }
     }
 }
