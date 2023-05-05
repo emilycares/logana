@@ -1,4 +1,4 @@
-use crate::types;
+use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
@@ -68,7 +68,7 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
 
 #[cfg(test)]
 mod tests {
-    use crate::{analyser::zig::analyse, types};
+    use crate::{analyser::zig::analyse, core::types};
     use pretty_assertions::assert_eq;
 
     #[test]
