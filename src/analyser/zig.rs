@@ -53,8 +53,8 @@ fn parse_note_line(line: &str, project_dir: &str) -> Option<types::Message> {
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
-    if let Some((relative_path, line_part)) = location.split_once(":") {
-        if let Some((row, col)) = line_part.split_once(":") {
+    if let Some((relative_path, line_part)) = location.split_once(':') {
+        if let Some((row, col)) = line_part.split_once(':') {
             return Some(types::Location {
                 path: project_dir.to_string() + "/" + relative_path,
                 col: col.parse().unwrap_or_default(),

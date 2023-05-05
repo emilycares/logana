@@ -11,7 +11,7 @@ pub async fn produce(args: &Args, report: &types::AnalyseReport) {
             OutputKind::Stdout => println!(
                 "{}",
                 format!("{report}")
-                    .split("\n")
+                    .split('\n')
                     .filter(|c| !c.is_empty())
                     .map(|l| format!("logana: {l}"))
                     .fold(String::new(), |a, b| a + &b + "\n")

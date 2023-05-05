@@ -16,10 +16,10 @@ use super::{command, split, tmux, wezterm};
 
 /// Will handle the userinput and call the analyser
 pub async fn handle(args: &Args) {
-    handle_input(&args).await;
+    handle_input(args).await;
 
     if args.watch.is_some() {
-        handle_watch(&args).await;
+        handle_watch(args).await;
     }
 }
 
@@ -40,7 +40,7 @@ async fn handle_watch(args: &Args) {
                     if let Some(path) = e.paths.first() {
                         if let Ok(meta) = std::fs::metadata(path) {
                             if meta.is_file() {
-                                handle_input(&args).await
+                                handle_input(args).await
                             }
                         }
                     }
