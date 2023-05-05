@@ -20,11 +20,14 @@ pub fn run_command_and_collect(command: &str) -> String {
     let mut output = String::new();
 
     reader.lines().for_each(|line| {
-        let line = line.expect("Line should be ok");
-        let line = format!("{line}\n");
-        print!("{line}");
+        if let Ok(line) = line {
+            let line = format!("{line}\n");
+            print!("{line}");
 
-        output.push_str(&strip_color(&line));
+            output.push_str(&strip_color(&line));
+        } else {
+            println!("{:?}", line);
+        }
     });
 
     output

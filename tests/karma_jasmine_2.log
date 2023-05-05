@@ -1,0 +1,11 @@
+Error: src/app/some.facade.spec.ts:36:32 - error TS2345: Argument of type '(name: string) => MemoizedSelector...
+  Type '(templateName: string) => MemoizedSelector<object, any, (s1: DynamicDataState) => any>' is missing the following properties from type 'MemoizedSelector<any, { master: { component: { actions: {}; }; }; }, DefaultProjectorFn<{ master: { component: { actions: {}; };
+}; }>>': release, projector, setResult, clearResult
+
+36     mockStore.overrideSelector(getFun, {
+                                  ~~~~~~~~~~~
+
+  src/app/some.facade.spec.ts:36:32
+    36     mockStore.overrideSelector(getFun, {
+                                      ~~~~~~~~~~~
+    Did you mean to call this expression?

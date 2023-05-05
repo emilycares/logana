@@ -15,24 +15,39 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                 || line_trimmed.starts_with("Usage:")
                 || line_trimmed.starts_with("TypeError:")
             {
-                let mut exception = vec![line_trimmed];
-                'exception: for y in 1.. {
-                    let i: usize = i + y;
-                    let Some(line) = lines.get(i) else {
+
+                if line_trimmed.starts_with("Error: src") {
+                    if let Some((location, error_message)) = line_trimmed.split_once(" - error ") {
+                        dbg!(&location);
+                        let location = &location[7..];
+                        dbg!(&location);
+                        if let Some(location) = parse_location(location, project_dir) {
+                            errors.push(types::Message {
+                                error: error_message.to_string(),
+                                locations: vec![location],
+                            })
+                        }
+                    }
+                } else {
+                    let mut exception = vec![line_trimmed];
+                    'exception: for y in 1.. {
+                        let i: usize = i + y;
+                        let Some(line) = lines.get(i) else {
                       break 'exception;
                     };
 
-                    let line = line.trim();
+                        let line = line.trim();
 
-                    if !line.starts_with("at ") {
-                        break 'exception;
+                        if !line.starts_with("at ") {
+                            break 'exception;
+                        }
+
+                        exception.push(line);
                     }
-
-                    exception.push(line);
-                }
-                let exception = exception.as_slice();
-                if let Some(message) = parse_exception(exception, project_dir) {
-                    errors.push(message);
+                    let exception = exception.as_slice();
+                    if let Some(message) = parse_exception(exception, project_dir) {
+                        errors.push(message);
+                    }
                 }
             }
             if line.ends_with(" FAILED") {
@@ -87,6 +102,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     errors
 }
+
 
 #[must_use]
 fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
@@ -151,16 +167,21 @@ fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
 
 fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Location> {
     if let Some((_, location)) = location.split_once('(') {
-        if let Some((path, row_col)) = location.split_once(':') {
-            let path = format!("{project_dir}/{path}");
+        let location = &location[..location.len() - 1];
+        return parse_location(location, project_dir);
+    }
 
-            let row_col = &row_col[..row_col.len() - 1];
-            if let Some((row, col)) = row_col.split_once(':') {
-                let row = row.parse::<usize>().unwrap_or_default();
-                let col = col.parse::<usize>().unwrap_or_default();
+    None
+}
 
-                return Some(types::Location { path, row, col });
-            }
+fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
+    if let Some((path, row_col)) = location.split_once(':') {
+        let path = format!("{project_dir}/{path}");
+        if let Some((row, col)) = row_col.split_once(':') {
+            let row = row.parse::<usize>().unwrap_or_default();
+            let col = col.parse::<usize>().unwrap_or_default();
+
+            return Some(types::Location { path, row, col });
         }
     }
     None
@@ -169,8 +190,14 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
 #[cfg(test)]
 mod tests {
     use std::vec;
+    use pretty_assertions::assert_eq;
 
-    use crate::{analyser::karma_jasmine::{analyse, parse_exception}, core::types};
+    use crate::{
+        analyser::karma_jasmine::{analyse, parse_exception},
+        core::types,
+    };
+
+    use super::parse_location;
 
     #[test]
     fn should_find_syntax_error() {
@@ -195,6 +222,26 @@ mod tests {
                             .to_string(),
                         row: 14,
                         col: 21
+                    }]
+                }
+            ],
+        );
+    }
+
+    #[test]
+    fn should_find_test_compile_error() {
+        static LOG: &str = include_str!("../../tests/karma_jasmine_2.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![
+                types::Message {
+                    error: "TS2345: Argument of type '(name: string) => MemoizedSelector...".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/app/some.facade.spec.ts".to_string(),
+                        row: 36,
+                        col: 32
                     }]
                 }
             ],
@@ -270,5 +317,14 @@ mod tests {
                 col: 22
             }]})
         );
+    }
+
+    #[test]
+    fn parse_location_test() {
+        let result = parse_location("src/app/some.facade.spec.ts:36:32", "/tmp/project");
+
+        assert_eq!(result, Some(
+                types::Location { path: "/tmp/project/src/app/some.facade.spec.ts".to_string(), row: 36, col: 32 }
+                ));
     }
 }
