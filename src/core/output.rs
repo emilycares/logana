@@ -1,11 +1,9 @@
-use crate::{
-    config::{Args, OutputKind},
-    types,
-};
 use std::{fs::File, io::prelude::*, path::Path};
 
+use super::{config::{Args, OutputKind}, types};
+
 /// Program output
-pub async fn produce(args: &Args, report: &types::AnalyseReport) {
+pub fn produce(args: &Args, report: &types::AnalyseReport) {
     for kind in &args.output {
         match kind {
             OutputKind::Stdout => println!(
