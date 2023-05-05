@@ -6,5 +6,5 @@ use logana::run;
 async fn main() {
     let args = Args::parse();
 
-    run(args).await
+    run(args).await;
 }

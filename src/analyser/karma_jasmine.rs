@@ -25,7 +25,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                             errors.push(types::Message {
                                 error: error_message.to_string(),
                                 locations: vec![location],
-                            })
+                            });
                         }
                     }
                 } else {
