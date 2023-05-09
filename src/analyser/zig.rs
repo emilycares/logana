@@ -1,5 +1,7 @@
 use crate::core::types;
 
+const DELIMITERS: [&str; 2] = [": error: ", ": note: "];
+
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
@@ -10,14 +12,11 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-            if line.contains(": error: ") {
-                if let Some(error) = parse_error_line(line, project_dir) {
-                    errors.push(error);
-                }
-            }
-            if line.contains(": note: ") {
-                if let Some(error) = parse_note_line(line, project_dir) {
-                    errors.push(error);
+            for delimiter in DELIMITERS {
+                if line.contains(delimiter) {
+                    if let Some(error) = parse_line(delimiter, line, project_dir) {
+                        errors.push(error);
+                    }
                 }
             }
         }
@@ -26,21 +25,8 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     errors
 }
 
-fn parse_error_line(line: &str, project_dir: &str) -> Option<types::Message> {
-    if let Some((path, message)) = line.split_once(": error: ") {
-        if let Some(location) = parse_location(path, project_dir) {
-            return Some(types::Message {
-                error: message.to_string(),
-                locations: vec![location],
-            });
-        }
-    }
-
-    None
-}
-
-fn parse_note_line(line: &str, project_dir: &str) -> Option<types::Message> {
-    if let Some((path, message)) = line.split_once(": note: ") {
+fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::Message> {
+    if let Some((path, message)) = line.split_once(delimiter) {
         if let Some(location) = parse_location(path, project_dir) {
             return Some(types::Message {
                 error: message.to_string(),
