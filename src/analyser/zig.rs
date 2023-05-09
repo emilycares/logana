@@ -2,7 +2,7 @@ use crate::core::types;
 
 const DELIMITERS: [&str; 2] = [": error: ", ": note: "];
 
-/// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
+/// Contains the analyser code for the [`crate::config::ParserKind::Zig`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
@@ -25,6 +25,13 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     errors
 }
 
+/// Parse message from line with delimiter
+/// 
+/// Gets line input like:
+/// "exercises/011_while.zig:24:15: error: expected type expression, found ')'"
+///  ---------------------------- -------- ----------------------------------
+///  location                     |        message
+///                               Previous detected delimiter
 fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::Message> {
     if let Some((path, message)) = line.split_once(delimiter) {
         if let Some(location) = parse_location(path, project_dir) {
@@ -38,6 +45,14 @@ fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::M
     None
 }
 
+/// Parses location
+///
+/// Gets location input like:
+/// "exercises/011_while.zig:24:15"
+///  ----------------------- -- --
+///  path                    |  |
+///                          |  col
+///                          row
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
     if let Some((relative_path, line_part)) = location.split_once(':') {
         if let Some((row, col)) = line_part.split_once(':') {

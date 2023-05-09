@@ -18,9 +18,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
                 if line_trimmed.starts_with("Error: src") {
                     if let Some((location, error_message)) = line_trimmed.split_once(" - error ") {
-                        dbg!(&location);
                         let location = &location[7..];
-                        dbg!(&location);
                         if let Some(location) = parse_location(location, project_dir) {
                             errors.push(types::Message {
                                 error: error_message.to_string(),
