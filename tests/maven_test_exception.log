@@ -1,0 +1,6 @@
+[INFO]  T E S T S
+[ERROR] Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! - in some.thing.project.ServiceTest
+[ERROR] deleteByAppName  Time elapsed: 0.01 s  <<< ERROR!
+java.util.ConcurrentModificationException
+	at some.thing.project.ServiceTest.deleteData(ServiceTest.java:145)
+[INFO] BUILD FAILURE
