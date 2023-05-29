@@ -1,0 +1,11 @@
+
+/tmp/project/file.ts
+  1:8  error  Parsing error: ',' expected
+
+/tmp/project/index.ts
+  1:1  error    Unexpected var, use let or const instead  no-var
+  1:5  warning  'as' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+✖ 3 problems (2 errors, 1 warning)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

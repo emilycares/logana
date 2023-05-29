@@ -3,20 +3,22 @@
 A build log analysis tool so that your PDE (Personal Development Environment) can have a list of files that contain errors.
 Currently, it only supports
 
--   Maven
--   Gradle (java only) (Tests are not supported for the moment)
--   KarmaJasmine
--   Cargo
--   java (Only exceptions)
--   [https://github.com/crate-ci/typos](https://github.com/crate-ci/typos)
-    with plans for more.
+- Maven
+- Gradle (java only) (Tests are not supported for the moment)
+- KarmaJasmine
+- Cargo
+- java (Only exceptions)
+- [https://github.com/crate-ci/typos](https://github.com/crate-ci/typos)
+- zig
+- eslint
+with plans for more.
 
 ## Compatibility
 
 Regularly tested on
 
--   linux
--   Windows 10
+- linux
+- Windows 10
 
 ## Installation
 
@@ -71,5 +73,5 @@ I started to creating this tool to simplify this process when I am working on my
 The editor support allows the editor to parse the ".logana-report" into its now error list.
 Plugins are available here:
 
--   neovim [https://github.com/micmine/logana.nvim](https://github.com/micmine/logana.nvim)
--   jetbrains [https://github.com/micmine/logana-jetbrains](https://github.com/micmine/logana-jetbrains)
+- neovim [https://github.com/micmine/logana.nvim](https://github.com/micmine/logana.nvim)
+- jetbrains [https://github.com/micmine/logana-jetbrains](https://github.com/micmine/logana-jetbrains)

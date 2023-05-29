@@ -70,7 +70,6 @@ fn parse_copilation_error(error: &str) -> Option<types::Message> {
 
 fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Option<types::Message> {
     let mut message = String::new();
-    let mut i = 0;
     for line in &lines[index+1..lines.len()] {
         if line.contains("<<< FAILURE!") {
             break;
@@ -89,8 +88,6 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
         if !line.starts_with("[ERROR] ") && !line.starts_with("-> at") {
             message.push_str(line);
         }
-
-        i += 1;
     }
 
     None

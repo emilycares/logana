@@ -53,6 +53,8 @@ pub enum ParserKind {
     Cargo,
     /// The parser for zig
     Zig,
+    /// The parser for eslint
+    Eslint,
 }
 
 impl FromStr for ParserKind {
