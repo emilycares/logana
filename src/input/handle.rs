@@ -112,6 +112,7 @@ fn analyse(args: &Args, source: String, input: &str, project_dir: &str) -> types
         Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
         Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
         Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
+        Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
         None => {
             println!("There was no --parser defined and it could not be guessed");
 

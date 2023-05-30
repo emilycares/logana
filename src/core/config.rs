@@ -55,6 +55,8 @@ pub enum ParserKind {
     Zig,
     /// The parser for eslint
     Eslint,
+    /// The parser for dune
+    Dune,
 }
 
 impl FromStr for ParserKind {
@@ -67,6 +69,7 @@ impl FromStr for ParserKind {
             "karma-jasmine" => Ok(Self::KarmaJasmine),
             "cargo" | "typos" => Ok(Self::Cargo),
             "gradle" | "./gradlew" => Ok(Self::Gradle),
+            "dune" => Ok(Self::Dune),
             &_ => Err(()),
         }
     }

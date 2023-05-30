@@ -11,6 +11,7 @@ Currently, it only supports
 - [https://github.com/crate-ci/typos](https://github.com/crate-ci/typos)
 - zig
 - eslint
+- dune
 
 with plans for more.
 
