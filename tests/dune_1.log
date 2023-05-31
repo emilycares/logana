@@ -1,0 +1,4 @@
+File "bin/main.ml", line 21, characters 35-39:
+21 | let () = print_endline deserialize.time;
+                                        ^^^^
+Error: Unbound record field time

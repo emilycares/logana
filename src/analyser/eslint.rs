@@ -1,6 +1,6 @@
 use crate::core::types;
 
-/// Contains the analyser code for the [`crate::config::ParserKind::Cargo`]
+/// Contains the analyser code for the [`crate::config::ParserKind::Eslint`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
@@ -10,7 +10,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-           for err in parse_file_errors(i, line, lines, project_dir) {
+           for err in parse_file_lint(i, line, lines, project_dir) {
                errors.push(err);
            }
         }
@@ -35,7 +35,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// |
 /// line numbers
 ///
-fn parse_file_errors(start_index: usize, line: &str, lines: &[&str], project_dir: &str) -> Vec<types::Message> {
+fn parse_file_lint(start_index: usize, line: &str, lines: &[&str], project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     if line.starts_with(project_dir) {
         let path = line;
@@ -95,7 +95,7 @@ mod tests {
     use crate::{analyser::eslint::analyse, core::types};
 
     #[test]
-    fn should_find_build_error() {
+    fn should_find_lint() {
         static LOG: &str = include_str!("../../tests/eslint_1.log");
         let result = analyse(LOG, "/tmp/project");
 

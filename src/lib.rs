@@ -7,12 +7,12 @@ mod input;
 
 pub mod core;
 
-pub async fn run(args: core::config::Args) {
+pub async fn run(args: core::config::Args, project_dir: &str) {
     let mut args = args;
     core::config::Args::validate(&mut args);
     if args.parser.is_none() {
         println!("There was no -p/--parser defined and it could not be guessed");
     } else {
-        input::handle::handle(&args).await;
+        input::handle::handle(&args, project_dir).await;
     }
 }
