@@ -79,7 +79,6 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
                             if line.contains("(src/app") {
                                 if let Some(location) = parse_test_location(line, project_dir) {
-                                    dbg!(&location);
                                     errors.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
