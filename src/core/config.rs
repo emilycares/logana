@@ -56,7 +56,7 @@ pub enum ParserKind {
     /// The parser for eslint
     Eslint,
     /// The parser for dune
-    Dune,
+    Dune
 }
 
 impl FromStr for ParserKind {

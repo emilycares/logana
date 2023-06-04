@@ -10,14 +10,13 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-            let line_trimmed = line.trim();
-            if line_trimmed.starts_with("Error: ")
-                || line_trimmed.starts_with("Usage:")
-                || line_trimmed.starts_with("TypeError:")
+            let line = line.trim();
+            if line.starts_with("Error: ")
+                || line.starts_with("Usage:")
+                || line.starts_with("TypeError:")
             {
-
-                if line_trimmed.starts_with("Error: src") {
-                    if let Some((location, error_message)) = line_trimmed.split_once(" - error ") {
+                if line.starts_with("Error: src") {
+                    if let Some((location, error_message)) = line.split_once(" - error ") {
                         let location = &location[7..];
                         if let Some(location) = parse_location(location, project_dir) {
                             errors.push(types::Message {
@@ -27,7 +26,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                         }
                     }
                 } else {
-                    let mut exception = vec![line_trimmed];
+                    let mut exception = vec![line];
                     'exception: for y in 1.. {
                         let i: usize = i + y;
                         let Some(line) = lines.get(i) else {
@@ -52,36 +51,34 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                 if let Some(error) = lines.get(i + 1) {
                     let error = error.trim();
 
+                    //dbg!(&line);
+
                     'search_error: for y in 2.. {
                         let i = i + y;
                         if let Some(line) = lines.get(i) {
-                            let line_trimmed = line.trim();
+                            let line = line.trim();
 
-                            if line_trimmed.starts_with("Expected ") {
+                            if line.starts_with("Expected ") {
                                 continue 'search_error;
                             }
 
-                            if line_trimmed.starts_with("Error: ") {
+                            if line.starts_with("Error: ") {
                                 continue 'search_error;
                             }
+
                             if let Some(previous_line) = lines.get(i - 1) {
                                 let previous_line = previous_line.trim();
                                 if (previous_line.starts_with("Expected ")
                                     || previous_line.starts_with("Error: "))
-                                    && !line_trimmed.contains("(src/app")
+                                    && !line.contains("(src/app")
                                 {
                                     continue 'search_error;
                                 }
                             }
 
-                            if !line_trimmed.starts_with("at ") {
-                                break;
-                            }
 
-                            if line_trimmed.contains("(src/app") {
-                                if let Some(location) =
-                                    parse_test_location(line_trimmed, project_dir)
-                                {
+                            if line.contains("(src/app") {
+                                if let Some(location) = parse_test_location(line, project_dir) {
                                     errors.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
@@ -100,7 +97,6 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     errors
 }
-
 
 #[must_use]
 fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
@@ -187,8 +183,8 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
 
 #[cfg(test)]
 mod tests {
-    use std::vec;
     use pretty_assertions::assert_eq;
+    use std::vec;
 
     use crate::{
         analyser::karma_jasmine::{analyse, parse_exception},
@@ -233,21 +229,20 @@ mod tests {
 
         assert_eq!(
             result,
-            vec![
-                types::Message {
-                    error: "TS2345: Argument of type '(name: string) => MemoizedSelector...".to_string(),
-                    locations: vec![types::Location {
-                        path: "/tmp/project/src/app/some.facade.spec.ts".to_string(),
-                        row: 36,
-                        col: 32
-                    }]
-                }
-            ],
+            vec![types::Message {
+                error: "TS2345: Argument of type '(name: string) => MemoizedSelector..."
+                    .to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/app/some.facade.spec.ts".to_string(),
+                    row: 36,
+                    col: 32
+                }]
+            }],
         );
     }
 
     #[test]
-    fn should_parse_failed_test_2() {
+    fn should_parse_failed_test_1() {
         static LOG: &str = include_str!("../../tests/karma_jasmine_failed_test_1.log");
         let result = analyse(LOG, "/tmp/project");
 
@@ -279,6 +274,24 @@ mod tests {
                     locations: vec![]
                 }
             ]
+        );
+    }
+
+    #[test]
+    fn should_parse_failed_test_2() {
+        static LOG: &str = include_str!("../../tests/karma_jasmine_failed_test_2.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "Expected spy OtherService.open to have been called with:".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/app/some.functions.spec.ts".to_string(),
+                    row: 348,
+                    col: 33
+                }]
+            },]
         );
     }
 
@@ -321,8 +334,13 @@ mod tests {
     fn parse_location_test() {
         let result = parse_location("src/app/some.facade.spec.ts:36:32", "/tmp/project");
 
-        assert_eq!(result, Some(
-                types::Location { path: "/tmp/project/src/app/some.facade.spec.ts".to_string(), row: 36, col: 32 }
-                ));
+        assert_eq!(
+            result,
+            Some(types::Location {
+                path: "/tmp/project/src/app/some.facade.spec.ts".to_string(),
+                row: 36,
+                col: 32
+            })
+        );
     }
 }

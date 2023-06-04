@@ -1,0 +1,8 @@
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running sone.thing.project.ThingTest
+[ERROR] Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! - in sone.thing.project.ThingTest
+[ERROR] deleteByAppName  Time elapsed: 0.01 s  <<< ERROR!
+java.util.ConcurrentModificationException
+	at sone.thing.project.ThingTest.cleanup(ThingTest.java:145)
+[INFO] BUILD FAILURE

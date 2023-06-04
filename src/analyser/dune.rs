@@ -67,7 +67,7 @@ fn parse_location(line: &str, project_dir: &str) -> Option<types::Location> {
                 return Some(types::Location {
                     path: format!("{project_dir}/{path}"),
                     row: row.parse().unwrap_or_default(),
-                    col: col.parse::<usize>().unwrap_or_default() + 1,
+                    col: col.parse::<usize>().unwrap_or_default(),
                 });
             }
         }
@@ -107,7 +107,7 @@ mod tests {
     fn parse_location_test() {
         let result = parse_location(
             "File \"bin/main.ml\", line 21, characters 35-39:",
-            "/tmp/project/",
+            "/tmp/project",
         );
 
         assert_eq!(

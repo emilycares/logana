@@ -1,0 +1,13 @@
+Chrome Headless 88.0.4298.0 (Windows 10) SomeFunction shoud do FAILED
+        Expected spy OtherService.open to have been called with:
+          [ Function, null, Object({ overlay: true }) ]
+        but actual calls were:
+          [ Function, null, Object({ overlay: false }) ].
+
+        Call 0:
+          Expected $[2].overlay = false to equal true.
+            at <Jasmine>
+            at Error.<anonymous> (node_modules/core-js/internals/wrap-error-constructor-with-cause.js:37:1)
+            at new Error (node_modules/core-js/modules/es.error.cause.js:28:36)
+            at <Jasmine>
+            at UserContext.<anonymous> (src/app/some.functions.spec.ts:348:33)
