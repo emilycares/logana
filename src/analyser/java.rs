@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Java`]
@@ -16,26 +18,26 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> Vec<types::Messag
 /// - `project_dir`
 /// - "/src/java/main"
 /// and replace slash with dots
-//#[must_use]
-//pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
-    //let file = Path::new(file);
-    //let file_name = file
-        //.file_name()
-        //.expect("The file that was supplied is not a file");
-    //let file_name = file_name
-        //.to_str()
-        //.expect("The file that was supplied contains ileagal characters in its name");
-    //let file_related = "/".to_owned() + file_name;
-    //let file = file
-        //.to_str()
-        //.expect("The file that was supplied contains ileagal characters in its path");
-    //Some(
-        //file.replace(project_dir, "")
-            //.replace("src/main/java/", "")
-            //.replace(&file_related, "")
-            //.replace('/', "."),
-    //)
-//}
+#[must_use]
+pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
+    let file = Path::new(file);
+    let file_name = file
+        .file_name()
+        .expect("The file that was supplied is not a file");
+    let file_name = file_name
+        .to_str()
+        .expect("The file that was supplied contains ileagal characters in its name");
+    let file_related = "/".to_owned() + file_name;
+    let file = file
+        .to_str()
+        .expect("The file that was supplied contains ileagal characters in its path");
+    Some(
+        file.replace(project_dir, "")
+            .replace("src/main/java/", "")
+            .replace(&file_related, "")
+            .replace('/', "."),
+    )
+}
 
 /// Will return the file for a class
 #[must_use]
@@ -215,15 +217,15 @@ mod tests {
         );
     }
 
-    //#[test]
-    //fn get_package_test() {
-        //let project_dir = "/tmp/project/";
-        //let file = "/tmp/project/src/main/java/my/rootpackage/name/MyLibrary.java";
-        //assert_eq!(
-            //Some("my.rootpackage.name".to_string()),
-            //get_package(file, project_dir)
-        //);
-    //}
+    #[test]
+    fn get_package_test() {
+        let project_dir = "/tmp/project/";
+        let file = "/tmp/project/src/main/java/my/rootpackage/name/MyLibrary.java";
+        assert_eq!(
+            Some("my.rootpackage.name".to_string()),
+            get_package(file, project_dir)
+        );
+    }
 
     #[test]
     fn get_file_test() {
