@@ -6,5 +6,9 @@ use logana::run;
 async fn main() {
     let args = Args::parse();
 
-    run(args).await;
+    if let Ok(dir) = std::env::current_dir() {
+        if let Some(dir) = dir.to_str() {
+            run(args, dir).await;
+        }
+    }
 }

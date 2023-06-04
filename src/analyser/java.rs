@@ -176,7 +176,7 @@ fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::java::{analyse, get_file,  parse_exception},
+        analyser::java::{analyse, get_file,  parse_exception, get_package},
         core::types,
     };
 
