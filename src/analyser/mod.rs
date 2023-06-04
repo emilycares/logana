@@ -10,7 +10,3 @@ pub mod karma_jasmine;
 pub mod maven;
 /// Contains the analyser code for the [`crate::config::ParserKind::Zig`]
 pub mod zig;
-/// Contains the analyser code for the [`crate::config::ParserKind::Eslint`]
-pub mod eslint;
-/// Contains the analyser code for the [`crate::config::ParserKind::Dune`]
-pub mod dune;

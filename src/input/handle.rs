@@ -16,15 +16,15 @@ use crate::{
 use super::{command, split, tmux, wezterm};
 
 /// Will handle the userinput and call the analyser
-pub async fn handle(args: &Args, project_dir: &str) {
-    handle_input(args, project_dir).await;
+pub async fn handle(args: &Args) {
+    handle_input(args).await;
 
     if args.watch.is_some() {
-        handle_watch(args, project_dir).await;
+        handle_watch(args).await;
     }
 }
 
-async fn handle_watch(args: &Args, project_dir: &str) {
+async fn handle_watch(args: &Args) {
     if let Some(watch) = &args.watch {
         let (tx, rx) = std::sync::mpsc::channel();
 
@@ -41,7 +41,7 @@ async fn handle_watch(args: &Args, project_dir: &str) {
                     if let Some(path) = e.paths.first() {
                         if let Ok(meta) = std::fs::metadata(path) {
                             if meta.is_file() {
-                                handle_input(args, project_dir).await;
+                                handle_input(args).await;
                             }
                         }
                     }
@@ -51,7 +51,7 @@ async fn handle_watch(args: &Args, project_dir: &str) {
     }
 }
 
-async fn handle_input(args: &Args, project_dir: &str) {
+async fn handle_input(args: &Args) {
     let mut buffer = String::new();
     match &args.input {
         Some(InputKind::Stdin) => {
@@ -59,14 +59,14 @@ async fn handle_input(args: &Args, project_dir: &str) {
                 .read_to_string(&mut buffer)
                 .await
                 .unwrap_or_default();
-            let report = analyse(args, "stdin".to_string(), &buffer, project_dir);
+            let report = analyse(args, "stdin".to_string(), &buffer);
 
             output::produce(args, &report);
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
                 let lines = command::run_command_and_collect(command);
-                let report = analyse(args, format!("command: {command}"), &lines, project_dir);
+                let report = analyse(args, format!("command: {command}"), &lines);
                 output::produce(args, &report);
             }
         }
@@ -82,7 +82,7 @@ async fn handle_input(args: &Args, project_dir: &str) {
                     &args.splitby,
                 )
                 .iter()
-                .map(|build| analyse(args, format!("pane: {}", args.target), build, project_dir))
+                .map(|build| analyse(args, format!("pane: {}", args.target), build))
                 .filter(|analyse| !analyse.errors.is_empty())
                 .last()
                 {
@@ -92,7 +92,7 @@ async fn handle_input(args: &Args, project_dir: &str) {
         }
         Some(InputKind::File) => match read_to_string(&args.target).await {
             Ok(content) => {
-                let report = analyse(args, format!("file: {}", args.target), &content, project_dir);
+                let report = analyse(args, format!("file: {}", args.target), &content);
                 output::produce(args, &report);
             }
             Err(e) => println!("Got the following error wile readindg the target: {e:?}"),
@@ -103,27 +103,36 @@ async fn handle_input(args: &Args, project_dir: &str) {
     };
 }
 
-fn analyse(args: &Args, source: String, input: &str, project_dir: &str) -> types::AnalyseReport {
-    let errors = match args.parser {
-        Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
-        Some(ParserKind::Gradle) => analyser::gradle::analyse(input, project_dir),
-        Some(ParserKind::Java) => analyser::java::analyse(input, project_dir, &args.package),
-        Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
-        Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
-        Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
-        Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
-        Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
-        None => {
-            println!("There was no --parser defined and it could not be guessed");
+fn analyse(args: &Args, source: String, input: &str) -> types::AnalyseReport {
+    if let Ok(dir) = std::env::current_dir() {
+        if let Some(dir) = dir.to_str() {
+            let errors = match args.parser {
+                Some(ParserKind::Maven) => analyser::maven::analyse(input, dir),
+                Some(ParserKind::Gradle) => analyser::gradle::analyse(input, dir),
+                Some(ParserKind::Java) => analyser::java::analyse(input, dir, &args.package),
+                Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, dir),
+                Some(ParserKind::Cargo) => analyser::cargo::analyse(input, dir),
+                Some(ParserKind::Zig) => analyser::zig::analyse(input, dir),
+                None => {
+                    println!("There was no --parser defined and it could not be guessed");
 
-            vec![]
+                    vec![]
+                }
+            };
+
+            return types::AnalyseReport {
+                project: dir.to_string(),
+                date: Local::now(),
+                source,
+                errors,
+            };
         }
-    };
+    }
 
-    return types::AnalyseReport {
-        project: project_dir.to_string(),
+    types::AnalyseReport {
+        project: ".".to_string(),
         date: Local::now(),
         source,
-        errors,
-    };
+        errors: vec![],
+    }
 }

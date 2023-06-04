@@ -26,7 +26,7 @@ pub fn run_command_and_collect(command: &str) -> String {
 
             output.push_str(&strip_color(&line));
         } else {
-            println!("{:?}", line);
+            println!("{line:?}");
         }
     });
 

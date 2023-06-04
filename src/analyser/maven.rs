@@ -51,16 +51,15 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 ///  |      parse_coppilation_location()                                    message
 ///  cut away
 fn parse_copilation_error(error: &str) -> Option<types::Message> {
-    // remove "[ERROR] "
-    let error = &error[8..];
-
-    if let Some((location, _)) = error.split_once(' ') {
-        if let Some(location) = parse_coppilation_location(location) {
-            if let Some((_, error)) = error.split_once("] ") {
-                return Some(types::Message {
-                    error: error.to_string(),
-                    locations: vec![location],
-                });
+    if let Some(error) = error.strip_prefix("[ERROR] ") {
+        if let Some((location, _)) = error.split_once(' ') {
+            if let Some(location) = parse_coppilation_location(location) {
+                if let Some((_, error)) = error.split_once("] ") {
+                    return Some(types::Message {
+                        error: error.to_string(),
+                        locations: vec![location],
+                    });
+                }
             }
         }
     }
@@ -71,12 +70,13 @@ fn parse_copilation_error(error: &str) -> Option<types::Message> {
 fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Option<types::Message> {
     let mut message = String::new();
     for line in &lines[index+1..lines.len()] {
-        if line.contains("<<< FAILURE!") {
+        // Make sure to stop parsing at next failure
+        if line.ends_with("<<< FAILURE!") {
             break;
         }
+
         let line = line.trim();
-        if line.starts_with("at ") {
-            let location = &line[3..];
+        if let Some(location) = line.strip_prefix("at ") {
             if let Some(location) = parse_test_location(location, project_dir) {
                 return Some(types::Message {
                     error: message,
@@ -239,7 +239,7 @@ mod tests {
     }
 
     #[test]
-    fn should_find_failed_test() {
+    fn should_find_failed_test_1() {
         static LOG: &str = include_str!("../../tests/maven_test_1.log");
         let result = analyse(LOG, "/tmp/project");
 
@@ -266,6 +266,50 @@ mod tests {
                             }
                         ]
                     }
+                ]
+        );
+    }
+
+    #[test]
+    fn should_find_failed_test_2() {
+        static LOG: &str = include_str!("../../tests/maven_test_2.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![
+                    types::Message {
+                        error: "java.util.ConcurrentModificationException".to_string(),
+                        locations: vec![
+                            types::Location {
+                                path: "/tmp/project/src/test/java/sone/thing/project/ThingTest.java".to_string(),
+                                row: 145,
+                                col:  0
+                            }
+                        ]
+                    }
+                ]
+        );
+    }
+
+    #[test]
+    fn should_find_failed_test_mockito() {
+        static LOG: &str = include_str!("../../tests/maven_test_mockito.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![
+                    types::Message {
+                        error: "org.mockito.exceptions.verification.WantedButNotInvoked:Wanted but not invoked:publisher.publish(EventDTO(user=123, source=swiss));Actually, there were zero interactions with this mock.".to_string(),
+                        locations: vec![
+                            types::Location {
+                                path: "/tmp/project/src/test/java/some/project/thing/ThingTest.java".to_string(),
+                                row: 34,
+                                col:  0
+                            }
+                        ]
+                    },
                 ]
         );
     }

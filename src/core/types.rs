@@ -3,7 +3,7 @@ use std::fmt::Display;
 use chrono::{DateTime, Local};
 
 /// A file with position
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Location {
     /// File location
     pub path: String,
