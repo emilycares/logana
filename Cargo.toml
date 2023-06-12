@@ -6,15 +6,15 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.0.32", features = ["derive"] }
-tmux_interface = "0.2.1"
+clap = { version = "4", features = ["derive"] }
+tmux_interface = "0.3"
 subprocess = "0.2.9"
 regex = "1"
 lazy_static = "1.4"
-clearscreen = "2.0.0"
-tokio = { version = "1.0", features = ["full"] }
+clearscreen = "2"
+tokio = { version = "1", features = ["full"] }
 chrono = { version = "0.4"}
-notify = "5.1.0"
+notify = "6"
 
 [dev-dependencies]
-pretty_assertions = "1.3.0"
+pretty_assertions = "1.3"
