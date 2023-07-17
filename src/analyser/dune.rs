@@ -78,12 +78,9 @@ fn parse_location(line: &str, project_dir: &str) -> Option<types::Location> {
 
 #[cfg(test)]
 mod tests {
-
-    use pretty_assertions::assert_eq;
-
-    use crate::{analyser::dune::analyse, core::types};
-
     use super::parse_location;
+    use crate::{analyser::dune::analyse, core::types};
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn should_find_build_error() {

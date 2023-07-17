@@ -1,0 +1,2 @@
+# example.com/gomod2nix-template
+./main.go:8:6: undefined: fmt.PrintLn

@@ -3,15 +3,16 @@
 A build log analysis tool so that your PDE (Personal Development Environment) can have a list of files that contain errors.
 Currently, it only supports
 
-- Maven
+- Cargo
 - Gradle (java only) (Tests are not supported for the moment)
 - KarmaJasmine
-- Cargo
-- java (Only exceptions)
-- [https://github.com/crate-ci/typos](https://github.com/crate-ci/typos)
-- zig
-- eslint
+- Maven
 - dune
+- eslint
+- go
+- java (Only exceptions)
+- typos https://github.com/crate-ci/typos
+- zig
 
 with plans for more.
 

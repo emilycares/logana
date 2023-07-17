@@ -41,22 +41,24 @@ pub struct Args {
 /// Pecifies witch parser to use
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
-    /// The parser for maven
-    Maven,
-    /// The parser for gradle
-    Gradle,
-    /// The parser for java
-    Java,
-    /// The parser for Karma with Jasmine
-    KarmaJasmine,
     /// The parser for cargo
     Cargo,
-    /// The parser for zig
-    Zig,
+    /// The parser for gradle
+    Gradle,
+    /// The parser for Karma with Jasmine
+    KarmaJasmine,
+    /// The parser for maven
+    Maven,
+    /// The parser for dune
+    Dune,
     /// The parser for eslint
     Eslint,
-    /// The parser for dune
-    Dune
+    /// The parser for go
+    Go,
+    /// The parser for java
+    Java,
+    /// The parser for zig
+    Zig,
 }
 
 impl FromStr for ParserKind {
@@ -70,6 +72,7 @@ impl FromStr for ParserKind {
             "cargo" | "typos" => Ok(Self::Cargo),
             "gradle" | "./gradlew" => Ok(Self::Gradle),
             "dune" => Ok(Self::Dune),
+            "go" => Ok(Self::Go),
             &_ => Err(()),
         }
     }

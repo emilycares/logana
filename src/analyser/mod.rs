@@ -14,3 +14,5 @@ pub mod zig;
 pub mod eslint;
 /// Contains the analyser code for the [`crate::config::ParserKind::Dune`]
 pub mod dune;
+/// Contains the analyser code for the [`crate::config::ParserKind::Go`]
+pub mod go;

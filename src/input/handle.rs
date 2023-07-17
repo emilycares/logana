@@ -105,14 +105,15 @@ async fn handle_input(args: &Args, project_dir: &str) {
 
 fn analyse(args: &Args, source: String, input: &str, project_dir: &str) -> types::AnalyseReport {
     let errors = match args.parser {
-        Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
+        Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
+        Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
+        Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
+        Some(ParserKind::Go) => analyser::go::analyse(input, project_dir),
         Some(ParserKind::Gradle) => analyser::gradle::analyse(input, project_dir),
         Some(ParserKind::Java) => analyser::java::analyse(input, project_dir, &args.package),
         Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
-        Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
+        Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
         Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
-        Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
-        Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
         None => {
             println!("There was no --parser defined and it could not be guessed");
 
