@@ -18,16 +18,16 @@ pub struct Args {
     pub command: Option<String>,
 
     /// Additional reference to selected input
-    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm"), ("input", "file")]))]
-    pub target: String,
+    #[clap(short, long, default_value = None, required_if_eq_any([("input", "tmux"), ("input", "wezterm"), ("input", "file")]))]
+    pub target: Option<String>,
 
     /// Your shell PS1 in order to split logs for tmux
-    #[clap(short, long, default_value = "", required_if_eq_any([("input", "tmux"), ("input", "wezterm")]))]
-    pub splitby: String,
+    #[clap(short, long, default_value = None, required_if_eq_any([("input", "tmux"), ("input", "wezterm")]))]
+    pub splitby: Option<String>,
 
     /// The java package of your java project
-    #[clap(long, default_value = "", required_if_eq("parser", "java"))]
-    pub package: String,
+    #[clap(long, default_value = None, required_if_eq("parser", "java"))]
+    pub package: Option<String>,
 
     /// The output method
     #[clap(short, long, default_value = "file", num_args = 0..)]
@@ -36,6 +36,21 @@ pub struct Args {
     /// Watch files to rerun
     #[clap(short, long, num_args = 0..,  default_missing_value = "./src")]
     pub watch: Option<String>,
+}
+
+impl Default for Args {
+    fn default() -> Self {
+        Self {
+            parser: None,
+            input: None,
+            command: None,
+            target: None,
+            splitby: None,
+            package: None,
+            output: vec![],
+            watch: None,
+        }
+    }
 }
 
 /// Pecifies witch parser to use
