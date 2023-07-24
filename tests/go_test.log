@@ -1,0 +1,5 @@
+--- FAIL: TestAdd (0.00s)
+    hello_test.go:11: got '\x10', wanted '\n'
+FAIL
+exit status 1
+FAIL    example/hello   0.001s

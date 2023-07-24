@@ -13,6 +13,9 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
             if let Some(err) = parse_line_error(line, project_dir) {
                 errors.push(err);
             }
+            if let Some(err) = parse_failed_test(line, lines.get(i + 1), project_dir) {
+                errors.push(err);
+            }
         }
     }
 
@@ -31,8 +34,35 @@ fn parse_line_error(line: &str, project_dir: &str) -> Option<types::Message> {
 
     let location = types::Location {
         path: format!("{project_dir}/{file}"),
-        col: col.parse().unwrap_or_default(),
         row: row.parse().unwrap_or_default(),
+        col: col.parse().unwrap_or_default(),
+    };
+
+    Some(types::Message {
+        error: message.to_string(),
+        locations: vec![location],
+    })
+}
+
+fn parse_failed_test(line: &str, next: Option<&&str>, project_dir: &str) -> Option<types::Message> {
+    if !line.starts_with("--- FAIL: ") {
+        // no failed test
+        return None;
+    }
+
+    let next = next?;
+    let next = next.trim();
+    let mut splits = next.splitn(3, ':').into_iter();
+
+    let file = splits.next()?;
+    let row = splits.next()?;
+    let message = splits.next()?.trim();
+    
+
+    let location = types::Location {
+        path: format!("{project_dir}/{file}"),
+        row: row.parse().unwrap_or_default(),
+        col: 0,
     };
 
     Some(types::Message {
@@ -77,6 +107,24 @@ mod tests {
                     path: "/tmp/project/main.go".to_string(),
                     row: 8,
                     col: 6
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_find_failed_test() {
+        static LOG: &str = include_str!("../../tests/go_test.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "got '\\x10', wanted '\\n'".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/hello_test.go".to_string(),
+                    row: 11,
+                    col: 0
                 }]
             }]
         );
