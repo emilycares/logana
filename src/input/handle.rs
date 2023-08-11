@@ -18,7 +18,9 @@ use super::{command, split, tmux, wezterm};
 /// Will handle the userinput and call the analyser
 /// This will also handle the wach flag
 pub(crate) async fn handle(args: &Args, project_dir: &str) {
-    handle_input(args, project_dir).await;
+    if let Some(report) = handle_input(args, project_dir).await {
+        output::produce(args, &report);
+    }
 
     if args.watch.is_some() {
         handle_watch(args, project_dir).await;
