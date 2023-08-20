@@ -62,14 +62,15 @@ I use logana to get a faster feedback loop from a build error to a mistake I mad
 For working on rust projects, i use:
 
 ```bash
+logana -w -c "cargo test"
+```
+or the other way
+```bash
 find **/*.rs | entr logana -c "cargo test --color always"
 ```
-or the new way
-```bash
-logana -w -c "cargo test --color always"
-```
-Before I have used the same thing just without "logana -c". The difference is to before that I can instantly see all errors in my editor without going throw all the log. In most languages and tools, this is pretty straight forward. But you still need to search for the file and go to the right place. With the generated .logana-report i can press one shortcut in my editor to get a list of these errors and can jump to them.
-I started to creating this tool to simplify this process when I am working on my work angular project. There the test results are not very friendly to read and sometimes. You just miss failing test cases if you don't look correctly. That is why I started to creating this tool. And I have found this tool so useful that started creating other parsers for different languages to keep this workflow.
+
+### Why do i want this?
+The point is there are times where this does no hold up or is inconsistant. I have started to build this tool because i sometimes i get different errors in the compiler. Also i want to jump easily to printed paths to sourcecode. Regardless if it is in compilation unit test or at runntime. That is the goal.
 
 ## Editor support
 
