@@ -16,3 +16,5 @@ pub mod eslint;
 pub mod dune;
 /// Contains the analyser code for the [`crate::config::ParserKind::Go`]
 pub mod go;
+/// Contains the analyser code for the [`crate::config::ParserKind::Angular`]
+pub mod angular;

@@ -1,0 +1,8 @@
+ERROR: src/file.ts:8:26 - error TS2307: Cannot find module '../../../response' or its corresponding type declarations.
+
+8 import { Entities } from '../../../response';
+                           ~~~~~~~~~~~~~~~~~~~~
+src/file.ts:27:27 - error TS2339: Property 'showMsg' does not exist on type '{ type: string; }'.
+
+27               data?.showMsg,
+                       ~~~~~~~

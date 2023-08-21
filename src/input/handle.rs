@@ -142,6 +142,7 @@ pub fn analyse(
     project_dir: &str,
 ) -> types::AnalyseReport {
     let errors = match args.parser {
+        Some(ParserKind::Angular) => analyser::angular::analyse(input, project_dir),
         Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
         Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
         Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
