@@ -24,7 +24,6 @@ fn parse_line(line: &str, project_dir: &str) -> Option<types::Message> {
     if line.starts_with("ERROR: ") {
         line = &line[7..];
     }
-    dbg!(&line);
     let (loc, message) = line.split_once(" - ")?;
 
     let mut splits = loc.splitn(3, ':');

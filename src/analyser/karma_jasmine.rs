@@ -51,8 +51,6 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                 if let Some(error) = lines.get(i + 1) {
                     let error = error.trim();
 
-                    //dbg!(&line);
-
                     'search_error: for y in 2.. {
                         let i = i + y;
                         if let Some(line) = lines.get(i) {
