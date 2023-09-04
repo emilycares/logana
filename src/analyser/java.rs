@@ -18,7 +18,7 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> Vec<types::Messag
 /// - `project_dir`
 /// - "/src/java/main"
 /// and replace slash with dots
-#[must_use]
+#[allow(dead_code)]
 pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
     let file = Path::new(file);
     let file_name = file

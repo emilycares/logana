@@ -36,6 +36,14 @@ pub struct Args {
     /// Watch files to rerun
     #[clap(short, long, num_args = 0..,  default_missing_value = "./src")]
     pub watch: Option<String>,
+
+    /// Clear cli bevore ececuting a command
+    #[clap(long, default_value = "true")]
+    pub clear: bool,
+
+    /// Print the collected log output
+    #[clap(long, default_value = "true")]
+    pub print_input: bool,
 }
 
 impl Default for Args {
@@ -49,6 +57,8 @@ impl Default for Args {
             package: None,
             output: vec![],
             watch: None,
+            clear: true,
+            print_input: true
         }
     }
 }

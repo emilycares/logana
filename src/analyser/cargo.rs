@@ -57,11 +57,12 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                         'pani: for y in 1.. {
                             let y = i + y;
                             let Some(line) = lines.get(y) else {
-                            break 'pani;
-                        };
+                                break 'pani;
+                            };
 
-                            if let Some(location) = line.strip_prefix("', ") {
-                                if let Some(location) = parse_location(location, project_dir) {
+
+                            if let Some((_, possible_location)) = line.split_once("', ") {
+                                if let Some(location) = parse_location(possible_location, project_dir) {
                                     errors.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
@@ -223,6 +224,24 @@ mod tests {
                 locations: vec![types::Location {
                     path: "/tmp/project/src/analyser/cargo.rs".to_string(),
                     row: 174,
+                    col: 9
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_detect_failing_assert_3() {
+        static LOG: &str = include_str!("../../tests/cargo_test_3.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "assertion failed: `(left == right)`".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/main.rs".to_string(),
+                    row: 68,
                     col: 9
                 }]
             }]

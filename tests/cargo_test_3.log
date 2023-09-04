@@ -1,0 +1,22 @@
+    Finished test [unoptimized + debuginfo] target(s) in 1.15s
+     Running unittests src/main.rs (target/debug/deps/ari-ce06e7fedb308a79)
+
+running 2 tests
+test extractor::markdown::tests::should_find_commands_in_one_block ... FAILED
+test extractor::markdown::tests::should_find_commands ... ok
+
+failures:
+
+---- extractor::markdown::tests::should_find_commands_in_one_block stdout ----
+thread 'extractor::markdown::tests::should_find_commands_in_one_block' panicked at 'assertion failed: `(left == right)`
+  left: `Some(["cargo build", "# And build a release with", "cargo build --release"])`,
+ right: `Some(["cargo build", "cargo build --release"])`', src/main.rs:68:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    extractor::markdown::tests::should_find_commands_in_one_block
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--bin ari`

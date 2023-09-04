@@ -73,7 +73,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
-                let lines = command::run_command_and_collect(command);
+                let lines = command::run_command_and_collect(command, args.clear, args.print_input);
                 let report = analyse(args, format!("command: {command}"), &lines, project_dir);
                 return Some(report);
             }
