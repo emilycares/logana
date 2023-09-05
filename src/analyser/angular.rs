@@ -21,7 +21,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
 fn parse_line(line: &str, project_dir: &str) -> Option<types::Message> {
     let mut line = line;
-    if line.starts_with("ERROR: ") {
+    if line.to_uppercase().starts_with("ERROR: ") {
         line = &line[7..];
     }
     let (loc, message) = line.split_once(" - ")?;
