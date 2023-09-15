@@ -18,3 +18,5 @@ pub mod dune;
 pub mod go;
 /// Contains the analyser code for the [`crate::config::ParserKind::Angular`]
 pub mod angular;
+/// Contains the analyser code for the [`crate::config::ParserKind::Clang`]
+pub mod clang;

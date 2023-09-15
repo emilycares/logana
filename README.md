@@ -1,10 +1,11 @@
 # logana
 
 A build log analysis tool so that your PDE (Personal Development Environment) can have a list of files that contain errors.
-Currently, it only supports
+Currently, it supports
 
 - angular
 - cargo
+- clang
 - dune
 - eslint
 - go
@@ -28,7 +29,7 @@ Regularly tested on
 
 Install the rust.
 
-```bash
+``` command
 git clone https://github.com/micmine/logana
 cd logana
 
@@ -43,7 +44,7 @@ And add it to your path
 
 In this case the parser will be guessed by the command.
 
-```bash
+``` command
 logana -c "cargo build --color always"
 ```
 
@@ -51,7 +52,7 @@ logana -c "cargo build --color always"
 
 In bash "|&" will also pipe sterr.
 
-```bash
+``` command
 mvn clean install |& logana --parser maven --input stdin
 ```
 
@@ -62,11 +63,11 @@ It will create an output file named ".logana-report".
 I use logana to get a faster feedback loop from a build error to a mistake I made in some file.
 For working on rust projects, i use:
 
-```bash
+``` command
 logana -w -c "cargo test"
 ```
 or the other way
-```bash
+``` command
 find **/*.rs | entr logana -c "cargo test --color always"
 ```
 

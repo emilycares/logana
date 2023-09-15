@@ -30,10 +30,8 @@ pub fn run_command_and_collect(command: &str, clear: bool, print_input: bool) ->
             }
 
             output.push_str(&strip_color(&line));
-        } else {
-            if print_input {
-              println!("{line:?}");
-            }
+        } else if print_input {
+           println!("{line:?}");
         }
     });
 

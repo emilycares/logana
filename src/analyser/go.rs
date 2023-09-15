@@ -23,7 +23,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 }
 
 fn parse_line_error(line: &str, project_dir: &str) -> Option<types::Message> {
-    let mut splits = line.splitn(4, ':').into_iter();
+    let mut splits = line.splitn(4, ':');
     let mut file = splits.next()?;
     if file.starts_with("./") {
         file = &file[2..];
@@ -52,7 +52,7 @@ fn parse_failed_test(line: &str, next: Option<&&str>, project_dir: &str) -> Opti
 
     let next = next?;
     let next = next.trim();
-    let mut splits = next.splitn(3, ':').into_iter();
+    let mut splits = next.splitn(3, ':');
 
     let file = splits.next()?;
     let row = splits.next()?;

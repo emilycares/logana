@@ -51,7 +51,7 @@ fn parse_file_error(
         }
     }
 
-    return errors;
+    errors
 }
 
 /// input: File "bin/main.ml", line 21, characters 35-39:

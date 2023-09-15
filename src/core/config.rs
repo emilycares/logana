@@ -70,6 +70,8 @@ pub enum ParserKind {
     Angular,
     /// The parser for cargo
     Cargo,
+    /// The parser for clang
+    Clang,
     /// The parser for gradle
     Gradle,
     /// The parser for Karma with Jasmine

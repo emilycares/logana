@@ -53,7 +53,6 @@ fn parse_file_lint(start_index: usize, line: &str, lines: &[&str], project_dir: 
 
             let split = line
                 .split(' ')
-                .into_iter()
                 .filter(|l| !l.is_empty())
                 .collect::<Vec<&str>>();
 
@@ -68,7 +67,7 @@ fn parse_file_lint(start_index: usize, line: &str, lines: &[&str], project_dir: 
         }
     }
 
-    return errors;
+    errors
 }
 
 /// line_numbers -> 1:8

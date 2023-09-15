@@ -126,7 +126,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
         }
     };
 
-    return None;
+    None
 }
 
 /// Analyse the input string and returning a AnalyseReport for all parsers
@@ -144,6 +144,7 @@ pub fn analyse(
     let errors = match args.parser {
         Some(ParserKind::Angular) => analyser::angular::analyse(input, project_dir),
         Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
+        Some(ParserKind::Clang) => analyser::clang::analyse(input, project_dir),
         Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),
         Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
         Some(ParserKind::Go) => analyser::go::analyse(input, project_dir),
@@ -167,10 +168,10 @@ pub fn analyse(
         }
     };
 
-    return types::AnalyseReport {
+    types::AnalyseReport {
         project: project_dir.to_string(),
         date: Local::now(),
         source,
         errors,
-    };
+    }
 }
