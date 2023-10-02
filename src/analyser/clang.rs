@@ -29,7 +29,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 ///  parse_location()                   message
 fn parse_line(line: &str) -> Option<types::Message> {
     if let Some(location) = parse_location(line) {
-        let message = line.splitn(4, ':').nth(4)?;
+        let message = line.splitn(4, ':').nth(3)?;
         return Some(types::Message {
             error: message.trim_start().to_string(),
             locations: vec![location],
