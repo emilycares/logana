@@ -71,6 +71,18 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                             }
                         }
                     }
+                } else {
+                    if let Some((_, path)) = line.split_once(" panicked at ").take() {
+                        let path = &path[0..path.len() - 1];
+                        if let Some(location) = parse_location(path, project_dir) {
+                            if let Some(error) = lines.get(i + 1) {
+                                errors.push(types::Message {
+                                    error: error.to_string(),
+                                    locations: vec![location],
+                                });
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -80,6 +92,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
+    dbg!(&location);
     let parts: Vec<&str> = location.split(':').collect();
 
     if let Some(path) = parts.first() {
@@ -243,6 +256,42 @@ mod tests {
                     path: "/tmp/project/src/main.rs".to_string(),
                     row: 68,
                     col: 9
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_detect_failing_assert_4() {
+        static LOG: &str = include_str!("../../tests/cargo_test_4.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "assertion `left == right` failed".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/main.rs".to_string(),
+                    row: 7,
+                    col: 5
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_detect_failing_assert_5() {
+        static LOG: &str = include_str!("../../tests/cargo_test_5.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "assertion `left == right` failed: reason".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/main.rs".to_string(),
+                    row: 8,
+                    col: 5
                 }]
             }]
         );
