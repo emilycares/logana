@@ -72,7 +72,6 @@ fn parse_error(line: &str, col_line: Option<&str>) -> Option<types::Message> {
 mod tests {
     use crate::{analyser::gradle::analyse, core::types};
 
-
     #[test]
     fn should_find_syntax_error() {
         static LOG: &str = include_str!("../../tests/gradle_java_syntax.log");

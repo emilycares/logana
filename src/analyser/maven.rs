@@ -69,7 +69,7 @@ fn parse_copilation_error(error: &str) -> Option<types::Message> {
 
 fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Option<types::Message> {
     let mut message = String::new();
-    for line in &lines[index+1..lines.len()] {
+    for line in &lines[index + 1..lines.len()] {
         // Make sure to stop parsing at next failure
         if line.ends_with("<<< FAILURE!") {
             break;
@@ -277,18 +277,15 @@ mod tests {
 
         assert_eq!(
             result,
-            vec![
-                    types::Message {
-                        error: "java.util.ConcurrentModificationException".to_string(),
-                        locations: vec![
-                            types::Location {
-                                path: "/tmp/project/src/test/java/sone/thing/project/ThingTest.java".to_string(),
-                                row: 145,
-                                col:  0
-                            }
-                        ]
-                    }
-                ]
+            vec![types::Message {
+                error: "java.util.ConcurrentModificationException".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/test/java/sone/thing/project/ThingTest.java"
+                        .to_string(),
+                    row: 145,
+                    col: 0
+                }]
+            }]
         );
     }
 

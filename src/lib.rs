@@ -29,11 +29,16 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
 }
 
 /// Analyse the input string and returning a AnalyseReport for all parsers
-/// 
+///
 /// # Arguments
 /// * `source` - A string that provides context. From where the input comes from.
 /// * `input` - A string that is a buildlog with no shell escape codes
 /// * `project_dir` - A string that is a reference to where this project exists
-pub fn analyse(args: &Args, source: String, input: &str, project_dir: &str) -> types::AnalyseReport {
+pub fn analyse(
+    args: &Args,
+    source: String,
+    input: &str,
+    project_dir: &str,
+) -> types::AnalyseReport {
     input::handle::analyse(args, source, input, project_dir)
 }

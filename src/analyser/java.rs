@@ -101,7 +101,6 @@ fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<typ
 
     'locations: for i in 1.. {
         let Some(line) = log.get(i) else {
-
             break 'locations;
         };
 
@@ -176,7 +175,7 @@ fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::
 #[cfg(test)]
 mod tests {
     use crate::{
-        analyser::java::{analyse, get_file,  parse_exception, get_package},
+        analyser::java::{analyse, get_file, get_package, parse_exception},
         core::types,
     };
 

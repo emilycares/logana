@@ -1,6 +1,9 @@
 use std::{fs::File, io::prelude::*, path::Path};
 
-use super::{config::{Args, OutputKind}, types};
+use super::{
+    config::{Args, OutputKind},
+    types,
+};
 
 /// Program output
 pub fn produce(args: &Args, report: &types::AnalyseReport) {

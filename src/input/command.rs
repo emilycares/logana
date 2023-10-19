@@ -14,7 +14,7 @@ pub fn run_command_and_collect(command: &str, clear: bool, print_input: bool) ->
         .expect("To get output from program: {command}");
 
     if clear {
-      clearscreen::clear().unwrap_or_default();
+        clearscreen::clear().unwrap_or_default();
     }
 
     let reader = BufReader::new(stream);
@@ -26,12 +26,12 @@ pub fn run_command_and_collect(command: &str, clear: bool, print_input: bool) ->
             let line = format!("{line}\n");
 
             if print_input {
-              print!("{line}");
+                print!("{line}");
             }
 
             output.push_str(&strip_color(&line));
         } else if print_input {
-           println!("{line:?}");
+            println!("{line:?}");
         }
     });
 

@@ -1,0 +1,22 @@
+> angular-test@0.0.0 build
+> ng build
+
+✔ Browser application bundle generation complete.
+
+./src/app/app.component.ts - Error: Module build failed (from ./node_modules/@angular-devkit/build-angular/src/babel/webpack-loader.js):
+SyntaxError: /tmp/project/src/app/app.component.ts: Unexpected token (37:20)
+
+  35 |     constructor() {
+  36 |         this.title = 'angular-test';
+> 37 |         this.test = ;
+     |                     ^
+  38 |     }
+  39 | }
+  40 | AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
+
+Error: src/app/app.component.ts:12:1 - error TS1109: Expression expected.
+
+12 }
+   ~
+
+

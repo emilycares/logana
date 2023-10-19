@@ -31,8 +31,8 @@ fn parse_file_error(
             'errors: for y in 1.. {
                 let y = start_index + y;
                 let Some(line) = lines.get(y) else {
-                break 'errors;
-            };
+                    break 'errors;
+                };
                 let line = line.trim();
 
                 if line.is_empty() {

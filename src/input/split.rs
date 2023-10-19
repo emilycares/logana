@@ -47,11 +47,11 @@ fn combine_lines(start: usize, end: usize, lines: &[&str]) -> String {
 #[cfg(test)]
 mod tests {
 
-    #[cfg(target_arch="linux")]
+    #[cfg(target_arch = "linux")]
     #[test]
     fn should_split_builds() {
-        use pretty_assertions::assert_eq;
         use crate::input::split::builds;
+        use pretty_assertions::assert_eq;
         static LOG: &str = include_str!("../../tests/cargo_split_1.log");
 
         let out = builds(LOG, "michael@dione ");
@@ -77,11 +77,11 @@ mod tests {
                    "michael@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.14s\n\n"]);
     }
 
-    #[cfg(target_arch="linux")]
+    #[cfg(target_arch = "linux")]
     #[test]
     fn should_split_builds_2() {
-        use pretty_assertions::assert_eq;
         use crate::input::split::builds;
+        use pretty_assertions::assert_eq;
         static LOG: &str = include_str!("../../tests/cargo_split_2.log");
 
         let out = builds(LOG, "michael@dione ");

@@ -57,7 +57,6 @@ fn parse_failed_test(line: &str, next: Option<&&str>, project_dir: &str) -> Opti
     let file = splits.next()?;
     let row = splits.next()?;
     let message = splits.next()?.trim();
-    
 
     let location = types::Location {
         path: format!("{project_dir}/{file}"),

@@ -10,9 +10,9 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-           for err in parse_file_lint(i, line, lines, project_dir) {
-               errors.push(err);
-           }
+            for err in parse_file_lint(i, line, lines, project_dir) {
+                errors.push(err);
+            }
         }
     }
 
@@ -35,7 +35,12 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// |
 /// line numbers
 ///
-fn parse_file_lint(start_index: usize, line: &str, lines: &[&str], project_dir: &str) -> Vec<types::Message> {
+fn parse_file_lint(
+    start_index: usize,
+    line: &str,
+    lines: &[&str],
+    project_dir: &str,
+) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     if line.starts_with(project_dir) {
         let path = line;
@@ -43,8 +48,8 @@ fn parse_file_lint(start_index: usize, line: &str, lines: &[&str], project_dir: 
         'errors: for y in 1.. {
             let y = start_index + y;
             let Some(line) = lines.get(y) else {
-                        break 'errors;
-                    };
+                break 'errors;
+            };
             let line = line.trim();
 
             if line.is_empty() {

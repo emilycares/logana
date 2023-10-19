@@ -60,9 +60,10 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                                 break 'pani;
                             };
 
-
                             if let Some((_, possible_location)) = line.split_once("', ") {
-                                if let Some(location) = parse_location(possible_location, project_dir) {
+                                if let Some(location) =
+                                    parse_location(possible_location, project_dir)
+                                {
                                     errors.push(types::Message {
                                         error: error.to_string(),
                                         locations: vec![location],
@@ -92,7 +93,6 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 }
 
 fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> {
-    dbg!(&location);
     let parts: Vec<&str> = location.split(':').collect();
 
     if let Some(path) = parts.first() {

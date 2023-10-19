@@ -58,7 +58,7 @@ impl Default for Args {
             output: vec![],
             watch: None,
             clear: true,
-            print_input: true
+            print_input: true,
         }
     }
 }

@@ -30,8 +30,8 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                     'exception: for y in 1.. {
                         let i: usize = i + y;
                         let Some(line) = lines.get(i) else {
-                      break 'exception;
-                    };
+                            break 'exception;
+                        };
 
                         let line = line.trim();
 
@@ -74,7 +74,6 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                                 }
                             }
 
-
                             if line.contains("(src/app") {
                                 if let Some(location) = parse_test_location(line, project_dir) {
                                     errors.push(types::Message {
@@ -107,8 +106,8 @@ fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
 
     'locations: for i in 1.. {
         let Some(line) = log.get(i) else {
-                  break 'locations;
-                };
+            break 'locations;
+        };
 
         // without closing bracket
         let line: &str = &line[1..line.len() - 1];
@@ -137,13 +136,13 @@ fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
         }
 
         let Some((path, row_col)) = location.split_once(':') else {
-                continue;
-            };
+            continue;
+        };
         let path = format!("{project_dir}{path}");
 
-        let Some((row, col)) = row_col.split_once(':') else  {
-                    continue;
-                };
+        let Some((row, col)) = row_col.split_once(':') else {
+            continue;
+        };
 
         let row = row.parse::<usize>().unwrap_or_default();
         let col = col.parse::<usize>().unwrap_or_default();

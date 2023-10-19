@@ -1,0 +1,41 @@
+File was processed with these loaders:
+ * ./node_modules/@angular-devkit/build-angular/src/babel/webpack-loader.js
+ * ./node_modules/@ngtools/webpack/src/ivy/index.js
+You may need an additional loader to handle the result of these loaders.
+|     constructor() {
+|         this.title = 'angular-test';
+>         this.test = ;
+|     }
+| }
+
+Error: src/app/app.component.ts:12:1 - error TS1109: Expression expected.
+
+12 }
+   ~
+
+
+
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✖ Failed to compile.
+
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 49.86 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-10-19T15:56:17.183Z - Hash: 1740a906f55a8627 - Time: 431ms
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2023-10-19T15:56:19.530Z - Hash: 1740a906f55a8627 - Time: 314ms
+
+✔ Compiled successfully.
