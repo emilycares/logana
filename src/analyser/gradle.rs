@@ -1,6 +1,6 @@
 use crate::core::types;
 
-/// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
+/// Contains the analyser code for the [`crate::config::ParserKind::Gradle`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
