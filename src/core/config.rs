@@ -86,6 +86,8 @@ pub enum ParserKind {
     Go,
     /// The parser for java
     Java,
+    /// The parser for v
+    V,
     /// The parser for zig
     Zig,
 }
@@ -95,13 +97,15 @@ impl FromStr for ParserKind {
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         match input {
-            "maven" => Ok(Self::Maven),
-            "java" => Ok(Self::Java),
-            "karma-jasmine" => Ok(Self::KarmaJasmine),
             "cargo" | "typos" => Ok(Self::Cargo),
-            "gradle" | "./gradlew" => Ok(Self::Gradle),
             "dune" => Ok(Self::Dune),
             "go" => Ok(Self::Go),
+            "gradle" | "./gradlew" => Ok(Self::Gradle),
+            "java" => Ok(Self::Java),
+            "karma-jasmine" => Ok(Self::KarmaJasmine),
+            "maven" => Ok(Self::Maven),
+            "v" => Ok(Self::V),
+            "zig" => Ok(Self::Zig),
             &_ => Err(()),
         }
     }

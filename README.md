@@ -14,6 +14,7 @@ Currently, it supports
 - karmaJasmine
 - maven
 - typos https://github.com/crate-ci/typos
+- v
 - zig
 
 with plans for more.

@@ -1,0 +1,4 @@
+src/string_map.cpp:148:16: warning: 'always_inline' function might not be inlinable [-Wattributes]
+  148 | gb_inline void string_map_grow(StringMap<T> *h) {
+      |                ^~~~~~~~~~~~~~~
+src/string_map.cpp:148:16: warning: 'always_inline' function might not be inlinable [-Wattributes]

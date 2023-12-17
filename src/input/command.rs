@@ -6,16 +6,14 @@ use subprocess::{Exec, Redirection};
 
 /// Runs the passed command in a shell
 #[must_use]
-pub fn run_command_and_collect(command: &str, clear: bool, print_input: bool) -> String {
+pub fn run_command_and_collect(command: &str) -> String {
     let stream = Exec::shell(command)
         .stdout(Redirection::Pipe)
         .stderr(Redirection::Merge)
         .stream_stdout()
         .expect("To get output from program: {command}");
 
-    if clear {
-        clearscreen::clear().unwrap_or_default();
-    }
+    clearscreen::clear().unwrap_or_default();
 
     let reader = BufReader::new(stream);
 
@@ -24,13 +22,10 @@ pub fn run_command_and_collect(command: &str, clear: bool, print_input: bool) ->
     reader.lines().for_each(|line| {
         if let Ok(line) = line {
             let line = format!("{line}\n");
-
-            if print_input {
-                print!("{line}");
-            }
+            print!("{line}");
 
             output.push_str(&strip_color(&line));
-        } else if print_input {
+        } else {
             println!("{line:?}");
         }
     });

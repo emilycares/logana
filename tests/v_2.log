@@ -1,0 +1,10 @@
+src/main.v:6:1: error: unfinished string literal
+    4 |     println('Hello World!")
+    5 | }
+Details:
+src/main.v:4:10: details: literal started here
+    2 |
+    3 | fn main() {
+    4 |     println('Hello World!")
+      |             ^
+    5 | }

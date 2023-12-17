@@ -1,0 +1,5 @@
+src/main.v:5:1: error: unexpected token `}`, expecting `,`
+    3 | fn main() {
+    4 |     println('Hello World!'
+    5 | }
+      | ^

@@ -73,7 +73,8 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
-                let lines = command::run_command_and_collect(command, args.clear, args.print_input);
+                let lines =
+                    command::run_command_and_collect(command);
                 let report = analyse(args, format!("command: {command}"), &lines, project_dir);
                 return Some(report);
             }
@@ -160,6 +161,7 @@ pub fn analyse(
         }
         Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
         Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
+        Some(ParserKind::V) => analyser::v::analyse(input, project_dir),
         Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
         None => {
             println!("There was no --parser defined and it could not be guessed");
