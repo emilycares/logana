@@ -23,12 +23,12 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// 1  /tmp/project/index.ts
 ///    --------------------- path
 /// 2   1:1  error    Unexpected var, use let or const instead  no-var
-///     ---  -------------------------------------------------
+///     ---  ---------------------------------------------------------
 ///     |    |
 ///     |    Error message
 ///     call parse_location                                  
 /// 3   1:5  warning  'as' is assigned a value but never used   @typescript-eslint/no-unused-vars
-/// |   ---  ------------------------------------------------
+/// |   ---  ------------------------------------------------------------------------------------
 /// |   |    |
 /// |   |    Error message
 /// |   call parse_location                                  
@@ -61,7 +61,7 @@ fn parse_file_lint(
                 .filter(|l| !l.is_empty())
                 .collect::<Vec<&str>>();
 
-            let error = split[1..split.len() - 1].join(" ");
+            let error = split[1..split.len()].join(" ");
 
             if let Some(location) = parse_location(split[0], path) {
                 errors.push(types::Message {
@@ -107,7 +107,7 @@ mod tests {
             result,
             vec![
                 types::Message {
-                    error: "error Parsing error: ','".to_string(),
+                    error: "error Parsing error: ',' expected".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/file.ts".to_string(),
                         row: 1,
@@ -115,7 +115,7 @@ mod tests {
                     }]
                 },
                 types::Message {
-                    error: "error Unexpected var, use let or const instead".to_string(),
+                    error: "error Unexpected var, use let or const instead no-var".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/index.ts".to_string(),
                         row: 1,
@@ -123,7 +123,7 @@ mod tests {
                     }]
                 },
                 types::Message {
-                    error: "warning 'as' is assigned a value but never used".to_string(),
+                    error: "warning 'as' is assigned a value but never used @typescript-eslint/no-unused-vars".to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/index.ts".to_string(),
                         row: 1,
