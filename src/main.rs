@@ -1,6 +1,5 @@
 use clap::Parser;
-use logana::core::config::Args;
-use logana::run;
+use logana::{core::config::Args, run};
 
 #[tokio::main]
 async fn main() {

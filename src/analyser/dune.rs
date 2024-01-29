@@ -42,7 +42,7 @@ fn parse_file_error(
                 if line.starts_with("Error: ") {
                     errors.push(types::Message {
                         error: line.to_string(),
-                        locations: vec![location.clone()],
+                        locations: vec![location],
                     });
 
                     break 'errors;
@@ -114,6 +114,6 @@ mod tests {
                 row: 21,
                 col: 35
             })
-        )
+        );
     }
 }

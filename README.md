@@ -13,6 +13,7 @@ Currently, it supports
 - java (Only exceptions)
 - karmaJasmine
 - maven
+- odin
 - typos https://github.com/crate-ci/typos
 - v
 - zig

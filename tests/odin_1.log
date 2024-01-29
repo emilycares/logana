@@ -1,0 +1,8 @@
+/tmp/project/main.odin(7:1) Syntax Error: Expected a statement, got '}'
+/tmp/project/main.odin(6:2) Syntax Error: Only declarations are allowed at file scope, got expression statement
+/tmp/project/main.odin(6:14) Error: Cannot convert untyped value '"Hellope!"' to 'untyped integer' from 'untyped string'
+        fmt.println("Hellope!" + 1)
+                    ^~~~~~~~~^
+/tmp/project/main.odin(6:14) Error: 'len' is not supported for 'untyped integer'
+        fmt.println(len(1))
+                    ^~~~~^

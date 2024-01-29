@@ -28,9 +28,9 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// Parse message from line with delimiter
 ///
 /// Gets line input like:
-/// "exercises/011_while.zig:24:15: error: expected type expression, found ')'"
+/// "`exercises/011_while.zig:24:15`: error: expected type expression, found ')'"
 ///  ---------------------------- -------- ----------------------------------
-///  parse_location()             |        message
+///  `parse_location`()             |        message
 ///                               Previous detected delimiter
 fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::Message> {
     if let Some((path, message)) = line.split_once(delimiter) {
@@ -48,7 +48,7 @@ fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::M
 /// Parses location
 ///
 /// Gets location input like:
-/// "exercises/011_while.zig:24:15"
+/// "`exercises/011_while.zig:24:15`"
 ///  ----------------------- -- --
 ///  path                    |  |
 ///                          |  col

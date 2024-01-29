@@ -30,7 +30,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// Gets line input like:
 /// "src/main.v:5:1: error: unexpected token `}`, expecting `,`"
 ///  ------------- -------- ------------------------------------
-///  parse_location()     |           message
+///  `parse_location`()     |           message
 ///                       Previous detected delimiter
 fn parse_line(delimiter: &str, line: &str, project_dir: &str) -> Option<types::Message> {
     if let Some((path, message)) = line.split_once(delimiter) {
@@ -97,21 +97,24 @@ mod tests {
 
         assert_eq!(
             result,
-            vec![types::Message {
-                error: "unfinished string literal".to_string(),
-                locations: vec![types::Location {
-                    path: "/tmp/project/src/main.v".to_string(),
-                    row: 6,
-                    col: 1
-                }]
-            }, types::Message {
-                error: "literal started here".to_string(),
-                locations: vec![types::Location {
-                    path: "/tmp/project/src/main.v".to_string(),
-                    row: 4,
-                    col: 10
-                }]
-            }]
+            vec![
+                types::Message {
+                    error: "unfinished string literal".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/main.v".to_string(),
+                        row: 6,
+                        col: 1
+                    }]
+                },
+                types::Message {
+                    error: "literal started here".to_string(),
+                    locations: vec![types::Location {
+                        path: "/tmp/project/src/main.v".to_string(),
+                        row: 4,
+                        col: 10
+                    }]
+                }
+            ]
         );
     }
 }

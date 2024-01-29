@@ -26,7 +26,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 /// Gets line input like:
 /// "/tmp/project/main.c:47:5: warning: this style of line directive is a GNU extension [-Wgnu-line-marker]"
 ///  ------------------------           -------------------------------------------------------------------
-///  parse_location()                   message
+///  `parse_location`()                   message
 fn parse_line(line: &str, project_dir: &str) -> Option<types::Message> {
     if let Some(location) = parse_location(line, project_dir) {
         let message = line.splitn(4, ':').nth(3)?;
@@ -58,7 +58,7 @@ fn parse_location(location: &str, project_dir: &str) -> Option<types::Location> 
     let row = spl.next()?;
     let col = spl.next()?;
     Some(types::Location {
-        path: path.to_string(),
+        path,
         col: col.parse().unwrap_or_default(),
         row: row.parse().unwrap_or_default(),
     })
@@ -105,7 +105,9 @@ mod tests {
             result,
             vec![
                 types::Message {
-                    error: "warning: 'always_inline' function might not be inlinable [-Wattributes]".to_string(),
+                    error:
+                        "warning: 'always_inline' function might not be inlinable [-Wattributes]"
+                            .to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/string_map.cpp".to_string(),
                         row: 148,
@@ -113,7 +115,9 @@ mod tests {
                     }]
                 },
                 types::Message {
-                    error: "warning: 'always_inline' function might not be inlinable [-Wattributes]".to_string(),
+                    error:
+                        "warning: 'always_inline' function might not be inlinable [-Wattributes]"
+                            .to_string(),
                     locations: vec![types::Location {
                         path: "/tmp/project/src/string_map.cpp".to_string(),
                         row: 148,

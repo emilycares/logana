@@ -78,6 +78,8 @@ pub enum ParserKind {
     KarmaJasmine,
     /// The parser for maven
     Maven,
+    /// The parser for odin
+    Odin,
     /// The parser for dune
     Dune,
     /// The parser for eslint
@@ -104,6 +106,7 @@ impl FromStr for ParserKind {
             "java" => Ok(Self::Java),
             "karma-jasmine" => Ok(Self::KarmaJasmine),
             "maven" => Ok(Self::Maven),
+            "odin" => Ok(Self::Odin),
             "v" => Ok(Self::V),
             "zig" => Ok(Self::Zig),
             &_ => Err(()),

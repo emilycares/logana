@@ -57,7 +57,7 @@ impl Display for AnalyseReport {
             if message.locations.is_empty() {
                 result
             } else {
-                result.and_then(|_| writeln!(f, "{message}"))
+                result.and_then(|()| writeln!(f, "{message}"))
             }
         })
     }

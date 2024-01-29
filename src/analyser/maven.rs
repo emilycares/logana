@@ -48,7 +48,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
 /// "[ERROR] /tmp/project/src/main/java/some/thing/project/Main.java:[45,4] cannot find symbol"
 ///  ------ --------------------------------------------------------------  -----------------
-///  |      parse_coppilation_location()                                    message
+///  |      `parse_coppilation_location`()                                    message
 ///  cut away
 fn parse_copilation_error(error: &str) -> Option<types::Message> {
     if let Some(error) = error.strip_prefix("[ERROR] ") {
@@ -123,7 +123,7 @@ fn parse_coppilation_location(location: &str) -> Option<types::Location> {
     None
 }
 
-/// "some.thing.project.controller.AnalyzerTest.should_Test(AnalyzerTest.java:34)"
+/// "`some.thing.project.controller.AnalyzerTest.should_Test(AnalyzerTest.java:34`)"
 fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Location> {
     if let Some(class_name) = parse_class_name_from_test_location(location) {
         if let Some((class_path, _)) = location.split_once(class_name) {
@@ -142,7 +142,7 @@ fn parse_test_location(location: &str, project_dir: &str) -> Option<types::Locat
     None
 }
 
-/// "some.thing.project.controller.AnalyzerTest.should_Test(AnalyzerTest.java:34)"
+/// "`some.thing.project.controller.AnalyzerTest.should_Test(AnalyzerTest.java:34`)"
 ///                                                         ------------
 ///                                                         result
 fn parse_class_name_from_test_location(location: &str) -> Option<&str> {
@@ -155,7 +155,7 @@ fn parse_class_name_from_test_location(location: &str) -> Option<&str> {
     None
 }
 
-/// "some.thing.project.controller.AnalyzerTest.should_Testasd(AnalyzerTest.java:39)
+/// "`some.thing.project.controller.AnalyzerTest.should_Testasd(AnalyzerTest.java:39`)
 ///  --------------------------------------------------------------------------- | -
 ///  split away                                                                  | Remove last brace
 ///                                                                              Parse number

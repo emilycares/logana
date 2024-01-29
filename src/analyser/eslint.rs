@@ -26,12 +26,12 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 ///     ---  ---------------------------------------------------------
 ///     |    |
 ///     |    Error message
-///     call parse_location                                  
+///     call `parse_location`                                  
 /// 3   1:5  warning  'as' is assigned a value but never used   @typescript-eslint/no-unused-vars
 /// |   ---  ------------------------------------------------------------------------------------
 /// |   |    |
 /// |   |    Error message
-/// |   call parse_location                                  
+/// |   call `parse_location`                                  
 /// |
 /// line numbers
 ///
@@ -75,7 +75,7 @@ fn parse_file_lint(
     errors
 }
 
-/// line_numbers -> 1:8
+/// `line_numbers` -> 1:8
 ///                 | |
 ///                 | col
 ///                 row

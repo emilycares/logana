@@ -17,7 +17,7 @@ use super::{command, split, tmux, wezterm};
 
 /// Will handle the userinput and call the analyser
 /// This will also handle the wach flag
-pub(crate) async fn handle(args: &Args, project_dir: &str) {
+pub async fn handle(args: &Args, project_dir: &str) {
     if let Some(report) = handle_input(args, project_dir).await {
         output::produce(args, &report);
     }
@@ -73,8 +73,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
         }
         Some(InputKind::Command) => {
             if let Some(command) = &args.command {
-                let lines =
-                    command::run_command_and_collect(command);
+                let lines = command::run_command_and_collect(command);
                 let report = analyse(args, format!("command: {command}"), &lines, project_dir);
                 return Some(report);
             }
@@ -98,7 +97,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
                 if let Some(report) =
                     split::builds(command::strip_color(content.as_str()).as_str(), splitby)
                         .iter()
-                        .map(|build| analyse(args, format!("pane: {}", target), build, project_dir))
+                        .map(|build| analyse(args, format!("pane: {target}"), build, project_dir))
                         .filter(|analyse| !analyse.errors.is_empty())
                         .last()
                 {
@@ -114,11 +113,11 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
             let target = target.as_str();
             match read_to_string(target).await {
                 Ok(content) => {
-                    let report = analyse(args, format!("file: {}", target), &content, project_dir);
+                    let report = analyse(args, format!("file: {target}"), &content, project_dir);
                     return Some(report);
                 }
                 Err(e) => {
-                    println!("Got the following error wile readindg the target: {e:?}")
+                    println!("Got the following error wile readindg the target: {e:?}");
                 }
             }
         }
@@ -130,7 +129,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
     None
 }
 
-/// Analyse the input string and returning a AnalyseReport for all parsers
+/// Analyse the input string and returning a `AnalyseReport` for all parsers
 ///
 /// # Arguments
 /// * `source` - A string that provides context. From where the input comes from.
@@ -161,6 +160,7 @@ pub fn analyse(
         }
         Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
         Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
+        Some(ParserKind::Odin) => analyser::odin::analyse(input, project_dir),
         Some(ParserKind::V) => analyser::v::analyse(input, project_dir),
         Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
         None => {
