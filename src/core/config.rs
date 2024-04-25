@@ -66,6 +66,8 @@ impl Default for Args {
 /// Pecifies witch parser to use
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
+    /// The parser for Alire 
+    Alire,
     /// The parser for Angular
     Angular,
     /// The parser for cargo
@@ -99,13 +101,14 @@ impl FromStr for ParserKind {
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         match input {
+            "alr" => Ok(Self::Alire),
             "cargo" | "typos" => Ok(Self::Cargo),
             "dune" => Ok(Self::Dune),
             "go" => Ok(Self::Go),
             "gradle" | "./gradlew" => Ok(Self::Gradle),
             "java" => Ok(Self::Java),
             "karma-jasmine" => Ok(Self::KarmaJasmine),
-            "maven" => Ok(Self::Maven),
+            "maven" | "mvn" => Ok(Self::Maven),
             "odin" => Ok(Self::Odin),
             "v" => Ok(Self::V),
             "zig" => Ok(Self::Zig),

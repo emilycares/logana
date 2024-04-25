@@ -3,20 +3,21 @@
 A build log analysis tool so that your PDE (Personal Development Environment) can have a list of files that contain errors.
 Currently, it supports
 
-- angular
-- cargo
-- clang
-- dune
-- eslint
-- go
-- gradle (java only) (Tests are not supported for the moment)
-- java (Only exceptions)
-- karmaJasmine
-- maven
-- odin
+- alire https://alire.ada.dev/
+- angular https://angular.io/
+- cargo https://github.com/rust-lang/cargo
+- clang https://clang.llvm.org/
+- dune https://dune.build/
+- eslint https://eslint.org/
+- go https://go.dev/
+- gradle (java only) (Tests are not supported for the moment) https://gradle.org/
+- java (Only exceptions) https://www.java.com/en/
+- karmaJasmine https://karma-runner.github.io/latest/index.html
+- maven https://maven.apache.org/
+- odin https://odin-lang.org/
 - typos https://github.com/crate-ci/typos
-- v
-- zig
+- v https://vlang.io/
+- zig https://ziglang.org/
 
 with plans for more.
 

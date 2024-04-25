@@ -1,0 +1,9 @@
+Compile
+   [Ada]          buildbuddy.adb
+buildbuddy.adb:5:31: missing string quote
+
+   compilation of buildbuddy.adb failed
+
+gprbuild: *** compilation phase failed
+error: Command ["gprbuild", "-gnatwU", "-j0", "-p", "-P", "buildbuddy.gpr"] exited with code 4
+error: Compilation failed.

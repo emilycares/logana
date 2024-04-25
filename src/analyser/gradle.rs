@@ -27,12 +27,8 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 fn parse_error(line: &str, col_line: Option<&str>) -> Option<types::Message> {
     let mut split = line.split(':');
 
-    let Some(path) = split.next() else {
-        return None;
-    };
-    let Some(row) = split.next() else {
-        return None;
-    };
+    let path = split.next()?;
+    let row = split.next()?;
     let Ok(row) = row.parse::<usize>() else {
         return None;
     };

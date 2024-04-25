@@ -19,7 +19,7 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> Vec<types::Messag
 /// - "/src/java/main"
 /// and replace slash with dots
 #[allow(dead_code)]
-pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
+pub fn get_package(file: &str, project_dir: &str) -> String {
     let file = Path::new(file);
     let file_name = file
         .file_name()
@@ -31,12 +31,11 @@ pub fn get_package(file: &str, project_dir: &str) -> Option<String> {
     let file = file
         .to_str()
         .expect("The file that was supplied contains ileagal characters in its path");
-    Some(
-        file.replace(project_dir, "")
-            .replace("src/main/java/", "")
-            .replace(&file_related, "")
-            .replace('/', "."),
-    )
+
+    file.replace(project_dir, "")
+        .replace("src/main/java/", "")
+        .replace(&file_related, "")
+        .replace('/', ".")
 }
 
 /// Will return the file for a class
@@ -81,9 +80,7 @@ fn remove_function(path: &str) -> &str {
 fn get_row(row: &str) -> Option<usize> {
     let row = &row[0..row.len() - 1];
 
-    let Some((_, row)) = row.split_once(':') else {
-        return None;
-    };
+    let (_, row) = row.split_once(':')?;
 
     let row = row.parse::<usize>().unwrap_or_default();
 
@@ -93,9 +90,7 @@ fn get_row(row: &str) -> Option<usize> {
 #[must_use]
 fn parse_exception(log: &[&str], project_dir: &str, package: &str) -> Option<types::Message> {
     let first_line = log.first().expect("An exception log should contain lines");
-    let Some((_, error)) = first_line.split_once(": ") else {
-        return None;
-    };
+    let (_, error) = first_line.split_once(": ")?;
 
     let mut locations = vec![];
 
@@ -221,7 +216,7 @@ mod tests {
         let project_dir = "/tmp/project/";
         let file = "/tmp/project/src/main/java/my/rootpackage/name/MyLibrary.java";
         assert_eq!(
-            Some("my.rootpackage.name".to_string()),
+            "my.rootpackage.name".to_string(),
             get_package(file, project_dir)
         );
     }

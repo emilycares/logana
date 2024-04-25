@@ -98,9 +98,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 #[must_use]
 fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
     let first_line = log.first().expect("A exception should have a fist line");
-    let Some((_, error)) = first_line.split_once(": ") else {
-        return None;
-    };
+    let (_, error) = first_line.split_once(": ")?;
 
     let mut locations = vec![];
 

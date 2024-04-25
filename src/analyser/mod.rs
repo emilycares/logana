@@ -1,3 +1,5 @@
+/// Contains the analyser code for the [`crate::config::ParserKind::Alire`]
+pub mod alire;
 /// Contains the analyser code for the [`crate::config::ParserKind::Angular`]
 pub mod angular;
 /// Contains the analyser code for the [`crate::config::ParserKind::Cargo`]
