@@ -77,6 +77,11 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
 
         let line = line.trim();
         if let Some(location) = line.strip_prefix("at ") {
+
+            if location.starts_with("org.junit") {
+                continue;
+            }
+
             if let Some(location) = parse_test_location(location, project_dir) {
                 return Some(types::Message {
                     error: message,
@@ -283,6 +288,25 @@ mod tests {
                     path: "/tmp/project/src/test/java/sone/thing/project/ThingTest.java"
                         .to_string(),
                     row: 145,
+                    col: 0
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_find_failed_test_3() {
+        static LOG: &str = include_str!("../../tests/maven_test_3.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "org.opentest4j.AssertionFailedError: expected: <a> but was: <>".to_string(),
+                locations: vec![types::Location {
+                    path: "/tmp/project/src/test/java/some/project/thing/ThingTest.java"
+                        .to_string(),
+                    row: 21,
                     col: 0
                 }]
             }]
