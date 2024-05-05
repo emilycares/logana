@@ -14,6 +14,7 @@ Currently, it supports
 - java (Only exceptions) https://www.java.com/en/
 - karmaJasmine https://karma-runner.github.io/latest/index.html
 - maven https://maven.apache.org/
+- nix https://nixos.org/
 - odin https://odin-lang.org/
 - typos https://github.com/crate-ci/typos
 - v https://vlang.io/

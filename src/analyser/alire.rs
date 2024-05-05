@@ -20,7 +20,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 }
 
 fn parse_line(line: &str, project_dir: &str) -> Option<types::Message> {
-    let mut line = line.splitn(4, ":");
+    let mut line = line.splitn(4, ':');
     let file = line.next()?;
     let row = line.next()?;
     let col = line.next()?;

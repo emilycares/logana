@@ -80,6 +80,8 @@ pub enum ParserKind {
     KarmaJasmine,
     /// The parser for maven
     Maven,
+    /// The parser for nix
+    Nix,
     /// The parser for odin
     Odin,
     /// The parser for dune

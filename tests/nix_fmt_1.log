@@ -1,0 +1,8 @@
+nix fmt ./
+warning: Git tree '/tmp/project' is dirty
+Checking style in 14 files using 8 threads.
+
+
+Failed! 1 error found at:
+- ./overlays/default.nix: unexpected token at 317..318
+error: Recipe `fmt` failed on line 13 with exit code 1

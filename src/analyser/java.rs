@@ -45,7 +45,7 @@ fn get_file(class: &str, project_dir: &str) -> String {
     format!("{project_dir}/src/main/java/{inter}.java")
 }
 
-/// Returns all java files for project
+// Returns all java files for project
 //fn get_project_files(project_dir: &str) -> Vec<String> {
 //let out = Exec::cmd("find")
 //.arg(project_dir)

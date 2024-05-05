@@ -20,6 +20,8 @@ pub mod java;
 pub mod karma_jasmine;
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 pub mod maven;
+/// Contains the analyser code for the [`crate::config::ParserKind::Nix`]
+pub mod nix;
 /// Contains the analyser code for the [`crate::config::ParserKind::Odin`]
 pub mod odin;
 /// Contains the analyser code for the [`crate::config::ParserKind::C`]

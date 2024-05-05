@@ -161,6 +161,7 @@ pub fn analyse(
         }
         Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
         Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
+        Some(ParserKind::Nix) => analyser::nix::analyse(input, project_dir),
         Some(ParserKind::Odin) => analyser::odin::analyse(input, project_dir),
         Some(ParserKind::V) => analyser::v::analyse(input, project_dir),
         Some(ParserKind::Zig) => analyser::zig::analyse(input, project_dir),
