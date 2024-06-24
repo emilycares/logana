@@ -1,4 +1,4 @@
-use std::{path::Path, time::Duration};
+ use std::{path::Path, time::Duration};
 use tokio::io::AsyncReadExt;
 
 use chrono::Local;
@@ -28,26 +28,56 @@ pub async fn handle(args: &Args, project_dir: &str) {
 }
 
 async fn handle_watch(args: &Args, project_dir: &str) {
-    if let Some(watch) = &args.watch {
-        let (tx, rx) = std::sync::mpsc::channel();
+    if let Some(watch) = args.watch.clone() {
+        let (otx, orx) = tokio::sync::watch::channel("watch");
 
-        let config = notify::Config::default()
-            .with_compare_contents(true)
-            .with_poll_interval(Duration::from_millis(500));
+        tokio::spawn(async move {
+            listen_fs(&watch, otx);
+        });
 
-        if let Ok(mut watcher) = PollWatcher::new(tx, config) {
-            if watcher
-                .watch(Path::new(watch), RecursiveMode::Recursive)
-                .is_ok()
-            {
-                for e in rx.into_iter().flatten() {
-                    if let Some(path) = e.paths.first() {
-                        if let Ok(meta) = std::fs::metadata(path) {
-                            if meta.is_file() {
-                                if let Some(report) = handle_input(args, project_dir).await {
-                                    output::produce(args, &report);
-                                }
-                            }
+        let args = args.clone();
+        let project_dir = project_dir.to_string();
+        tokio::spawn(async move {
+            act_fs(args, project_dir, orx).await;
+        });
+
+        // Prevent the main task from exiting prematurely
+        loop {
+            tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
+        }
+    }
+}
+
+async fn act_fs(args: Args, project_dir: String, mut orx: tokio::sync::watch::Receiver<&str>) {
+    loop {
+        let Ok(has_changed) = orx.has_changed() else {
+            break;
+        };
+        if !has_changed {
+            continue;
+        }
+        orx.borrow_and_update();
+        if let Some(report) = handle_input(&args, &project_dir).await {
+            output::produce(&args, &report);
+        }
+    }
+}
+
+fn listen_fs(watch: &String, otx: tokio::sync::watch::Sender<&str>) {
+    let (tx, rx) = std::sync::mpsc::channel();
+    let config = notify::Config::default()
+        .with_compare_contents(true)
+        .with_poll_interval(Duration::from_millis(500));
+    if let Ok(mut watcher) = PollWatcher::new(tx, config) {
+        if watcher
+            .watch(Path::new(watch), RecursiveMode::Recursive)
+            .is_ok()
+        {
+            for e in rx.into_iter().flatten() {
+                if let Some(path) = e.paths.first() {
+                    if let Ok(meta) = std::fs::metadata(path) {
+                        if meta.is_file() {
+                            let _ = otx.send("");
                         }
                     }
                 }

@@ -2,7 +2,7 @@ use clap::Parser;
 use std::str::FromStr;
 
 /// A build log analysis tool
-#[derive(Parser, Debug)]
+#[derive(Parser, Debug, Clone)]
 #[clap(author, version, about, long_about = None)]
 pub struct Args {
     /// The type of log input "Cargo", "Maven" or "KarmaJasmine"

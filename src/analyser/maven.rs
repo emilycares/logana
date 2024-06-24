@@ -1,10 +1,10 @@
 use crate::core::types;
+use itertools::Itertools;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Maven`]
 #[must_use]
 pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
-    let mut phase = MavenPhase::Scanning;
 
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
@@ -12,39 +12,24 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-            if line.starts_with("[INFO] Building") {
-                phase = MavenPhase::Building;
-            } else if line.starts_with("[INFO]  T E S T S") {
-                phase = MavenPhase::Testing;
-            } else if line.starts_with("[INFO] BUILD SUCCESS")
-                || line.starts_with("[INFO] BUILD FAILURE")
-            {
-                phase = MavenPhase::Done;
+            let beginning = format!("[ERROR] {project_dir}");
+            if line.starts_with(&beginning) {
+                if let Some(message) = parse_copilation_error(line) {
+                    errors.push(message);
+                }
             }
 
-            match phase {
-                MavenPhase::Scanning | MavenPhase::Done => {}
-                MavenPhase::Building => {
-                    let beginning = format!("[ERROR] {project_dir}");
-                    if line.starts_with(&beginning) {
-                        if let Some(message) = parse_copilation_error(line) {
-                            errors.push(message);
-                        }
-                    }
-                }
-                MavenPhase::Testing => {
-                    if line.contains("<<< FAILURE!") {
-                        if let Some(message) = parse_test_exception(i, lines, project_dir) {
-                            errors.push(message);
-                        }
-                    }
+            if line.contains("<<< FAILURE!") {
+                if let Some(message) = parse_test_exception(i, lines, project_dir) {
+                    errors.push(message);
                 }
             }
         }
     }
 
-    errors
-}
+    // In maven some errors ar duplicated.
+    errors.into_iter().unique().collect()
+} 
 
 /// "[ERROR] /tmp/project/src/main/java/some/thing/project/Main.java:[45,4] cannot find symbol"
 ///  ------ --------------------------------------------------------------  -----------------
@@ -172,13 +157,6 @@ fn parse_row_from_test_location(location: &str) -> Option<usize> {
     }
 
     None
-}
-
-enum MavenPhase {
-    Scanning,
-    Building,
-    Testing,
-    Done,
 }
 
 #[cfg(test)]
