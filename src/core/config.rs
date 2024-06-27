@@ -66,10 +66,12 @@ impl Default for Args {
 /// Pecifies witch parser to use
 #[derive(clap::ValueEnum, Clone, Debug)]
 pub enum ParserKind {
-    /// The parser for Alire 
+    /// The parser for Alire
     Alire,
     /// The parser for Angular
     Angular,
+    /// The parser for Biome
+    Biome,
     /// The parser for cargo
     Cargo,
     /// The parser for clang

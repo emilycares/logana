@@ -1,5 +1,3 @@
-use std::{ops::ControlFlow, path};
-
 use crate::core::types;
 
 /// Contains the analyser code for the [`crate::config::ParserKind::Alire`]
@@ -73,23 +71,6 @@ fn parse_fmt_line(line: &&str, error_line: usize, project_dir: &str) -> Option<t
     })
 }
 
-fn parse_line(line: &str, project_dir: &str) -> Option<types::Message> {
-    let mut line = line.splitn(4, ':');
-    let file = line.next()?;
-    let row = line.next()?;
-    let col = line.next()?;
-    let message = line.next()?.trim();
-
-    let location = types::Location {
-        path: format!("{project_dir}/src/{file}"),
-        row: row.parse().unwrap_or_default(),
-        col: col.parse().unwrap_or_default(),
-    };
-    Some(types::Message {
-        error: message.to_string(),
-        locations: vec![location],
-    })
-}
 #[cfg(test)]
 mod tests {
     use crate::{analyser::nix::analyse, core::types};

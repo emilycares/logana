@@ -5,6 +5,7 @@ Currently, it supports
 
 - alire https://alire.ada.dev/
 - angular https://angular.io/
+- biome https://biomejs.dev/
 - cargo https://github.com/rust-lang/cargo
 - clang https://clang.llvm.org/
 - dune https://dune.build/

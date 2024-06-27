@@ -1,4 +1,5 @@
- use std::{path::Path, time::Duration};
+
+use std::{path::Path, time::Duration};
 use tokio::io::AsyncReadExt;
 
 use chrono::Local;
@@ -174,6 +175,7 @@ pub fn analyse(
     let errors = match args.parser {
         Some(ParserKind::Alire) => analyser::alire::analyse(input, project_dir),
         Some(ParserKind::Angular) => analyser::angular::analyse(input, project_dir),
+        Some(ParserKind::Biome) => analyser::biome::analyse(input, project_dir),
         Some(ParserKind::Cargo) => analyser::cargo::analyse(input, project_dir),
         Some(ParserKind::Clang) => analyser::clang::analyse(input, project_dir),
         Some(ParserKind::Dune) => analyser::dune::analyse(input, project_dir),

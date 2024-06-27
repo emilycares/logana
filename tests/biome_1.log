@@ -1,0 +1,14 @@
+/tmp/project/src/app/util/functions/date-format.functions.ts:44:15 parse ━━━━━━━━━━
+
+  × Decorators are not valid here.
+
+    42 │   }
+    43 │
+  > 44 │   constructor(@Inject(LOCALE_ID) private locale: string) {}
+       │               ^^^^^^^^^^^^^^^^^^
+    45 │ }
+    46 │
+
+  i Decorators are only valid on class declarations, class expressions, and class methods.
+
+  i You can enable parameter decorators by setting the `unsafeParameterDecoratorsEnabled` option to `true` in your configuration file.

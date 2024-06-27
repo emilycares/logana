@@ -29,7 +29,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     // In maven some errors ar duplicated.
     errors.into_iter().unique().collect()
-} 
+}
 
 /// "[ERROR] /tmp/project/src/main/java/some/thing/project/Main.java:[45,4] cannot find symbol"
 ///  ------ --------------------------------------------------------------  -----------------
@@ -62,7 +62,6 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
 
         let line = line.trim();
         if let Some(location) = line.strip_prefix("at ") {
-
             if location.starts_with("org.junit") {
                 continue;
             }
