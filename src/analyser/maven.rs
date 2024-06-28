@@ -67,10 +67,12 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
             }
 
             if let Some(location) = parse_test_location(location, project_dir) {
-                return Some(types::Message {
-                    error: message,
-                    locations: vec![location],
-                });
+                if let Some(better_message) = coffee_stain::get_hint(&message, false) {
+                    return Some(types::Message {
+                        error: format!("{message}  {better_message}"),
+                        locations: vec![location],
+                    });
+                }
             }
             break;
         }

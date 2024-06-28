@@ -221,10 +221,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "coffee_stain"
+version = "0.1.0"
+source = "git+https://github.com/micmine/coffee_stain#a1dba75171a0c693fd376f28a604481930fdbec2"
+dependencies = [
+ "colored",
+ "difference",
+ "itertools",
+ "nom",
+]
+
+[[package]]
 name = "colorchoice"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b6a852b24ab71dffc585bcb46eaf7959d175cb865a7152e35b348d1b2960422"
+
+[[package]]
+name = "colored"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cbf2150cce219b664a8a70df7a1f933836724b503f8a413af9365b4dcc4d90b8"
+dependencies = [
+ "lazy_static",
+ "windows-sys 0.48.0",
+]
 
 [[package]]
 name = "core-foundation-sys"
@@ -252,6 +273,12 @@ name = "diff"
 version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56254986775e3233ffa9c4d7d3faaf6d36a2c09d30b20687e9f88bc8bafc16c8"
+
+[[package]]
+name = "difference"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "524cbf6897b527295dff137cec09ecf3a05f4fddffd7dfcd1585403449e74198"
 
 [[package]]
 name = "dirs"
@@ -492,6 +519,7 @@ dependencies = [
  "chrono",
  "clap",
  "clearscreen",
+ "coffee_stain",
  "itertools",
  "lazy_static",
  "notify",
