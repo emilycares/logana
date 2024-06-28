@@ -223,7 +223,7 @@ dependencies = [
 [[package]]
 name = "coffee_stain"
 version = "0.1.0"
-source = "git+https://github.com/micmine/coffee_stain#3da2fe9c4b5a4a396165d5d515f89a49ab7fbd64"
+source = "git+https://github.com/micmine/coffee_stain#6285c8f846bb30f0ccb6e369d2b3661ab914b2ac"
 dependencies = [
  "colored",
  "difference",
