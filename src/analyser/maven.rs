@@ -72,6 +72,11 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
                         error: format!("{message}  {better_message}"),
                         locations: vec![location],
                     });
+                } else {
+                    return Some(types::Message {
+                        error: format!("{message}"),
+                        locations: vec![location],
+                    });
                 }
             }
             break;
@@ -168,6 +173,9 @@ mod tests {
     };
     use pretty_assertions::assert_eq;
 
+const ICON: &str = " \u{e738} ";
+
+
     #[test]
     fn should_find_syntax_error() {
         static LOG: &str = include_str!("../../tests/maven_copilation_1.log");
@@ -231,7 +239,7 @@ mod tests {
             result,
             vec![
                     types::Message {
-                        error: "org.opentest4j.AssertionFailedError: expected: <true> but was: <false>".to_string(),
+                        error: "org.opentest4j.AssertionFailedError: expected: <true> but was: <false>".to_string() + ICON + " -> false",
                         locations: vec![
                             types::Location {
                                 path: "/tmp/project/src/test/java/some/thing/project/controller/AnalyzerTest.java".to_string(),
@@ -241,7 +249,7 @@ mod tests {
                         ]
                     },
                     types::Message {
-                        error: "org.opentest4j.AssertionFailedError: expected: <1> but was: <2>".to_string(),
+                        error: "org.opentest4j.AssertionFailedError: expected: <1> but was: <2>".to_string() + ICON + " -> 2",
                         locations: vec![
                             types::Location {
                                 path: "/tmp/project/src/test/java/some/thing/project/controller/AnalyzerTest.java".to_string(),
@@ -281,7 +289,7 @@ mod tests {
         assert_eq!(
             result,
             vec![types::Message {
-                error: "org.opentest4j.AssertionFailedError: expected: <a> but was: <>".to_string(),
+                error: "org.opentest4j.AssertionFailedError: expected: <a> but was: <>".to_string() + ICON + " -> ",
                 locations: vec![types::Location {
                     path: "/tmp/project/src/test/java/some/project/thing/ThingTest.java"
                         .to_string(),
