@@ -64,7 +64,7 @@ fn parse_fmt_line(line: &&str, error_line: usize, project_dir: &str) -> Option<t
     Some(types::Message {
         error: spl.next()?.to_string(),
         locations: vec![types::Location {
-            path: path.to_string(),
+            path,
             row: error_line,
             col: 0,
         }],
