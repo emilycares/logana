@@ -33,7 +33,6 @@ fn parse_syntax_error(line: &str) -> Option<types::Message> {
         return None;
     }
     let (path, rest) = line.split_once(": ")?;
-    dbg!(&rest);
     let (message, rest) = rest.split_once(" (")?;
     let (row, col) = rest.split_once(':')?;
     let mut col = col;

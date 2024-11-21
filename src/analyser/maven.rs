@@ -20,7 +20,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
             }
 
             if line.contains("<<< FAILURE!") {
-                if let Some(message) = parse_test_exception(i, lines, project_dir) {
+                if let Some(message) = parse_test_exception(i, lines, line, project_dir) {
                     errors.push(message);
                 }
             }
@@ -52,7 +52,24 @@ fn parse_copilation_error(error: &str) -> Option<types::Message> {
     None
 }
 
-fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Option<types::Message> {
+fn parse_test_exception(
+    index: usize,
+    lines: &[&str],
+    line: &str,
+    project_dir: &str,
+) -> Option<types::Message> {
+    let mut skip_class_until = None;
+    if let Some(line) = line.strip_prefix("[ERROR] ") {
+        if let Some((a, b)) = line.split_once("  Time elapsed") {
+            if a.contains('.') {
+                // Only check if the classpath is mentioned not only the test
+                // method.
+                // TODO: Check when the class path is mentioned and when not.
+                // might be related to quarkus junit usage
+                skip_class_until = Some(a);
+            }
+        }
+    }
     let mut message = String::new();
     for line in &lines[index + 1..lines.len()] {
         // Make sure to stop parsing at next failure
@@ -64,6 +81,11 @@ fn parse_test_exception(index: usize, lines: &[&str], project_dir: &str) -> Opti
         if let Some(location) = line.strip_prefix("at ") {
             if location.starts_with("org.junit") {
                 continue;
+            }
+            if let Some(sk) = skip_class_until {
+                if !location.contains(sk) {
+                    continue;
+                }
             }
 
             if let Some(location) = parse_test_location(location, project_dir) {
@@ -173,8 +195,7 @@ mod tests {
     };
     use pretty_assertions::assert_eq;
 
-const ICON: &str = " \u{e738} ";
-
+    const ICON: &str = " \u{e738} ";
 
     #[test]
     fn should_find_syntax_error() {
@@ -289,7 +310,9 @@ const ICON: &str = " \u{e738} ";
         assert_eq!(
             result,
             vec![types::Message {
-                error: "org.opentest4j.AssertionFailedError: expected: <a> but was: <>".to_string() + ICON + " -> ",
+                error: "org.opentest4j.AssertionFailedError: expected: <a> but was: <>".to_string()
+                    + ICON
+                    + " -> ",
                 locations: vec![types::Location {
                     path: "/tmp/project/src/test/java/some/project/thing/ThingTest.java"
                         .to_string(),
@@ -297,6 +320,27 @@ const ICON: &str = " \u{e738} ";
                     col: 0
                 }]
             }]
+        )
+    }
+    #[test]
+    fn should_find_failed_test_4() {
+        static LOG: &str = include_str!("../../tests/maven_test_4.log");
+        let result = analyse(LOG, "/tmp/project");
+
+        assert_eq!(
+            result,
+            vec![
+                    types::Message {
+                        error: "java.lang.AssertionError:1 expectation failed.Response body doesn't match expectation.Expected: is \"2\"Actual: 1".to_string(),
+                        locations: vec![
+                            types::Location {
+                                path: "/tmp/project/src/test/java/project/thing/ResourceTest.java".to_string(),
+                                row: 53,
+                                col:  0
+                            }
+                        ]
+                    },
+                ]
         );
     }
 

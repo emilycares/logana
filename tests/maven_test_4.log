@@ -1,0 +1,50 @@
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[ERROR] Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 14.016 s <<< FAILURE! - in project.thing.ResourceTest
+[ERROR] project.thing.ResourceTest.testEndpoint  Time elapsed: 0.045 s  <<< FAILURE!
+java.lang.AssertionError:
+1 expectation failed.
+Response body doesn't match expectation.
+Expected: is "2"
+  Actual: 1
+
+        at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+        at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+        at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+        at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+        at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:108)
+        at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+        at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+        at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+        at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
+        at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+        at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
+        at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+        at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
+        at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
+        at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
+        at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:107)
+        at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:238)
+        at project.thing.ResourceTest.testEndpoint(ResourceTest.java:53)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+        at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+2024-11-20 17:06:19,930 INFO  [io.quarkus] (main) thing-project stopped in 0.024s
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   ResourceTest.testEndpoint:53 1 expectation failed.
+Response body doesn't match expectation.
+Expected: is "2"
+  Actual: 1
+
+[INFO]
+[INFO] BUILD FAILURE
