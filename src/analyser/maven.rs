@@ -60,7 +60,7 @@ fn parse_test_exception(
 ) -> Option<types::Message> {
     let mut skip_class_until = None;
     if let Some(line) = line.strip_prefix("[ERROR] ") {
-        if let Some((a, b)) = line.split_once("  Time elapsed") {
+        if let Some((a, _b)) = line.split_once("  Time elapsed") {
             if a.contains('.') {
                 // Only check if the classpath is mentioned not only the test
                 // method.
