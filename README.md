@@ -35,7 +35,7 @@ Regularly tested on
 Install the rust.
 
 ``` command
-git clone https://github.com/micmine/logana
+git clone https://github.com/emilycares/logana
 cd logana
 
 cargo build --release
@@ -84,6 +84,6 @@ The point is there are times where this does no hold up or is inconsistant. I ha
 The editor support allows the editor to parse the ".logana-report" into its now error list.
 Plugins are available here:
 
-- neovim [https://github.com/micmine/logana.nvim](https://github.com/micmine/logana.nvim)
-- vscode [https://github.com/micmine/logana-vscode](https://github.com/micmine/logana-vscode)
-- jetbrains [https://github.com/micmine/logana-jetbrains](https://github.com/micmine/logana-jetbrains)
+- neovim [https://github.com/emilycares/logana.nvim](https://github.com/emilycares/logana.nvim
+- vscode [https://github.com/micmine/logana-vscode](https://github.com/emilycares/logana-vscode)
+- jetbrains [https://github.com/micmine/logana-jetbrains](https://github.com/emilycares/logana-jetbrains)
