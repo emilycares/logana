@@ -1,5 +1,5 @@
-michael@dione ~/D/r/moxy (master)> cargo build                
-   Compiling moxy v0.1.0 (/home/michael/Documents/rust/moxy)
+emily@dione ~/D/r/moxy (master)> cargo build                
+   Compiling moxy v0.1.0 (/home/emily/Documents/rust/moxy)
 error: expected `;`, found `#`
  --> src/main.rs:2:16
   |
@@ -15,5 +15,5 @@ error: expected item, found `<eof>`
    | ^ expected item
 
 error: could not compile `moxy` due to 2 previous errors
-michael@dione ~/D/r/moxy (master) [101]> 
+emily@dione ~/D/r/moxy (master) [101]> 
 

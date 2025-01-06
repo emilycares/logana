@@ -54,27 +54,27 @@ mod tests {
         use pretty_assertions::assert_eq;
         static LOG: &str = include_str!("../../tests/cargo_split_1.log");
 
-        let out = builds(LOG, "michael@dione ");
+        let out = builds(LOG, "emily@dione ");
 
         assert_eq!(out, vec![
-                   "michael@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.43s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
-                   "michael@dione ~/t/some_project (main)> nvim src/main.rs\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)\nerror[E0425]: cannot find value `asd` in this scope\n --> src/main.rs:2:5\n  |\n2 |     asd\n  |     ^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `some_project` due to previous error\n",
-                   "michael@dione ~/t/some_project (main) [101]> cargo build\n   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)\nerror[E0425]: cannot find value `asd` in this scope\n --> src/main.rs:2:5\n  |\n2 |     asd\n  |     ^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `some_project` due to previous error\n",
-                   "michael@dione ~/t/some_project (main) [101]> nvim src/main.rs\n",
-                   "michael@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.14s\n\n"]);
+                   "emily@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.43s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n",
+                   "emily@dione ~/t/some_project (main)> nvim src/main.rs\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)\nerror[E0425]: cannot find value `asd` in this scope\n --> src/main.rs:2:5\n  |\n2 |     asd\n  |     ^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `some_project` due to previous error\n",
+                   "emily@dione ~/t/some_project (main) [101]> cargo build\n   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)\nerror[E0425]: cannot find value `asd` in this scope\n --> src/main.rs:2:5\n  |\n2 |     asd\n  |     ^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `some_project` due to previous error\n",
+                   "emily@dione ~/t/some_project (main) [101]> nvim src/main.rs\n",
+                   "emily@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.14s\n\n"]);
     }
 
     #[cfg(target_arch = "linux")]
@@ -84,11 +84,11 @@ mod tests {
         use pretty_assertions::assert_eq;
         static LOG: &str = include_str!("../../tests/cargo_split_2.log");
 
-        let out = builds(LOG, "michael@dione ");
+        let out = builds(LOG, "emily@dione ");
 
         assert_eq!(out, vec![
-                   "michael@dione ~/D/r/moxy (master)> cargo build                \n   Compiling moxy v0.1.0 (/home/michael/Documents/rust/moxy)\nerror: expected `;`, found `#`\n --> src/main.rs:2:16\n  |\n2 | pub mod builder\n  |                ^ help: add `;` here\n3 | #[warn(missing_docs)]\n  | - unexpected token\n\nerror: expected item, found `<eof>`\n  --> src/main.rs:22:1\n   |\n22 | }\n   | ^ expected item\n\nerror: could not compile `moxy` due to 2 previous errors\n",
-                   "michael@dione ~/D/r/moxy (master) [101]> \n\n\n",
+                   "emily@dione ~/D/r/moxy (master)> cargo build                \n   Compiling moxy v0.1.0 (/home/emily/Documents/rust/moxy)\nerror: expected `;`, found `#`\n --> src/main.rs:2:16\n  |\n2 | pub mod builder\n  |                ^ help: add `;` here\n3 | #[warn(missing_docs)]\n  | - unexpected token\n\nerror: expected item, found `<eof>`\n  --> src/main.rs:22:1\n   |\n22 | }\n   | ^ expected item\n\nerror: could not compile `moxy` due to 2 previous errors\n",
+                   "emily@dione ~/D/r/moxy (master) [101]> \n\n\n",
         ]);
     }
 }

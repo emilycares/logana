@@ -13,6 +13,56 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
         if let Some(line) = lines.get(i) {
             let line = line.trim();
 
+            if line.ends_with("FAILED") {
+                let mut msg = None;
+                'test_case: for i in i..*line_len {
+                    if let Some(line) = lines.get(i) {
+                        if line.is_empty() {
+                            break 'test_case;
+                        }
+                        if line.contains("expected:") {
+                            if let Some(expected_line) = line.split_once("expected:") {
+                                msg = Some(expected_line.1);
+                            }
+                        }
+                        if !line.contains("at ") {
+                            continue 'test_case;
+                        }
+                        if line.contains("org.junit.jupiter") {
+                            continue 'test_case;
+                        }
+                        if let Some((_, line)) = line.split_once("app//") {
+                            if let Some((path, rest)) = line.split_once("(") {
+                                if let Some((filename, line)) = rest.split_once(".java:") {
+                                    let line_number = line.trim_end_matches(")");
+
+                                    if let Some((class_path, _)) = path.split_once(filename) {
+                                        let path = format!(
+                                            "{}/src/test/java/{}{}.java",
+                                            project_dir,
+                                            class_path.replace(".", "/"),
+                                            filename
+                                        );
+                                        if let Some(error) = msg {
+                                            errors.push(types::Message {
+                                                error: error.trim().to_owned(),
+                                                locations: vec![types::Location {
+                                                    path: path.to_string(),
+                                                    row: line_number
+                                                        .parse::<usize>()
+                                                        .unwrap_or_default(),
+                                                    col: 0,
+                                                }],
+                                            })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             if line.starts_with(project_dir) {
                 if let Some(error) = parse_error(line, lines.get(i + 2).copied()) {
                     errors.push(error);
@@ -67,21 +117,41 @@ fn parse_error(line: &str, col_line: Option<&str>) -> Option<types::Message> {
 #[cfg(test)]
 mod tests {
     use crate::{analyser::gradle::analyse, core::types};
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn should_find_syntax_error() {
         static LOG: &str = include_str!("../../tests/gradle_java_syntax.log");
-        let result = analyse(LOG, "/home/michael/tmp/gradle-test");
+        let result = analyse(LOG, "/home/emily/tmp/gradle-test");
 
         assert_eq!(
             result,
             vec![types::Message {
                 error: "error ';' expected".to_string(),
                 locations: vec![types::Location {
-                    path: "/home/michael/tmp/gradle-test/app/src/main/java/gradle/test/App.java"
+                    path: "/home/emily/tmp/gradle-test/app/src/main/java/gradle/test/App.java"
                         .to_string(),
                     row: 8,
                     col: 30
+                }]
+            }]
+        );
+    }
+
+    #[test]
+    fn should_find_test_error() {
+        static LOG: &str = include_str!("../../tests/gradle_test.log");
+        let result = analyse(LOG, "/home/emily/tmp/gradle-test");
+
+        assert_eq!(
+            result,
+            vec![types::Message {
+                error: "not <null>".to_string(),
+                locations: vec![types::Location {
+                    path: "/home/emily/tmp/gradle-test/src/test/java/org/example/AppTest.java"
+                        .to_string(),
+                    row: 13,
+                    col: 0
                 }]
             }]
         );

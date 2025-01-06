@@ -1,14 +1,14 @@
-michael@dione ~> cd ~/tmp/my-project-service/
-michael@dione ~/t/my-project-service (main)> nix-shell -p jdk17
+emily@dione ~> cd ~/tmp/my-project-service/
+emily@dione ~/t/my-project-service (main)> nix-shell -p jdk17
 
 [nix-shell:~/tmp/my-project-service]$ cb test
 ----------------------------------------------------------------------------------------
   Project my-project-service (my): The implementation of the my-project-service.
-  Version 0.0.1-SNAPSHOT, 2022-12-25 18:03:18 (michael, UTF-8, en, Europe/Zurich)
+  Version 0.0.1-SNAPSHOT, 2022-12-25 18:03:18 (emily, UTF-8, en, Europe/Zurich)
   Java 17.0.5, target 17 (Eclipse Adoptium-17.0.5+8), Linux (amd64) on localhost
-  Java home: /home/michael/devtools/jdk-17.0.5+8
+  Java home: /home/emily/devtools/jdk-17.0.5+8
   Gradle 7.3.1, Common Gradle Build 0.9.85, Common Build 0.9.37
-  Project: /home/michael/tmp/my-project-service, Home: /home/michael
+  Project: /home/emily/tmp/my-project-service, Home: /home/emily
 ----------------------------------------------------------------------------------------
   > Git branch: main, commit: f2656d8ba
 Error log message.                
@@ -113,7 +113,7 @@ FAILURE: Build failed with an exception.
 
 * What went wrong:
 Execution failed for task ':test'.
-> There were failing tests. See the report at: file:///home/michael/tmp/my-project-service/build/reports/tests/test/index.html
+> There were failing tests. See the report at: file:///home/emily/tmp/my-project-service/build/reports/tests/test/index.html
 
 * Try:
 > Run with --stacktrace option to get the stack trace.

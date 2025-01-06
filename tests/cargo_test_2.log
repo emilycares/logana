@@ -1,4 +1,4 @@
-   Compiling logana v0.1.0 (/home/michael/Documents/rust/logana)
+   Compiling logana v0.1.0 (/home/emily/Documents/rust/logana)
     Finished test [unoptimized + debuginfo] target(s) in 1.18s
      Running unittests src/main.rs (target/debug/deps/logana-9a3a20eec024d0d3)
 

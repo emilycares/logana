@@ -1,0 +1,24 @@
+AppTest > appHasAGreeting() FAILED
+    org.opentest4j.AssertionFailedError: expected: not <null>
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+        at app//org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+        at app//org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+        at app//org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:30)
+        at app//org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:304)
+        at app//org.example.AppTest.appHasAGreeting(AppTest.java:13)
+
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///home/emily/tmp/vanilla-gradle/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+BUILD FAILED in 1s
+3 actionable tasks: 1 executed, 2 up-to-date

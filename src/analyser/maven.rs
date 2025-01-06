@@ -236,14 +236,14 @@ mod tests {
     #[test]
     fn should_find_expected_symbol_on_windows() {
         static LOG: &str = include_str!("../../tests/maven_copilation_3.log");
-        let result = analyse(LOG, "C:\\Users\\michael\\testproject");
+        let result = analyse(LOG, "C:\\Users\\emily\\testproject");
 
         assert_eq!(
             result,
              vec![types::Message {
                     error: "error: ';' expected".to_string(),
                     locations: vec![types::Location {
-                        path: "C:\\Users\\michael\\testproject\\src\\main\\java\\com\\micmine\\test\\Service.java".to_string(),
+                        path: "C:\\Users\\emily\\testproject\\src\\main\\java\\com\\micmine\\test\\Service.java".to_string(),
                         row: 604,
                         col: 98
                     }]

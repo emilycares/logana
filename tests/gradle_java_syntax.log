@@ -1,6 +1,6 @@
 
 > Task :app:compileJava FAILED
-/home/michael/tmp/gradle-test/app/src/main/java/gradle/test/App.java:8: error: ';' expected
+/home/emily/tmp/gradle-test/app/src/main/java/gradle/test/App.java:8: error: ';' expected
         return "Hello World!"
                              ^
 1 error

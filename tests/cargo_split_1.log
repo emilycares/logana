@@ -1,33 +1,33 @@
-michael@dione ~/t/some_project (main)> cargo build
-   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)
+emily@dione ~/t/some_project (main)> cargo build
+   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)
     Finished dev [unoptimized + debuginfo] target(s) in 0.43s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> cargo build
+emily@dione ~/t/some_project (main)> cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-michael@dione ~/t/some_project (main)> nvim src/main.rs
-michael@dione ~/t/some_project (main)> cargo build
-   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)
+emily@dione ~/t/some_project (main)> nvim src/main.rs
+emily@dione ~/t/some_project (main)> cargo build
+   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)
 error[E0425]: cannot find value `asd` in this scope
  --> src/main.rs:2:5
   |
@@ -36,8 +36,8 @@ error[E0425]: cannot find value `asd` in this scope
 
 For more information about this error, try `rustc --explain E0425`.
 error: could not compile `some_project` due to previous error
-michael@dione ~/t/some_project (main) [101]> cargo build
-   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)
+emily@dione ~/t/some_project (main) [101]> cargo build
+   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)
 error[E0425]: cannot find value `asd` in this scope
  --> src/main.rs:2:5
   |
@@ -46,7 +46,7 @@ error[E0425]: cannot find value `asd` in this scope
 
 For more information about this error, try `rustc --explain E0425`.
 error: could not compile `some_project` due to previous error
-michael@dione ~/t/some_project (main) [101]> nvim src/main.rs
-michael@dione ~/t/some_project (main)> cargo build
-   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)
+emily@dione ~/t/some_project (main) [101]> nvim src/main.rs
+emily@dione ~/t/some_project (main)> cargo build
+   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)
     Finished dev [unoptimized + debuginfo] target(s) in 0.14s

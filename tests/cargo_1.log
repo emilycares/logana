@@ -1,4 +1,4 @@
-   Compiling some_project v0.1.0 (/home/michael/tmp/some_project)
+   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)
 error[E0425]: cannot find value `asd` in this scope
  --> src/main.rs:2:5
   |
