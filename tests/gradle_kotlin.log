@@ -1,0 +1,1307 @@
+Initialized native services in: C:\Users\Dione\.gradle\native
+Initialized jansi services in: C:\Users\Dione\.gradle\native
+Received JVM installation metadata from 'C:\devtools\toolarium-common-build-1.0.2\current\java': {JAVA_HOME=C:\devtools\toolarium-common-build-1.0.2\current\java, JAVA_VERSION=21.0.6, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=21.0.6+7-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=21.0.6+7-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=amd64}
+The client will now receive all logging from the daemon (pid: 4480). The daemon log file: C:\Users\Dione\.gradle\daemon\8.10\daemon-4480.out.log
+Starting 25th build in daemon [uptime: 19 mins 21.399 secs, performance: 100%, GC rate: 0.00/s, heap usage: 21% of 512 MiB, non-heap usage: 48% of 384 MiB]
+Using 16 worker leases.
+Now considering [D:\rust\library] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Transforming foojay-resolver-0.8.0.jar (org.gradle.toolchains:foojay-resolver:0.8.0) with InstrumentationAnalysisTransform
+Transforming gson-2.10.1.jar (com.google.code.gson:gson:2.10.1) with InstrumentationAnalysisTransform
+Transforming foojay-resolver-0.8.0.jar (org.gradle.toolchains:foojay-resolver:0.8.0) with InstrumentationAnalysisTransform
+Transforming foojay-resolver-0.8.0.jar (org.gradle.toolchains:foojay-resolver:0.8.0) with MergeInstrumentationAnalysisTransform
+Transforming gson-2.10.1.jar (com.google.code.gson:gson:2.10.1) with InstrumentationAnalysisTransform
+Transforming gson-2.10.1.jar (com.google.code.gson:gson:2.10.1) with MergeInstrumentationAnalysisTransform
+Transforming gson-2.10.1.jar (com.google.code.gson:gson:2.10.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming foojay-resolver-0.8.0.jar (org.gradle.toolchains:foojay-resolver:0.8.0) with ExternalDependencyInstrumentingArtifactTransform
+Settings evaluated using settings file 'D:\rust\library\settings.gradle.kts'.
+Projects loaded. Root project using build file 'D:\rust\library\build.gradle.kts'.
+Included projects: [root project 'library', project ':cdi', project ':common', project ':database', project ':file', project ':quarkus']
+
+> Configure project :
+Evaluating root project 'library' using build file 'D:\rust\library\build.gradle.kts'.
+Transforming gradle-4.0.0.jar (co.uzzu.dotenv:gradle:4.0.0) with InstrumentationAnalysisTransform
+Transforming kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with InstrumentationAnalysisTransform
+Transforming annotations-13.0.jar (org.jetbrains:annotations:13.0) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-proto-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-klib-commonizer-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-klib-commonizer-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-build-statistics-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-statistics:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-compiler-runner-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-runner:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-compiler-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with InstrumentationAnalysisTransform
+Transforming gson-2.8.9.jar (com.google.code.gson:gson:2.8.9) with InstrumentationAnalysisTransform
+Transforming kotlin-daemon-client-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-client:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlinx-coroutines-core-jvm-1.6.4.jar (org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-daemon-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21) with InstrumentationAnalysisTransform
+Transforming trove4j-1.0.20200330.jar (org.jetbrains.intellij.deps:trove4j:1.0.20200330) with InstrumentationAnalysisTransform
+Transforming gradle-4.0.0.jar (co.uzzu.dotenv:gradle:4.0.0) with InstrumentationAnalysisTransform
+Transforming gradle-4.0.0.jar (co.uzzu.dotenv:gradle:4.0.0) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with InstrumentationAnalysisTransform
+Transforming kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with MergeInstrumentationAnalysisTransform
+Transforming annotations-13.0.jar (org.jetbrains:annotations:13.0) with InstrumentationAnalysisTransform
+Transforming annotations-13.0.jar (org.jetbrains:annotations:13.0) with MergeInstrumentationAnalysisTransform
+Transforming gradle-4.0.0.jar (co.uzzu.dotenv:gradle:4.0.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming annotations-13.0.jar (org.jetbrains:annotations:13.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-idea-proto-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-proto-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-idea-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-proto-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-klib-commonizer-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-klib-commonizer-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-klib-commonizer-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-klib-commonizer-api:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-idea-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-idea:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-build-statistics-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-statistics:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-build-statistics-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-statistics:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-klib-commonizer-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-klib-commonizer-api:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-build-tools-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-build-statistics-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-statistics:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-compiler-runner-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-runner:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-compiler-runner-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-runner:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-compiler-runner-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-runner:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-compiler-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-compiler-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-compiler-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming gson-2.8.9.jar (com.google.code.gson:gson:2.8.9) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming gson-2.8.9.jar (com.google.code.gson:gson:2.8.9) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-daemon-client-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-client:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-daemon-client-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-client:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming gson-2.8.9.jar (com.google.code.gson:gson:2.8.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlinx-coroutines-core-jvm-1.6.4.jar (org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4) with InstrumentationAnalysisTransform
+Transforming kotlin-daemon-client-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-client:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlinx-coroutines-core-jvm-1.6.4.jar (org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlinx-coroutines-core-jvm-1.6.4.jar (org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-daemon-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-daemon-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming trove4j-1.0.20200330.jar (org.jetbrains.intellij.deps:trove4j:1.0.20200330) with InstrumentationAnalysisTransform
+Transforming trove4j-1.0.20200330.jar (org.jetbrains.intellij.deps:trove4j:1.0.20200330) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-daemon-embeddable-2.0.21.jar (org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming trove4j-1.0.20200330.jar (org.jetbrains.intellij.deps:trove4j:1.0.20200330) with ExternalDependencyInstrumentingArtifactTransform
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+
+> Configure project :cdi
+Evaluating project ':cdi' using build file 'D:\rust\library\cdi\build.gradle.kts'.
+
+> Configure project :common
+Evaluating project ':common' using build file 'D:\rust\library\common\build.gradle.kts'.
+
+> Configure project :database
+Evaluating project ':database' using build file 'D:\rust\library\database\build.gradle.kts'.
+kotlin scripting plugin: created the scripting discovery configuration: exposedKotlinScriptDef
+
+> Configure project :file
+Evaluating project ':file' using build file 'D:\rust\library\file\build.gradle.kts'.
+Transforming kotlin-gradle-plugin-api-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-serialization-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-serialization:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.1.10.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.1.10.jar (org.jetbrains.kotlin:kotlin-native-utils:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.1.10.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.1.10.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.1.10.jar (org.jetbrains.kotlin:kotlin-util-io:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-serialization-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-serialization:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-serialization-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-serialization:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.1.10.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.1.10.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-serialization-2.1.10-gradle85.jar (org.jetbrains.kotlin:kotlin-serialization:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-native-utils-2.1.10.jar (org.jetbrains.kotlin:kotlin-native-utils:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.1.10.jar (org.jetbrains.kotlin:kotlin-native-utils:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.1.10.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-tooling-core-2.1.10.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.1.10.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.1.10.jar (org.jetbrains.kotlin:kotlin-native-utils:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-build-tools-api-2.1.10.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.1.10.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.1.10.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-util-io-2.1.10.jar (org.jetbrains.kotlin:kotlin-util-io:2.1.10) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.1.10.jar (org.jetbrains.kotlin:kotlin-util-io:2.1.10) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-build-tools-api-2.1.10.jar (org.jetbrains.kotlin:kotlin-build-tools-api:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-util-io-2.1.10.jar (org.jetbrains.kotlin:kotlin-util-io:2.1.10) with ExternalDependencyInstrumentingArtifactTransform
+kotlin scripting plugin: created the scripting discovery configuration: gsonKotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: hoconKotlinScriptDef
+
+> Configure project :quarkus
+Evaluating project ':quarkus' using build file 'D:\rust\library\quarkus\build.gradle.kts'.
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-allopen-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-allopen:2.0.21) with InstrumentationAnalysisTransform
+Transforming gradle-application-plugin-3.16.3.jar (io.quarkus:gradle-application-plugin:3.16.3) with InstrumentationAnalysisTransform
+Transforming jandex-gradle-plugin-2.1.0.jar (org.kordamp.gradle:jandex-gradle-plugin:2.1.0) with InstrumentationAnalysisTransform
+Transforming quarkus-gradle-model-3.16.3.jar (io.quarkus:quarkus-gradle-model:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-core-deployment-3.16.3.jar (io.quarkus:quarkus-core-deployment:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-core-3.16.3.jar (io.quarkus:quarkus-bootstrap-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-gradle-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-gradle-resolver:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-common-3.16.3.jar (io.quarkus:quarkus-devtools-common:3.16.3) with InstrumentationAnalysisTransform
+Transforming smallrye-config-source-yaml-3.9.1.jar (io.smallrye.config:smallrye-config-source-yaml:3.9.1) with InstrumentationAnalysisTransform
+Transforming quarkus-analytics-common-3.16.3.jar (io.quarkus:quarkus-analytics-common:3.16.3) with InstrumentationAnalysisTransform
+Transforming base-gradle-plugin-0.54.0.jar (org.kordamp.gradle:base-gradle-plugin:0.54.0) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-codestarts:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-registry-client-3.16.3.jar (io.quarkus:quarkus-devtools-registry-client:3.16.3) with InstrumentationAnalysisTransform
+Transforming jackson-dataformat-yaml-2.18.1.jar (com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-datatype-jdk8-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-core-2.18.1.jar (com.fasterxml.jackson.core:jackson-core:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-datatype-jsr310-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-databind-2.18.1.jar (com.fasterxml.jackson.core:jackson-databind:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-annotations-2.18.1.jar (com.fasterxml.jackson.core:jackson-annotations:2.18.1) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-maven-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-maven-resolver:3.16.3) with InstrumentationAnalysisTransform
+Transforming maven-embedder-3.9.9.jar (org.apache.maven:maven-embedder:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-core-3.9.9.jar (org.apache.maven:maven-core:3.9.9) with InstrumentationAnalysisTransform
+Transforming failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with InstrumentationAnalysisTransform
+Transforming guava-33.3.1-jre.jar (com.google.guava:guava:33.3.1-jre) with InstrumentationAnalysisTransform
+Transforming commons-compress-1.27.1.jar (org.apache.commons:commons-compress:1.27.1) with InstrumentationAnalysisTransform
+Transforming smallrye-beanbag-maven-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-maven:1.5.2) with InstrumentationAnalysisTransform
+Transforming maven-resolver-transport-http-1.9.20.jar (org.apache.maven.resolver:maven-resolver-transport-http:1.9.20) with InstrumentationAnalysisTransform
+Transforming wagon-http-3.5.3.jar (org.apache.maven.wagon:wagon-http:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-http-shared-3.5.3.jar (org.apache.maven.wagon:wagon-http-shared:3.5.3) with InstrumentationAnalysisTransform
+Transforming httpclient-4.5.14.jar (org.apache.httpcomponents:httpclient:4.5.14) with InstrumentationAnalysisTransform
+Transforming commons-codec-1.17.1.jar (commons-codec:commons-codec:1.17.1) with InstrumentationAnalysisTransform
+Transforming commons-io-2.17.0.jar (commons-io:commons-io:2.17.0) with InstrumentationAnalysisTransform
+Transforming quarkus-core-3.16.3.jar (io.quarkus:quarkus-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-runner-3.16.3.jar (io.quarkus:quarkus-bootstrap-runner:3.16.3) with InstrumentationAnalysisTransform
+Transforming org-crac-0.1.3.jar (io.github.crac:org-crac:0.1.3) with InstrumentationAnalysisTransform
+Transforming gizmo-1.8.0.jar (io.quarkus.gizmo:gizmo:1.8.0) with InstrumentationAnalysisTransform
+Transforming qute-core-3.16.3.jar (io.quarkus.qute:qute-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-app-model-3.16.3.jar (io.quarkus:quarkus-bootstrap-app-model:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-hibernate-validator-spi-3.16.3.jar (io.quarkus:quarkus-hibernate-validator-spi:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-builder-3.16.3.jar (io.quarkus:quarkus-builder:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-class-change-agent-3.16.3.jar (io.quarkus:quarkus-class-change-agent:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-classloader-commons-3.16.3.jar (io.quarkus:quarkus-classloader-commons:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-development-mode-spi-3.16.3.jar (io.quarkus:quarkus-development-mode-spi:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-utilities-3.16.3.jar (io.quarkus:quarkus-devtools-utilities:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-fs-util-0.0.10.jar (io.quarkus:quarkus-fs-util:0.0.10) with InstrumentationAnalysisTransform
+Transforming quarkus-ide-launcher-3.16.3.jar (io.quarkus:quarkus-ide-launcher:3.16.3) with InstrumentationAnalysisTransform
+Transforming smallrye-config-3.9.1.jar (io.smallrye.config:smallrye-config:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-config-core-3.9.1.jar (io.smallrye.config:smallrye-config-core:3.9.1) with InstrumentationAnalysisTransform
+Transforming jboss-threads-3.8.0.Final.jar (org.jboss.threads:jboss-threads:3.8.0.Final) with InstrumentationAnalysisTransform
+Transforming mutiny-2.6.2.jar (io.smallrye.reactive:mutiny:2.6.2) with InstrumentationAnalysisTransform
+Transforming smallrye-common-annotation-2.7.0.jar (io.smallrye.common:smallrye-common-annotation:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-config-common-3.9.1.jar (io.smallrye.config:smallrye-config-common:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-common-classloader-2.7.0.jar (io.smallrye.common:smallrye-common-classloader:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-version-2.7.0.jar (io.smallrye.common:smallrye-common-version:2.7.0) with InstrumentationAnalysisTransform
+Transforming jboss-logmanager-3.0.6.Final.jar (org.jboss.logmanager:jboss-logmanager:3.0.6.Final) with InstrumentationAnalysisTransform
+Transforming wildfly-common-2.0.1.jar (org.wildfly.common:wildfly-common:2.0.1) with InstrumentationAnalysisTransform
+Transforming smallrye-common-net-2.7.0.jar (io.smallrye.common:smallrye-common-net:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-ref-2.7.0.jar (io.smallrye.common:smallrye-common-ref:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-expression-2.7.0.jar (io.smallrye.common:smallrye-common-expression:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-function-2.7.0.jar (io.smallrye.common:smallrye-common-function:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-beanbag-sisu-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-sisu:1.5.2) with InstrumentationAnalysisTransform
+Transforming smallrye-beanbag-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag:1.5.2) with InstrumentationAnalysisTransform
+Transforming smallrye-common-constraint-2.7.0.jar (io.smallrye.common:smallrye-common-constraint:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-cpu-2.7.0.jar (io.smallrye.common:smallrye-common-cpu:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-io-2.7.0.jar (io.smallrye.common:smallrye-common-io:2.7.0) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-message-writer-3.16.3.jar (io.quarkus:quarkus-devtools-message-writer:3.16.3) with InstrumentationAnalysisTransform
+Transforming smallrye-common-os-2.7.0.jar (io.smallrye.common:smallrye-common-os:2.7.0) with InstrumentationAnalysisTransform
+Transforming jandex-3.2.3.jar (io.smallrye:jandex:3.2.3) with InstrumentationAnalysisTransform
+Transforming jakarta.enterprise.cdi-api-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0) with InstrumentationAnalysisTransform
+Transforming jakarta.annotation-api-3.0.0.jar (jakarta.annotation:jakarta.annotation-api:3.0.0) with InstrumentationAnalysisTransform
+Transforming jakarta.el-api-6.0.0.jar (jakarta.el:jakarta.el-api:6.0.0) with InstrumentationAnalysisTransform
+Transforming jakarta.inject-api-2.0.1.jar (jakarta.inject:jakarta.inject-api:2.0.1) with InstrumentationAnalysisTransform
+Transforming jakarta.interceptor-api-2.2.0.jar (jakarta.interceptor:jakarta.interceptor-api:2.2.0) with InstrumentationAnalysisTransform
+Transforming parsson-1.1.7.jar (org.eclipse.parsson:parsson:1.1.7) with InstrumentationAnalysisTransform
+Transforming jakarta.json-api-2.1.3.jar (jakarta.json:jakarta.json-api:2.1.3) with InstrumentationAnalysisTransform
+Transforming javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with InstrumentationAnalysisTransform
+Transforming guice-5.1.0.jar (com.google.inject:guice:5.1.0) with InstrumentationAnalysisTransform
+Transforming maven-settings-builder-3.9.9.jar (org.apache.maven:maven-settings-builder:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-resolver-provider-3.9.9.jar (org.apache.maven:maven-resolver-provider:3.9.9) with InstrumentationAnalysisTransform
+Transforming plexus-sec-dispatcher-2.0.jar (org.codehaus.plexus:plexus-sec-dispatcher:2.0) with InstrumentationAnalysisTransform
+Transforming plexus-cipher-2.1.0.jar (org.codehaus.plexus:plexus-cipher:2.1.0) with InstrumentationAnalysisTransform
+Transforming javax.inject-1.jar (javax.inject:javax.inject:1) with InstrumentationAnalysisTransform
+Transforming aesh-2.8.2.jar (org.aesh:aesh:2.8.2) with InstrumentationAnalysisTransform
+Transforming readline-2.6.jar (org.aesh:readline:2.6) with InstrumentationAnalysisTransform
+Transforming commons-lang3-3.17.0.jar (org.apache.commons:commons-lang3:3.17.0) with InstrumentationAnalysisTransform
+Transforming httpcore-4.4.16.jar (org.apache.httpcomponents:httpcore:4.4.16) with InstrumentationAnalysisTransform
+Transforming maven-resolver-connector-basic-1.9.22.jar (org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-transport-wagon-1.9.22.jar (org.apache.maven.resolver:maven-resolver-transport-wagon:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-impl-1.9.22.jar (org.apache.maven.resolver:maven-resolver-impl:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-spi-1.9.22.jar (org.apache.maven.resolver:maven-resolver-spi:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-util-1.9.22.jar (org.apache.maven.resolver:maven-resolver-util:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-api-1.9.22.jar (org.apache.maven.resolver:maven-resolver-api:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-shared-utils-3.4.2.jar (org.apache.maven.shared:maven-shared-utils:3.4.2) with InstrumentationAnalysisTransform
+Transforming wagon-file-3.5.3.jar (org.apache.maven.wagon:wagon-file:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-provider-api-3.5.3.jar (org.apache.maven.wagon:wagon-provider-api:3.5.3) with InstrumentationAnalysisTransform
+Transforming maven-model-builder-3.9.9.jar (org.apache.maven:maven-model-builder:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-plugin-api-3.9.9.jar (org.apache.maven:maven-plugin-api:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-artifact-3.9.9.jar (org.apache.maven:maven-artifact:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-builder-support-3.9.9.jar (org.apache.maven:maven-builder-support:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-model-helper-37.jar (io.fabric8:maven-model-helper:37) with InstrumentationAnalysisTransform
+Transforming maven-model-3.9.9.jar (org.apache.maven:maven-model:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-repository-metadata-3.9.9.jar (org.apache.maven:maven-repository-metadata:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-settings-3.9.9.jar (org.apache.maven:maven-settings:3.9.9) with InstrumentationAnalysisTransform
+Transforming plexus-classworlds-2.8.0.jar (org.codehaus.plexus:plexus-classworlds:2.8.0) with InstrumentationAnalysisTransform
+Transforming plexus-component-annotations-2.1.0.jar (org.codehaus.plexus:plexus-component-annotations:2.1.0) with InstrumentationAnalysisTransform
+Transforming plexus-interpolation-1.27.jar (org.codehaus.plexus:plexus-interpolation:1.27) with InstrumentationAnalysisTransform
+Transforming plexus-utils-4.0.1.jar (org.codehaus.plexus:plexus-utils:4.0.1) with InstrumentationAnalysisTransform
+Transforming microprofile-config-api-3.1.jar (org.eclipse.microprofile.config:microprofile-config-api:3.1) with InstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.inject-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3) with InstrumentationAnalysisTransform
+Transforming plexus-xml-4.0.1.jar (org.codehaus.plexus:plexus-xml:4.0.1) with InstrumentationAnalysisTransform
+Transforming maven-xml-impl-4.0.0-alpha-5.jar (org.apache.maven:maven-xml-impl:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.plexus-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3) with InstrumentationAnalysisTransform
+Transforming jansi-2.4.0.jar (org.fusesource.jansi:jansi:2.4.0) with InstrumentationAnalysisTransform
+Transforming nativeimage-23.1.2.jar (org.graalvm.sdk:nativeimage:23.1.2) with InstrumentationAnalysisTransform
+Transforming commons-logging-jboss-logging-1.0.0.Final.jar (org.jboss.logging:commons-logging-jboss-logging:1.0.0.Final) with InstrumentationAnalysisTransform
+Transforming jboss-logging-annotations-3.0.2.Final.jar (org.jboss.logging:jboss-logging-annotations:3.0.2.Final) with InstrumentationAnalysisTransform
+Transforming jboss-logging-3.6.1.Final.jar (org.jboss.logging:jboss-logging:3.6.1.Final) with InstrumentationAnalysisTransform
+Transforming slf4j-jboss-logmanager-2.0.0.Final.jar (org.jboss.slf4j:slf4j-jboss-logmanager:2.0.0.Final) with InstrumentationAnalysisTransform
+Transforming jctools-core-4.0.5.jar (org.jctools:jctools-core:4.0.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-launcher-1.10.5.jar (org.junit.platform:junit-platform-launcher:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-engine-5.10.5.jar (org.junit.jupiter:junit-jupiter-engine:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-engine-1.10.5.jar (org.junit.platform:junit-platform-engine:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-params-5.10.5.jar (org.junit.jupiter:junit-jupiter-params:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-commons-1.10.5.jar (org.junit.platform:junit-platform-commons:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-5.10.5.jar (org.junit.jupiter:junit-jupiter:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-api-5.10.5.jar (org.junit.jupiter:junit-jupiter-api:5.10.5) with InstrumentationAnalysisTransform
+Transforming asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with InstrumentationAnalysisTransform
+Transforming slf4j-api-2.0.6.jar (org.slf4j:slf4j-api:2.0.6) with InstrumentationAnalysisTransform
+Transforming snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with InstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-base-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-base-codestarts:3.16.3) with InstrumentationAnalysisTransform
+Transforming java-properties-0.0.7.jar (org.codejive:java-properties:0.0.7) with InstrumentationAnalysisTransform
+Transforming word-23.1.2.jar (org.graalvm.sdk:word:23.1.2) with InstrumentationAnalysisTransform
+Transforming jdom2-2.0.6.1.jar (org.jdom:jdom2:2.0.6.1) with InstrumentationAnalysisTransform
+Transforming jakarta.enterprise.lang-model-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.lang-model:4.1.0) with InstrumentationAnalysisTransform
+Transforming opentest4j-1.3.0.jar (org.opentest4j:opentest4j:1.3.0) with InstrumentationAnalysisTransform
+Transforming aopalliance-1.0.jar (aopalliance:aopalliance:1.0) with InstrumentationAnalysisTransform
+Transforming maven-resolver-named-locks-1.9.22.jar (org.apache.maven.resolver:maven-resolver-named-locks:1.9.22) with InstrumentationAnalysisTransform
+Transforming commons-cli-1.8.0.jar (commons-cli:commons-cli:1.8.0) with InstrumentationAnalysisTransform
+Transforming maven-api-xml-4.0.0-alpha-5.jar (org.apache.maven:maven-api-xml:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming maven-api-meta-4.0.0-alpha-5.jar (org.apache.maven:maven-api-meta:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-model-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-allopen-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-allopen:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-allopen-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-allopen:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-api-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming gradle-application-plugin-3.16.3.jar (io.quarkus:gradle-application-plugin:3.16.3) with InstrumentationAnalysisTransform
+Transforming kotlin-allopen-2.0.21-gradle85.jar (org.jetbrains.kotlin:kotlin-allopen:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming gradle-application-plugin-3.16.3.jar (io.quarkus:gradle-application-plugin:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming jandex-gradle-plugin-2.1.0.jar (org.kordamp.gradle:jandex-gradle-plugin:2.1.0) with InstrumentationAnalysisTransform
+Transforming gradle-application-plugin-3.16.3.jar (io.quarkus:gradle-application-plugin:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jandex-gradle-plugin-2.1.0.jar (org.kordamp.gradle:jandex-gradle-plugin:2.1.0) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-gradle-model-3.16.3.jar (io.quarkus:quarkus-gradle-model:3.16.3) with InstrumentationAnalysisTransform
+Transforming jandex-gradle-plugin-2.1.0.jar (org.kordamp.gradle:jandex-gradle-plugin:2.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-gradle-model-3.16.3.jar (io.quarkus:quarkus-gradle-model:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-core-deployment-3.16.3.jar (io.quarkus:quarkus-core-deployment:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-core-deployment-3.16.3.jar (io.quarkus:quarkus-core-deployment:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-gradle-model-3.16.3.jar (io.quarkus:quarkus-gradle-model:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-bootstrap-core-3.16.3.jar (io.quarkus:quarkus-bootstrap-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-core-3.16.3.jar (io.quarkus:quarkus-bootstrap-core:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-core-deployment-3.16.3.jar (io.quarkus:quarkus-core-deployment:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-bootstrap-gradle-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-gradle-resolver:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-gradle-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-gradle-resolver:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-core-3.16.3.jar (io.quarkus:quarkus-bootstrap-core:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-common-3.16.3.jar (io.quarkus:quarkus-devtools-common:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-common-3.16.3.jar (io.quarkus:quarkus-devtools-common:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-gradle-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-gradle-resolver:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-config-source-yaml-3.9.1.jar (io.smallrye.config:smallrye-config-source-yaml:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-config-source-yaml-3.9.1.jar (io.smallrye.config:smallrye-config-source-yaml:3.9.1) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-devtools-common-3.16.3.jar (io.quarkus:quarkus-devtools-common:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-analytics-common-3.16.3.jar (io.quarkus:quarkus-analytics-common:3.16.3) with InstrumentationAnalysisTransform
+Transforming smallrye-config-source-yaml-3.9.1.jar (io.smallrye.config:smallrye-config-source-yaml:3.9.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-analytics-common-3.16.3.jar (io.quarkus:quarkus-analytics-common:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming base-gradle-plugin-0.54.0.jar (org.kordamp.gradle:base-gradle-plugin:0.54.0) with InstrumentationAnalysisTransform
+Transforming base-gradle-plugin-0.54.0.jar (org.kordamp.gradle:base-gradle-plugin:0.54.0) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-analytics-common-3.16.3.jar (io.quarkus:quarkus-analytics-common:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming base-gradle-plugin-0.54.0.jar (org.kordamp.gradle:base-gradle-plugin:0.54.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-gradle-plugin-annotations-2.0.21.jar (org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-native-utils-2.0.21.jar (org.jetbrains.kotlin:kotlin-native-utils:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-codestarts:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-codestarts:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-tooling-core-2.0.21.jar (org.jetbrains.kotlin:kotlin-tooling-core:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-registry-client-3.16.3.jar (io.quarkus:quarkus-devtools-registry-client:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-registry-client-3.16.3.jar (io.quarkus:quarkus-devtools-registry-client:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming jackson-dataformat-yaml-2.18.1.jar (com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.1) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-codestarts:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-registry-client-3.16.3.jar (io.quarkus:quarkus-devtools-registry-client:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jackson-dataformat-yaml-2.18.1.jar (com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-datatype-jdk8-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-datatype-jdk8-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-dataformat-yaml-2.18.1.jar (com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jackson-core-2.18.1.jar (com.fasterxml.jackson.core:jackson-core:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-datatype-jdk8-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jackson-core-2.18.1.jar (com.fasterxml.jackson.core:jackson-core:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-datatype-jsr310-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-core-2.18.1.jar (com.fasterxml.jackson.core:jackson-core:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jackson-datatype-jsr310-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-databind-2.18.1.jar (com.fasterxml.jackson.core:jackson-databind:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-databind-2.18.1.jar (com.fasterxml.jackson.core:jackson-databind:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-annotations-2.18.1.jar (com.fasterxml.jackson.core:jackson-annotations:2.18.1) with InstrumentationAnalysisTransform
+Transforming jackson-annotations-2.18.1.jar (com.fasterxml.jackson.core:jackson-annotations:2.18.1) with MergeInstrumentationAnalysisTransform
+Transforming jackson-datatype-jsr310-2.18.1.jar (com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-bootstrap-maven-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-maven-resolver:3.16.3) with InstrumentationAnalysisTransform
+Transforming jackson-databind-2.18.1.jar (com.fasterxml.jackson.core:jackson-databind:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-bootstrap-maven-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-maven-resolver:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming jackson-annotations-2.18.1.jar (com.fasterxml.jackson.core:jackson-annotations:2.18.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-embedder-3.9.9.jar (org.apache.maven:maven-embedder:3.9.9) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-maven-resolver-3.16.3.jar (io.quarkus:quarkus-bootstrap-maven-resolver:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-embedder-3.9.9.jar (org.apache.maven:maven-embedder:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-core-3.9.9.jar (org.apache.maven:maven-core:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-embedder-3.9.9.jar (org.apache.maven:maven-embedder:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-core-3.9.9.jar (org.apache.maven:maven-core:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with InstrumentationAnalysisTransform
+Transforming failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with MergeInstrumentationAnalysisTransform
+Transforming guava-33.3.1-jre.jar (com.google.guava:guava:33.3.1-jre) with InstrumentationAnalysisTransform
+Transforming maven-core-3.9.9.jar (org.apache.maven:maven-core:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming guava-33.3.1-jre.jar (com.google.guava:guava:33.3.1-jre) with MergeInstrumentationAnalysisTransform
+Transforming failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-compress-1.27.1.jar (org.apache.commons:commons-compress:1.27.1) with InstrumentationAnalysisTransform
+Transforming guava-33.3.1-jre.jar (com.google.guava:guava:33.3.1-jre) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-compress-1.27.1.jar (org.apache.commons:commons-compress:1.27.1) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-beanbag-maven-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-maven:1.5.2) with InstrumentationAnalysisTransform
+Transforming commons-compress-1.27.1.jar (org.apache.commons:commons-compress:1.27.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-beanbag-maven-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-maven:1.5.2) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-transport-http-1.9.20.jar (org.apache.maven.resolver:maven-resolver-transport-http:1.9.20) with InstrumentationAnalysisTransform
+Transforming maven-resolver-transport-http-1.9.20.jar (org.apache.maven.resolver:maven-resolver-transport-http:1.9.20) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-beanbag-maven-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-maven:1.5.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming wagon-http-3.5.3.jar (org.apache.maven.wagon:wagon-http:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-http-3.5.3.jar (org.apache.maven.wagon:wagon-http:3.5.3) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-transport-http-1.9.20.jar (org.apache.maven.resolver:maven-resolver-transport-http:1.9.20) with ExternalDependencyInstrumentingArtifactTransform
+Transforming wagon-http-shared-3.5.3.jar (org.apache.maven.wagon:wagon-http-shared:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-http-shared-3.5.3.jar (org.apache.maven.wagon:wagon-http-shared:3.5.3) with MergeInstrumentationAnalysisTransform
+Transforming wagon-http-3.5.3.jar (org.apache.maven.wagon:wagon-http:3.5.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming httpclient-4.5.14.jar (org.apache.httpcomponents:httpclient:4.5.14) with InstrumentationAnalysisTransform
+Transforming wagon-http-shared-3.5.3.jar (org.apache.maven.wagon:wagon-http-shared:3.5.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming httpclient-4.5.14.jar (org.apache.httpcomponents:httpclient:4.5.14) with MergeInstrumentationAnalysisTransform
+Transforming commons-codec-1.17.1.jar (commons-codec:commons-codec:1.17.1) with InstrumentationAnalysisTransform
+Transforming commons-codec-1.17.1.jar (commons-codec:commons-codec:1.17.1) with MergeInstrumentationAnalysisTransform
+Transforming httpclient-4.5.14.jar (org.apache.httpcomponents:httpclient:4.5.14) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-io-2.17.0.jar (commons-io:commons-io:2.17.0) with InstrumentationAnalysisTransform
+Transforming commons-codec-1.17.1.jar (commons-codec:commons-codec:1.17.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-io-2.17.0.jar (commons-io:commons-io:2.17.0) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-core-3.16.3.jar (io.quarkus:quarkus-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming commons-io-2.17.0.jar (commons-io:commons-io:2.17.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-core-3.16.3.jar (io.quarkus:quarkus-core:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-runner-3.16.3.jar (io.quarkus:quarkus-bootstrap-runner:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-runner-3.16.3.jar (io.quarkus:quarkus-bootstrap-runner:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming org-crac-0.1.3.jar (io.github.crac:org-crac:0.1.3) with InstrumentationAnalysisTransform
+Transforming quarkus-core-3.16.3.jar (io.quarkus:quarkus-core:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming org-crac-0.1.3.jar (io.github.crac:org-crac:0.1.3) with MergeInstrumentationAnalysisTransform
+Transforming gizmo-1.8.0.jar (io.quarkus.gizmo:gizmo:1.8.0) with InstrumentationAnalysisTransform
+Transforming gizmo-1.8.0.jar (io.quarkus.gizmo:gizmo:1.8.0) with MergeInstrumentationAnalysisTransform
+Transforming qute-core-3.16.3.jar (io.quarkus.qute:qute-core:3.16.3) with InstrumentationAnalysisTransform
+Transforming qute-core-3.16.3.jar (io.quarkus.qute:qute-core:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-app-model-3.16.3.jar (io.quarkus:quarkus-bootstrap-app-model:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-app-model-3.16.3.jar (io.quarkus:quarkus-bootstrap-app-model:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-runner-3.16.3.jar (io.quarkus:quarkus-bootstrap-runner:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming gizmo-1.8.0.jar (io.quarkus.gizmo:gizmo:1.8.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming org-crac-0.1.3.jar (io.github.crac:org-crac:0.1.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-hibernate-validator-spi-3.16.3.jar (io.quarkus:quarkus-hibernate-validator-spi:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-bootstrap-app-model-3.16.3.jar (io.quarkus:quarkus-bootstrap-app-model:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-hibernate-validator-spi-3.16.3.jar (io.quarkus:quarkus-hibernate-validator-spi:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming qute-core-3.16.3.jar (io.quarkus.qute:qute-core:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-builder-3.16.3.jar (io.quarkus:quarkus-builder:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-hibernate-validator-spi-3.16.3.jar (io.quarkus:quarkus-hibernate-validator-spi:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-builder-3.16.3.jar (io.quarkus:quarkus-builder:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-class-change-agent-3.16.3.jar (io.quarkus:quarkus-class-change-agent:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-class-change-agent-3.16.3.jar (io.quarkus:quarkus-class-change-agent:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-classloader-commons-3.16.3.jar (io.quarkus:quarkus-classloader-commons:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-builder-3.16.3.jar (io.quarkus:quarkus-builder:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-classloader-commons-3.16.3.jar (io.quarkus:quarkus-classloader-commons:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-class-change-agent-3.16.3.jar (io.quarkus:quarkus-class-change-agent:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-development-mode-spi-3.16.3.jar (io.quarkus:quarkus-development-mode-spi:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-development-mode-spi-3.16.3.jar (io.quarkus:quarkus-development-mode-spi:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-classloader-commons-3.16.3.jar (io.quarkus:quarkus-classloader-commons:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-utilities-3.16.3.jar (io.quarkus:quarkus-devtools-utilities:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-development-mode-spi-3.16.3.jar (io.quarkus:quarkus-development-mode-spi:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-utilities-3.16.3.jar (io.quarkus:quarkus-devtools-utilities:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-fs-util-0.0.10.jar (io.quarkus:quarkus-fs-util:0.0.10) with InstrumentationAnalysisTransform
+Transforming quarkus-fs-util-0.0.10.jar (io.quarkus:quarkus-fs-util:0.0.10) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-devtools-utilities-3.16.3.jar (io.quarkus:quarkus-devtools-utilities:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-ide-launcher-3.16.3.jar (io.quarkus:quarkus-ide-launcher:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-fs-util-0.0.10.jar (io.quarkus:quarkus-fs-util:0.0.10) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-ide-launcher-3.16.3.jar (io.quarkus:quarkus-ide-launcher:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-config-3.9.1.jar (io.smallrye.config:smallrye-config:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-config-3.9.1.jar (io.smallrye.config:smallrye-config:3.9.1) with MergeInstrumentationAnalysisTransform
+Transforming quarkus-ide-launcher-3.16.3.jar (io.quarkus:quarkus-ide-launcher:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-config-core-3.9.1.jar (io.smallrye.config:smallrye-config-core:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-config-core-3.9.1.jar (io.smallrye.config:smallrye-config-core:3.9.1) with MergeInstrumentationAnalysisTransform
+Transforming jboss-threads-3.8.0.Final.jar (org.jboss.threads:jboss-threads:3.8.0.Final) with InstrumentationAnalysisTransform
+Transforming smallrye-config-3.9.1.jar (io.smallrye.config:smallrye-config:3.9.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-config-core-3.9.1.jar (io.smallrye.config:smallrye-config-core:3.9.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jboss-threads-3.8.0.Final.jar (org.jboss.threads:jboss-threads:3.8.0.Final) with MergeInstrumentationAnalysisTransform
+Transforming mutiny-2.6.2.jar (io.smallrye.reactive:mutiny:2.6.2) with InstrumentationAnalysisTransform
+Transforming mutiny-2.6.2.jar (io.smallrye.reactive:mutiny:2.6.2) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-annotation-2.7.0.jar (io.smallrye.common:smallrye-common-annotation:2.7.0) with InstrumentationAnalysisTransform
+Transforming jboss-threads-3.8.0.Final.jar (org.jboss.threads:jboss-threads:3.8.0.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming mutiny-2.6.2.jar (io.smallrye.reactive:mutiny:2.6.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-annotation-2.7.0.jar (io.smallrye.common:smallrye-common-annotation:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-config-common-3.9.1.jar (io.smallrye.config:smallrye-config-common:3.9.1) with InstrumentationAnalysisTransform
+Transforming smallrye-config-common-3.9.1.jar (io.smallrye.config:smallrye-config-common:3.9.1) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-classloader-2.7.0.jar (io.smallrye.common:smallrye-common-classloader:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-annotation-2.7.0.jar (io.smallrye.common:smallrye-common-annotation:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-classloader-2.7.0.jar (io.smallrye.common:smallrye-common-classloader:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-config-common-3.9.1.jar (io.smallrye.config:smallrye-config-common:3.9.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-version-2.7.0.jar (io.smallrye.common:smallrye-common-version:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-classloader-2.7.0.jar (io.smallrye.common:smallrye-common-classloader:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-version-2.7.0.jar (io.smallrye.common:smallrye-common-version:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logmanager-3.0.6.Final.jar (org.jboss.logmanager:jboss-logmanager:3.0.6.Final) with InstrumentationAnalysisTransform
+Transforming smallrye-common-version-2.7.0.jar (io.smallrye.common:smallrye-common-version:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jboss-logmanager-3.0.6.Final.jar (org.jboss.logmanager:jboss-logmanager:3.0.6.Final) with MergeInstrumentationAnalysisTransform
+Transforming wildfly-common-2.0.1.jar (org.wildfly.common:wildfly-common:2.0.1) with InstrumentationAnalysisTransform
+Transforming wildfly-common-2.0.1.jar (org.wildfly.common:wildfly-common:2.0.1) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logmanager-3.0.6.Final.jar (org.jboss.logmanager:jboss-logmanager:3.0.6.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-net-2.7.0.jar (io.smallrye.common:smallrye-common-net:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-net-2.7.0.jar (io.smallrye.common:smallrye-common-net:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming wildfly-common-2.0.1.jar (org.wildfly.common:wildfly-common:2.0.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-ref-2.7.0.jar (io.smallrye.common:smallrye-common-ref:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-net-2.7.0.jar (io.smallrye.common:smallrye-common-net:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-ref-2.7.0.jar (io.smallrye.common:smallrye-common-ref:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-expression-2.7.0.jar (io.smallrye.common:smallrye-common-expression:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-ref-2.7.0.jar (io.smallrye.common:smallrye-common-ref:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-expression-2.7.0.jar (io.smallrye.common:smallrye-common-expression:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-function-2.7.0.jar (io.smallrye.common:smallrye-common-function:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-function-2.7.0.jar (io.smallrye.common:smallrye-common-function:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-expression-2.7.0.jar (io.smallrye.common:smallrye-common-expression:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-beanbag-sisu-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-sisu:1.5.2) with InstrumentationAnalysisTransform
+Transforming smallrye-beanbag-sisu-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-sisu:1.5.2) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-function-2.7.0.jar (io.smallrye.common:smallrye-common-function:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-beanbag-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag:1.5.2) with InstrumentationAnalysisTransform
+Transforming smallrye-beanbag-sisu-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag-sisu:1.5.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-beanbag-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag:1.5.2) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-constraint-2.7.0.jar (io.smallrye.common:smallrye-common-constraint:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-constraint-2.7.0.jar (io.smallrye.common:smallrye-common-constraint:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-beanbag-1.5.2.jar (io.smallrye.beanbag:smallrye-beanbag:1.5.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-cpu-2.7.0.jar (io.smallrye.common:smallrye-common-cpu:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-cpu-2.7.0.jar (io.smallrye.common:smallrye-common-cpu:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-constraint-2.7.0.jar (io.smallrye.common:smallrye-common-constraint:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-io-2.7.0.jar (io.smallrye.common:smallrye-common-io:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-io-2.7.0.jar (io.smallrye.common:smallrye-common-io:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-cpu-2.7.0.jar (io.smallrye.common:smallrye-common-cpu:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-message-writer-3.16.3.jar (io.quarkus:quarkus-devtools-message-writer:3.16.3) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-message-writer-3.16.3.jar (io.quarkus:quarkus-devtools-message-writer:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-os-2.7.0.jar (io.smallrye.common:smallrye-common-os:2.7.0) with InstrumentationAnalysisTransform
+Transforming smallrye-common-io-2.7.0.jar (io.smallrye.common:smallrye-common-io:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-message-writer-3.16.3.jar (io.quarkus:quarkus-devtools-message-writer:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming smallrye-common-os-2.7.0.jar (io.smallrye.common:smallrye-common-os:2.7.0) with MergeInstrumentationAnalysisTransform
+Transforming jandex-3.2.3.jar (io.smallrye:jandex:3.2.3) with InstrumentationAnalysisTransform
+Transforming jandex-3.2.3.jar (io.smallrye:jandex:3.2.3) with MergeInstrumentationAnalysisTransform
+Transforming smallrye-common-os-2.7.0.jar (io.smallrye.common:smallrye-common-os:2.7.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.enterprise.cdi-api-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0) with InstrumentationAnalysisTransform
+Transforming jandex-3.2.3.jar (io.smallrye:jandex:3.2.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.enterprise.cdi-api-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.annotation-api-3.0.0.jar (jakarta.annotation:jakarta.annotation-api:3.0.0) with InstrumentationAnalysisTransform
+Transforming jakarta.annotation-api-3.0.0.jar (jakarta.annotation:jakarta.annotation-api:3.0.0) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.enterprise.cdi-api-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.el-api-6.0.0.jar (jakarta.el:jakarta.el-api:6.0.0) with InstrumentationAnalysisTransform
+Transforming jakarta.annotation-api-3.0.0.jar (jakarta.annotation:jakarta.annotation-api:3.0.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.el-api-6.0.0.jar (jakarta.el:jakarta.el-api:6.0.0) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.inject-api-2.0.1.jar (jakarta.inject:jakarta.inject-api:2.0.1) with InstrumentationAnalysisTransform
+Transforming jakarta.inject-api-2.0.1.jar (jakarta.inject:jakarta.inject-api:2.0.1) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.el-api-6.0.0.jar (jakarta.el:jakarta.el-api:6.0.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.interceptor-api-2.2.0.jar (jakarta.interceptor:jakarta.interceptor-api:2.2.0) with InstrumentationAnalysisTransform
+Transforming jakarta.interceptor-api-2.2.0.jar (jakarta.interceptor:jakarta.interceptor-api:2.2.0) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.inject-api-2.0.1.jar (jakarta.inject:jakarta.inject-api:2.0.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming parsson-1.1.7.jar (org.eclipse.parsson:parsson:1.1.7) with InstrumentationAnalysisTransform
+Transforming jakarta.interceptor-api-2.2.0.jar (jakarta.interceptor:jakarta.interceptor-api:2.2.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming parsson-1.1.7.jar (org.eclipse.parsson:parsson:1.1.7) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.json-api-2.1.3.jar (jakarta.json:jakarta.json-api:2.1.3) with InstrumentationAnalysisTransform
+Transforming parsson-1.1.7.jar (org.eclipse.parsson:parsson:1.1.7) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jakarta.json-api-2.1.3.jar (jakarta.json:jakarta.json-api:2.1.3) with MergeInstrumentationAnalysisTransform
+Transforming javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with InstrumentationAnalysisTransform
+Transforming javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with MergeInstrumentationAnalysisTransform
+Transforming guice-5.1.0.jar (com.google.inject:guice:5.1.0) with InstrumentationAnalysisTransform
+Transforming jakarta.json-api-2.1.3.jar (jakarta.json:jakarta.json-api:2.1.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming guice-5.1.0.jar (com.google.inject:guice:5.1.0) with MergeInstrumentationAnalysisTransform
+Transforming javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-settings-builder-3.9.9.jar (org.apache.maven:maven-settings-builder:3.9.9) with InstrumentationAnalysisTransform
+Transforming guice-5.1.0.jar (com.google.inject:guice:5.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-settings-builder-3.9.9.jar (org.apache.maven:maven-settings-builder:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-provider-3.9.9.jar (org.apache.maven:maven-resolver-provider:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-settings-builder-3.9.9.jar (org.apache.maven:maven-settings-builder:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-provider-3.9.9.jar (org.apache.maven:maven-resolver-provider:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming plexus-sec-dispatcher-2.0.jar (org.codehaus.plexus:plexus-sec-dispatcher:2.0) with InstrumentationAnalysisTransform
+Transforming plexus-sec-dispatcher-2.0.jar (org.codehaus.plexus:plexus-sec-dispatcher:2.0) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-provider-3.9.9.jar (org.apache.maven:maven-resolver-provider:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-cipher-2.1.0.jar (org.codehaus.plexus:plexus-cipher:2.1.0) with InstrumentationAnalysisTransform
+Transforming plexus-cipher-2.1.0.jar (org.codehaus.plexus:plexus-cipher:2.1.0) with MergeInstrumentationAnalysisTransform
+Transforming plexus-sec-dispatcher-2.0.jar (org.codehaus.plexus:plexus-sec-dispatcher:2.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming javax.inject-1.jar (javax.inject:javax.inject:1) with InstrumentationAnalysisTransform
+Transforming javax.inject-1.jar (javax.inject:javax.inject:1) with MergeInstrumentationAnalysisTransform
+Transforming plexus-cipher-2.1.0.jar (org.codehaus.plexus:plexus-cipher:2.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming aesh-2.8.2.jar (org.aesh:aesh:2.8.2) with InstrumentationAnalysisTransform
+Transforming javax.inject-1.jar (javax.inject:javax.inject:1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming aesh-2.8.2.jar (org.aesh:aesh:2.8.2) with MergeInstrumentationAnalysisTransform
+Transforming readline-2.6.jar (org.aesh:readline:2.6) with InstrumentationAnalysisTransform
+Transforming aesh-2.8.2.jar (org.aesh:aesh:2.8.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming readline-2.6.jar (org.aesh:readline:2.6) with MergeInstrumentationAnalysisTransform
+Transforming commons-lang3-3.17.0.jar (org.apache.commons:commons-lang3:3.17.0) with InstrumentationAnalysisTransform
+Transforming readline-2.6.jar (org.aesh:readline:2.6) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-lang3-3.17.0.jar (org.apache.commons:commons-lang3:3.17.0) with MergeInstrumentationAnalysisTransform
+Transforming httpcore-4.4.16.jar (org.apache.httpcomponents:httpcore:4.4.16) with InstrumentationAnalysisTransform
+Transforming httpcore-4.4.16.jar (org.apache.httpcomponents:httpcore:4.4.16) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-connector-basic-1.9.22.jar (org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22) with InstrumentationAnalysisTransform
+Transforming commons-lang3-3.17.0.jar (org.apache.commons:commons-lang3:3.17.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-connector-basic-1.9.22.jar (org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming httpcore-4.4.16.jar (org.apache.httpcomponents:httpcore:4.4.16) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-transport-wagon-1.9.22.jar (org.apache.maven.resolver:maven-resolver-transport-wagon:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-connector-basic-1.9.22.jar (org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-transport-wagon-1.9.22.jar (org.apache.maven.resolver:maven-resolver-transport-wagon:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-impl-1.9.22.jar (org.apache.maven.resolver:maven-resolver-impl:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-impl-1.9.22.jar (org.apache.maven.resolver:maven-resolver-impl:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-spi-1.9.22.jar (org.apache.maven.resolver:maven-resolver-spi:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-transport-wagon-1.9.22.jar (org.apache.maven.resolver:maven-resolver-transport-wagon:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-spi-1.9.22.jar (org.apache.maven.resolver:maven-resolver-spi:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-util-1.9.22.jar (org.apache.maven.resolver:maven-resolver-util:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-impl-1.9.22.jar (org.apache.maven.resolver:maven-resolver-impl:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-util-1.9.22.jar (org.apache.maven.resolver:maven-resolver-util:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-spi-1.9.22.jar (org.apache.maven.resolver:maven-resolver-spi:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-api-1.9.22.jar (org.apache.maven.resolver:maven-resolver-api:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-api-1.9.22.jar (org.apache.maven.resolver:maven-resolver-api:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming maven-shared-utils-3.4.2.jar (org.apache.maven.shared:maven-shared-utils:3.4.2) with InstrumentationAnalysisTransform
+Transforming maven-shared-utils-3.4.2.jar (org.apache.maven.shared:maven-shared-utils:3.4.2) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-util-1.9.22.jar (org.apache.maven.resolver:maven-resolver-util:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-resolver-api-1.9.22.jar (org.apache.maven.resolver:maven-resolver-api:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-shared-utils-3.4.2.jar (org.apache.maven.shared:maven-shared-utils:3.4.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming wagon-file-3.5.3.jar (org.apache.maven.wagon:wagon-file:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-file-3.5.3.jar (org.apache.maven.wagon:wagon-file:3.5.3) with MergeInstrumentationAnalysisTransform
+Transforming wagon-provider-api-3.5.3.jar (org.apache.maven.wagon:wagon-provider-api:3.5.3) with InstrumentationAnalysisTransform
+Transforming wagon-provider-api-3.5.3.jar (org.apache.maven.wagon:wagon-provider-api:3.5.3) with MergeInstrumentationAnalysisTransform
+Transforming maven-model-builder-3.9.9.jar (org.apache.maven:maven-model-builder:3.9.9) with InstrumentationAnalysisTransform
+Transforming wagon-file-3.5.3.jar (org.apache.maven.wagon:wagon-file:3.5.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming wagon-provider-api-3.5.3.jar (org.apache.maven.wagon:wagon-provider-api:3.5.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-model-builder-3.9.9.jar (org.apache.maven:maven-model-builder:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-plugin-api-3.9.9.jar (org.apache.maven:maven-plugin-api:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-plugin-api-3.9.9.jar (org.apache.maven:maven-plugin-api:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-artifact-3.9.9.jar (org.apache.maven:maven-artifact:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-artifact-3.9.9.jar (org.apache.maven:maven-artifact:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-plugin-api-3.9.9.jar (org.apache.maven:maven-plugin-api:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-model-builder-3.9.9.jar (org.apache.maven:maven-model-builder:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-builder-support-3.9.9.jar (org.apache.maven:maven-builder-support:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-artifact-3.9.9.jar (org.apache.maven:maven-artifact:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-builder-support-3.9.9.jar (org.apache.maven:maven-builder-support:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-model-helper-37.jar (io.fabric8:maven-model-helper:37) with InstrumentationAnalysisTransform
+Transforming maven-builder-support-3.9.9.jar (org.apache.maven:maven-builder-support:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-model-helper-37.jar (io.fabric8:maven-model-helper:37) with MergeInstrumentationAnalysisTransform
+Transforming maven-model-3.9.9.jar (org.apache.maven:maven-model:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-model-3.9.9.jar (org.apache.maven:maven-model:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-model-helper-37.jar (io.fabric8:maven-model-helper:37) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-repository-metadata-3.9.9.jar (org.apache.maven:maven-repository-metadata:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-repository-metadata-3.9.9.jar (org.apache.maven:maven-repository-metadata:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming maven-model-3.9.9.jar (org.apache.maven:maven-model:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-settings-3.9.9.jar (org.apache.maven:maven-settings:3.9.9) with InstrumentationAnalysisTransform
+Transforming maven-repository-metadata-3.9.9.jar (org.apache.maven:maven-repository-metadata:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-settings-3.9.9.jar (org.apache.maven:maven-settings:3.9.9) with MergeInstrumentationAnalysisTransform
+Transforming plexus-classworlds-2.8.0.jar (org.codehaus.plexus:plexus-classworlds:2.8.0) with InstrumentationAnalysisTransform
+Transforming maven-settings-3.9.9.jar (org.apache.maven:maven-settings:3.9.9) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-classworlds-2.8.0.jar (org.codehaus.plexus:plexus-classworlds:2.8.0) with MergeInstrumentationAnalysisTransform
+Transforming plexus-component-annotations-2.1.0.jar (org.codehaus.plexus:plexus-component-annotations:2.1.0) with InstrumentationAnalysisTransform
+Transforming plexus-component-annotations-2.1.0.jar (org.codehaus.plexus:plexus-component-annotations:2.1.0) with MergeInstrumentationAnalysisTransform
+Transforming plexus-classworlds-2.8.0.jar (org.codehaus.plexus:plexus-classworlds:2.8.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-interpolation-1.27.jar (org.codehaus.plexus:plexus-interpolation:1.27) with InstrumentationAnalysisTransform
+Transforming plexus-interpolation-1.27.jar (org.codehaus.plexus:plexus-interpolation:1.27) with MergeInstrumentationAnalysisTransform
+Transforming plexus-component-annotations-2.1.0.jar (org.codehaus.plexus:plexus-component-annotations:2.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-utils-4.0.1.jar (org.codehaus.plexus:plexus-utils:4.0.1) with InstrumentationAnalysisTransform
+Transforming plexus-utils-4.0.1.jar (org.codehaus.plexus:plexus-utils:4.0.1) with MergeInstrumentationAnalysisTransform
+Transforming plexus-interpolation-1.27.jar (org.codehaus.plexus:plexus-interpolation:1.27) with ExternalDependencyInstrumentingArtifactTransform
+Transforming microprofile-config-api-3.1.jar (org.eclipse.microprofile.config:microprofile-config-api:3.1) with InstrumentationAnalysisTransform
+Transforming plexus-utils-4.0.1.jar (org.codehaus.plexus:plexus-utils:4.0.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming microprofile-config-api-3.1.jar (org.eclipse.microprofile.config:microprofile-config-api:3.1) with MergeInstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.inject-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3) with InstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.inject-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3) with MergeInstrumentationAnalysisTransform
+Transforming plexus-xml-4.0.1.jar (org.codehaus.plexus:plexus-xml:4.0.1) with InstrumentationAnalysisTransform
+Transforming microprofile-config-api-3.1.jar (org.eclipse.microprofile.config:microprofile-config-api:3.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-xml-4.0.1.jar (org.codehaus.plexus:plexus-xml:4.0.1) with MergeInstrumentationAnalysisTransform
+Transforming maven-xml-impl-4.0.0-alpha-5.jar (org.apache.maven:maven-xml-impl:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.inject-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming plexus-xml-4.0.1.jar (org.codehaus.plexus:plexus-xml:4.0.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-xml-impl-4.0.0-alpha-5.jar (org.apache.maven:maven-xml-impl:4.0.0-alpha-5) with MergeInstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.plexus-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3) with InstrumentationAnalysisTransform
+Transforming org.eclipse.sisu.plexus-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3) with MergeInstrumentationAnalysisTransform
+Transforming jansi-2.4.0.jar (org.fusesource.jansi:jansi:2.4.0) with InstrumentationAnalysisTransform
+Transforming maven-xml-impl-4.0.0-alpha-5.jar (org.apache.maven:maven-xml-impl:4.0.0-alpha-5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming org.eclipse.sisu.plexus-0.9.0.M3.jar (org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jansi-2.4.0.jar (org.fusesource.jansi:jansi:2.4.0) with MergeInstrumentationAnalysisTransform
+Transforming nativeimage-23.1.2.jar (org.graalvm.sdk:nativeimage:23.1.2) with InstrumentationAnalysisTransform
+Transforming nativeimage-23.1.2.jar (org.graalvm.sdk:nativeimage:23.1.2) with MergeInstrumentationAnalysisTransform
+Transforming jansi-2.4.0.jar (org.fusesource.jansi:jansi:2.4.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-logging-jboss-logging-1.0.0.Final.jar (org.jboss.logging:commons-logging-jboss-logging:1.0.0.Final) with InstrumentationAnalysisTransform
+Transforming nativeimage-23.1.2.jar (org.graalvm.sdk:nativeimage:23.1.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-logging-jboss-logging-1.0.0.Final.jar (org.jboss.logging:commons-logging-jboss-logging:1.0.0.Final) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logging-annotations-3.0.2.Final.jar (org.jboss.logging:jboss-logging-annotations:3.0.2.Final) with InstrumentationAnalysisTransform
+Transforming jboss-logging-annotations-3.0.2.Final.jar (org.jboss.logging:jboss-logging-annotations:3.0.2.Final) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logging-3.6.1.Final.jar (org.jboss.logging:jboss-logging:3.6.1.Final) with InstrumentationAnalysisTransform
+Transforming commons-logging-jboss-logging-1.0.0.Final.jar (org.jboss.logging:commons-logging-jboss-logging:1.0.0.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jboss-logging-3.6.1.Final.jar (org.jboss.logging:jboss-logging:3.6.1.Final) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logging-annotations-3.0.2.Final.jar (org.jboss.logging:jboss-logging-annotations:3.0.2.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming slf4j-jboss-logmanager-2.0.0.Final.jar (org.jboss.slf4j:slf4j-jboss-logmanager:2.0.0.Final) with InstrumentationAnalysisTransform
+Transforming slf4j-jboss-logmanager-2.0.0.Final.jar (org.jboss.slf4j:slf4j-jboss-logmanager:2.0.0.Final) with MergeInstrumentationAnalysisTransform
+Transforming jboss-logging-3.6.1.Final.jar (org.jboss.logging:jboss-logging:3.6.1.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jctools-core-4.0.5.jar (org.jctools:jctools-core:4.0.5) with InstrumentationAnalysisTransform
+Transforming slf4j-jboss-logmanager-2.0.0.Final.jar (org.jboss.slf4j:slf4j-jboss-logmanager:2.0.0.Final) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jctools-core-4.0.5.jar (org.jctools:jctools-core:4.0.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-platform-launcher-1.10.5.jar (org.junit.platform:junit-platform-launcher:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-launcher-1.10.5.jar (org.junit.platform:junit-platform-launcher:1.10.5) with MergeInstrumentationAnalysisTransform
+Transforming jctools-core-4.0.5.jar (org.jctools:jctools-core:4.0.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-jupiter-engine-5.10.5.jar (org.junit.jupiter:junit-jupiter-engine:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-engine-5.10.5.jar (org.junit.jupiter:junit-jupiter-engine:5.10.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-platform-launcher-1.10.5.jar (org.junit.platform:junit-platform-launcher:1.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-platform-engine-1.10.5.jar (org.junit.platform:junit-platform-engine:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-engine-1.10.5.jar (org.junit.platform:junit-platform-engine:1.10.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-jupiter-engine-5.10.5.jar (org.junit.jupiter:junit-jupiter-engine:5.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-jupiter-params-5.10.5.jar (org.junit.jupiter:junit-jupiter-params:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-engine-1.10.5.jar (org.junit.platform:junit-platform-engine:1.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-jupiter-params-5.10.5.jar (org.junit.jupiter:junit-jupiter-params:5.10.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-platform-commons-1.10.5.jar (org.junit.platform:junit-platform-commons:1.10.5) with InstrumentationAnalysisTransform
+Transforming junit-platform-commons-1.10.5.jar (org.junit.platform:junit-platform-commons:1.10.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-jupiter-params-5.10.5.jar (org.junit.jupiter:junit-jupiter-params:5.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-jupiter-5.10.5.jar (org.junit.jupiter:junit-jupiter:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-5.10.5.jar (org.junit.jupiter:junit-jupiter:5.10.5) with MergeInstrumentationAnalysisTransform
+Transforming junit-platform-commons-1.10.5.jar (org.junit.platform:junit-platform-commons:1.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming junit-jupiter-api-5.10.5.jar (org.junit.jupiter:junit-jupiter-api:5.10.5) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-api-5.10.5.jar (org.junit.jupiter:junit-jupiter-api:5.10.5) with MergeInstrumentationAnalysisTransform
+Transforming asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-5.10.5.jar (org.junit.jupiter:junit-jupiter:5.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with MergeInstrumentationAnalysisTransform
+Transforming asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with InstrumentationAnalysisTransform
+Transforming junit-jupiter-api-5.10.5.jar (org.junit.jupiter:junit-jupiter-api:5.10.5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with MergeInstrumentationAnalysisTransform
+Transforming asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with MergeInstrumentationAnalysisTransform
+Transforming asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with MergeInstrumentationAnalysisTransform
+Transforming asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with InstrumentationAnalysisTransform
+Transforming asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with MergeInstrumentationAnalysisTransform
+Transforming asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming slf4j-api-2.0.6.jar (org.slf4j:slf4j-api:2.0.6) with InstrumentationAnalysisTransform
+Transforming asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming slf4j-api-2.0.6.jar (org.slf4j:slf4j-api:2.0.6) with MergeInstrumentationAnalysisTransform
+Transforming snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with InstrumentationAnalysisTransform
+Transforming slf4j-api-2.0.6.jar (org.slf4j:slf4j-api:2.0.6) with ExternalDependencyInstrumentingArtifactTransform
+Transforming snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with MergeInstrumentationAnalysisTransform
+Transforming kotlin-util-klib-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-klib:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-base-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-base-codestarts:3.16.3) with InstrumentationAnalysisTransform
+Transforming kotlin-util-io-2.0.21.jar (org.jetbrains.kotlin:kotlin-util-io:2.0.21) with ExternalDependencyInstrumentingArtifactTransform
+Transforming quarkus-devtools-base-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-base-codestarts:3.16.3) with MergeInstrumentationAnalysisTransform
+Transforming java-properties-0.0.7.jar (org.codejive:java-properties:0.0.7) with InstrumentationAnalysisTransform
+Transforming quarkus-devtools-base-codestarts-3.16.3.jar (io.quarkus:quarkus-devtools-base-codestarts:3.16.3) with ExternalDependencyInstrumentingArtifactTransform
+Transforming java-properties-0.0.7.jar (org.codejive:java-properties:0.0.7) with MergeInstrumentationAnalysisTransform
+Transforming word-23.1.2.jar (org.graalvm.sdk:word:23.1.2) with InstrumentationAnalysisTransform
+Transforming word-23.1.2.jar (org.graalvm.sdk:word:23.1.2) with MergeInstrumentationAnalysisTransform
+Transforming java-properties-0.0.7.jar (org.codejive:java-properties:0.0.7) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jdom2-2.0.6.1.jar (org.jdom:jdom2:2.0.6.1) with InstrumentationAnalysisTransform
+Transforming word-23.1.2.jar (org.graalvm.sdk:word:23.1.2) with ExternalDependencyInstrumentingArtifactTransform
+Transforming jdom2-2.0.6.1.jar (org.jdom:jdom2:2.0.6.1) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.enterprise.lang-model-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.lang-model:4.1.0) with InstrumentationAnalysisTransform
+Transforming jakarta.enterprise.lang-model-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.lang-model:4.1.0) with MergeInstrumentationAnalysisTransform
+Transforming opentest4j-1.3.0.jar (org.opentest4j:opentest4j:1.3.0) with InstrumentationAnalysisTransform
+Transforming jdom2-2.0.6.1.jar (org.jdom:jdom2:2.0.6.1) with ExternalDependencyInstrumentingArtifactTransform
+Transforming opentest4j-1.3.0.jar (org.opentest4j:opentest4j:1.3.0) with MergeInstrumentationAnalysisTransform
+Transforming jakarta.enterprise.lang-model-4.1.0.jar (jakarta.enterprise:jakarta.enterprise.lang-model:4.1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming aopalliance-1.0.jar (aopalliance:aopalliance:1.0) with InstrumentationAnalysisTransform
+Transforming opentest4j-1.3.0.jar (org.opentest4j:opentest4j:1.3.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming aopalliance-1.0.jar (aopalliance:aopalliance:1.0) with MergeInstrumentationAnalysisTransform
+Transforming maven-resolver-named-locks-1.9.22.jar (org.apache.maven.resolver:maven-resolver-named-locks:1.9.22) with InstrumentationAnalysisTransform
+Transforming maven-resolver-named-locks-1.9.22.jar (org.apache.maven.resolver:maven-resolver-named-locks:1.9.22) with MergeInstrumentationAnalysisTransform
+Transforming aopalliance-1.0.jar (aopalliance:aopalliance:1.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-cli-1.8.0.jar (commons-cli:commons-cli:1.8.0) with InstrumentationAnalysisTransform
+Transforming maven-resolver-named-locks-1.9.22.jar (org.apache.maven.resolver:maven-resolver-named-locks:1.9.22) with ExternalDependencyInstrumentingArtifactTransform
+Transforming commons-cli-1.8.0.jar (commons-cli:commons-cli:1.8.0) with MergeInstrumentationAnalysisTransform
+Transforming maven-api-xml-4.0.0-alpha-5.jar (org.apache.maven:maven-api-xml:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming maven-api-xml-4.0.0-alpha-5.jar (org.apache.maven:maven-api-xml:4.0.0-alpha-5) with MergeInstrumentationAnalysisTransform
+Transforming maven-api-meta-4.0.0-alpha-5.jar (org.apache.maven:maven-api-meta:4.0.0-alpha-5) with InstrumentationAnalysisTransform
+Transforming commons-cli-1.8.0.jar (commons-cli:commons-cli:1.8.0) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-api-meta-4.0.0-alpha-5.jar (org.apache.maven:maven-api-meta:4.0.0-alpha-5) with MergeInstrumentationAnalysisTransform
+Transforming maven-api-xml-4.0.0-alpha-5.jar (org.apache.maven:maven-api-xml:4.0.0-alpha-5) with ExternalDependencyInstrumentingArtifactTransform
+Transforming maven-api-meta-4.0.0-alpha-5.jar (org.apache.maven:maven-api-meta:4.0.0-alpha-5) with ExternalDependencyInstrumentingArtifactTransform
+kotlin scripting plugin: created the scripting discovery configuration: integrationTestKotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: native-testKotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: quarkus-generated-sourcesKotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: quarkus-test-generated-sourcesKotlinScriptDef
+file or directory 'D:\rust\library\quarkus\src\quarkus-generated-sources\java', not found
+file or directory 'D:\rust\library\quarkus\src\quarkus-test-generated-sources\java', not found
+file or directory 'D:\rust\library\quarkus\src\integrationTest\kotlin', not found
+file or directory 'D:\rust\library\quarkus\src\integrationTest\java', not found
+file or directory 'D:\rust\library\quarkus\src\main\java', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\grpc', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avdl', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avpr', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avsc', not found
+file or directory 'D:\rust\library\quarkus\src\native-test\kotlin', not found
+file or directory 'D:\rust\library\quarkus\src\native-test\java', not found
+file or directory 'D:\rust\library\quarkus\src\quarkus-generated-sources\kotlin', not found
+file or directory 'D:\rust\library\quarkus\src\quarkus-generated-sources\java', not found
+file or directory 'D:\rust\library\quarkus\src\quarkus-test-generated-sources\kotlin', not found
+file or directory 'D:\rust\library\quarkus\src\quarkus-test-generated-sources\java', not found
+file or directory 'D:\rust\library\quarkus\src\test\kotlin', not found
+file or directory 'D:\rust\library\quarkus\src\test\java', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\grpc', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avdl', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avpr', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avsc', not found
+All projects evaluated.
+Task name matched 'test'
+Selected primary task 'test' from project :
+file or directory 'D:\rust\library\quarkus\src\test\java', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\grpc', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avdl', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avpr', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-test-generated-sources\avsc', not found
+file or directory 'D:\rust\library\quarkus\src\main\java', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\grpc', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avdl', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avpr', not found
+file or directory 'D:\rust\library\quarkus\build\classes\java\quarkus-generated-sources\avsc', not found
+file or directory 'D:\rust\library\quarkus\src\test\resources', not found
+Tasks to be executed: [task ':checkKotlinGradlePluginConfigurationErrors', task ':compileKotlin', task ':compileJava', task ':processResources', task ':classes', task ':jar', task ':compileTestKotlin', task ':compileTestJava', task ':processTestResources', task ':testClasses', task ':test', task ':cdi:checkKotlinGradlePluginConfigurationErrors', task ':cdi:compileKotlin', task ':cdi:compileJava', task ':cdi:processResources', task ':cdi:classes', task ':cdi:jar', task ':cdi:compileTestKotlin', task ':cdi:compileTestJava', task ':cdi:processTestResources', task ':cdi:testClasses', task ':cdi:test', task ':common:checkKotlinGradlePluginConfigurationErrors', task ':common:compileKotlin', task ':common:compileJava', task ':common:processResources', task ':common:classes', task ':common:jar', task ':common:compileTestKotlin', task ':common:compileTestJava', task ':common:processTestResources', task ':common:testClasses', task ':common:test', task ':database:checkKotlinGradlePluginConfigurationErrors', task ':database:compileKotlin', task ':database:compileJava', task ':database:processResources', task ':database:classes', task ':database:jar', task ':database:compileTestKotlin', task ':database:compileTestJava', task ':database:processTestResources', task ':database:testClasses', task ':database:test', task ':file:checkKotlinGradlePluginConfigurationErrors', task ':file:compileKotlin', task ':file:compileJava', task ':file:processResources', task ':file:classes', task ':file:jar', task ':file:compileTestKotlin', task ':file:compileTestJava', task ':file:processTestResources', task ':file:testClasses', task ':file:test', task ':quarkus:processResources', task ':quarkus:quarkusGenerateAppModel', task ':quarkus:quarkusGenerateCode', task ':quarkus:quarkusGenerateDevAppModel', task ':quarkus:quarkusGenerateCodeDev', task ':quarkus:checkKotlinGradlePluginConfigurationErrors', task ':quarkus:compileKotlin', task ':quarkus:compileJava', task ':quarkus:classes', task ':quarkus:jandex', task ':quarkus:jar', task ':quarkus:compileQuarkus-test-generated-sourcesKotlin', task ':quarkus:compileQuarkusTestGeneratedSourcesJava', task ':quarkus:quarkusGenerateTestAppModel', task ':quarkus:quarkusGenerateCodeTests', task ':quarkus:compileTestKotlin', task ':quarkus:compileTestJava', task ':quarkus:processTestResources', task ':quarkus:testClasses', task ':quarkus:test']
+Tasks that were excluded: []
+Resolve mutations for :checkKotlinGradlePluginConfigurationErrors (Thread[#1978,Execution worker,5,main]) started.
+:checkKotlinGradlePluginConfigurationErrors (Thread[#1987,Execution worker Thread 10,5,main]) started.
+
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :compileKotlin (Thread[#1987,Execution worker Thread 10,5,main]) started.
+:compileKotlin (Thread[#1987,Execution worker Thread 10,5,main]) started.
+
+> Task :compileKotlin NO-SOURCE
+Skipping task ':compileKotlin' as it has no source files and no previous output files.
+Resolve mutations for :compileJava (Thread[#1987,Execution worker Thread 10,5,main]) started.
+:compileJava (Thread[#1987,Execution worker Thread 10,5,main]) started.
+
+> Task :compileJava NO-SOURCE
+Skipping task ':compileJava' as it has no source files and no previous output files.
+Resolve mutations for :processResources (Thread[#1987,Execution worker Thread 10,5,main]) started.
+:processResources (Thread[#1987,Execution worker Thread 10,5,main]) started.
+
+> Task :processResources NO-SOURCE
+Skipping task ':processResources' as it has no source files and no previous output files.
+Resolve mutations for :classes (Thread[#1987,Execution worker Thread 10,5,main]) started.
+:classes (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :classes UP-TO-DATE
+Skipping task ':classes' as it has no actions.
+Resolve mutations for :jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :jar UP-TO-DATE
+Caching disabled for task ':jar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':jar' as it is up-to-date.
+Resolve mutations for :compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :compileTestKotlin NO-SOURCE
+Skipping task ':compileTestKotlin' as it has no source files and no previous output files.
+Resolve mutations for :compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :compileTestJava NO-SOURCE
+Skipping task ':compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :processTestResources NO-SOURCE
+Skipping task ':processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :testClasses UP-TO-DATE
+Skipping task ':testClasses' as it has no actions.
+Resolve mutations for :test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :test NO-SOURCE
+Skipping task ':test' as it has no source files and no previous output files.
+Resolve mutations for :cdi:checkKotlinGradlePluginConfigurationErrors (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:checkKotlinGradlePluginConfigurationErrors (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':cdi:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :cdi:compileKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:compileKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:compileKotlin UP-TO-DATE
+Transforming kotlin-stdlib-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming guava-33.2.1-jre.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming annotations-13.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming failureaccess-1.0.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming jsr305-3.0.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming checker-qual-3.42.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming error_prone_annotations-2.26.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming j2objc-annotations-3.0.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Caching disabled for task ':cdi:compileKotlin' because:
+  Build cache is disabled
+Skipping task ':cdi:compileKotlin' as it is up-to-date.
+Resolve mutations for :cdi:compileJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:compileJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:compileJava NO-SOURCE
+Skipping task ':cdi:compileJava' as it has no source files and no previous output files.
+Resolve mutations for :cdi:processResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:processResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:processResources NO-SOURCE
+Skipping task ':cdi:processResources' as it has no source files and no previous output files.
+Resolve mutations for :cdi:classes (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:classes (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:classes UP-TO-DATE
+Skipping task ':cdi:classes' as it has no actions.
+Resolve mutations for :cdi:jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:jar UP-TO-DATE
+Caching disabled for task ':cdi:jar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':cdi:jar' as it is up-to-date.
+Resolve mutations for :cdi:compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:compileTestKotlin UP-TO-DATE
+Transforming main with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-test-junit5-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-test-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-stdlib-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming guava-33.2.1-jre.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming annotations-13.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming failureaccess-1.0.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming jsr305-3.0.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming checker-qual-3.42.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming error_prone_annotations-2.26.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming j2objc-annotations-3.0.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming junit-platform-commons-1.10.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming junit-jupiter-api-5.10.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming opentest4j-1.3.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming apiguardian-api-1.1.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Caching disabled for task ':cdi:compileTestKotlin' because:
+  Build cache is disabled
+Skipping task ':cdi:compileTestKotlin' as it is up-to-date.
+Resolve mutations for :cdi:compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:compileTestJava NO-SOURCE
+Skipping task ':cdi:compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :cdi:processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:processTestResources NO-SOURCE
+Skipping task ':cdi:processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :cdi:testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:testClasses UP-TO-DATE
+Skipping task ':cdi:testClasses' as it has no actions.
+Resolve mutations for :cdi:test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:cdi:test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :cdi:test UP-TO-DATE
+Caching disabled for task ':cdi:test' because:
+  Build cache is disabled
+Skipping task ':cdi:test' as it is up-to-date.
+Resolve mutations for :common:checkKotlinGradlePluginConfigurationErrors (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:checkKotlinGradlePluginConfigurationErrors (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':common:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :common:compileKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:compileKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:compileKotlin UP-TO-DATE
+Transforming kotlin-stdlib-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming bcrypt-0.10.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming annotations-13.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming bytes-1.5.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Caching disabled for task ':common:compileKotlin' because:
+  Build cache is disabled
+Skipping task ':common:compileKotlin' as it is up-to-date.
+Resolve mutations for :common:compileJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:compileJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:compileJava NO-SOURCE
+Skipping task ':common:compileJava' as it has no source files and no previous output files.
+Resolve mutations for :common:processResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:processResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:processResources NO-SOURCE
+Skipping task ':common:processResources' as it has no source files and no previous output files.
+Resolve mutations for :common:classes (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:classes (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:classes UP-TO-DATE
+Skipping task ':common:classes' as it has no actions.
+Resolve mutations for :common:jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:jar (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:jar UP-TO-DATE
+Caching disabled for task ':common:jar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':common:jar' as it is up-to-date.
+Resolve mutations for :common:compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:compileTestKotlin (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:compileTestKotlin UP-TO-DATE
+Transforming main with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-test-junit5-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-test-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming kotlin-stdlib-2.0.21.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming bcrypt-0.10.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming annotations-13.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming bytes-1.5.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming junit-platform-commons-1.10.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming junit-jupiter-api-5.10.1.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming opentest4j-1.3.0.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Transforming apiguardian-api-1.1.2.jar with BuildToolsApiClasspathEntrySnapshotTransform
+Caching disabled for task ':common:compileTestKotlin' because:
+  Build cache is disabled
+Skipping task ':common:compileTestKotlin' as it is up-to-date.
+Resolve mutations for :common:compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:compileTestJava (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:compileTestJava NO-SOURCE
+Skipping task ':common:compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :common:processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:processTestResources (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:processTestResources NO-SOURCE
+Skipping task ':common:processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :common:testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:testClasses (Thread[#1983,Execution worker Thread 6,5,main]) started.
+
+> Task :common:testClasses UP-TO-DATE
+Skipping task ':common:testClasses' as it has no actions.
+Resolve mutations for :common:test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+:common:test (Thread[#1983,Execution worker Thread 6,5,main]) started.
+Gradle Test Executor 5 started executing tests.
+
+> Task :common:test
+Caching disabled for task ':common:test' because:
+  Build cache is disabled
+Task ':common:test' is not up-to-date because:
+  Task has failed previously.
+file or directory 'D:\rust\library\common\build\classes\java\test', not found
+Starting process 'Gradle Test Executor 5'. Working directory: D:\rust\library\common Command: C:\devtools\toolarium-common-build-1.0.2\current\java\bin\java.exe -Dorg.gradle.internal.worker.tmpdir=D:\rust\library\common\build\tmp\test\work @C:\Users\Dione\.gradle\.tmp\gradle-worker-classpath4233617282299767730txt -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -ea worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 5'
+Successfully started process 'Gradle Test Executor 5'
+
+DownloadTest > Download google html() FAILED
+    org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+        at app//org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+        at app//org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+        at app//org.example.AppTest.appworks work app(AppTest.kt:14)
+
+EventBusTest > test() STANDARD_OUT
+    Hello, world!
+    This is a high priority subscription: Hello, world!
+
+LongLiveTaskDistributorTest > Test scaling() STANDARD_OUT
+    Thread-3 ?apid
+    Thread-3 ?andom
+    Thread-3 ?andal
+    Thread-3 ?ock
+    Thread-3 ?ausch
+    Thread-3 ?ocket
+    Thread-3 ?apid
+    Thread-3 ?andom
+    Thread-3 ?andal
+    Thread-3 ?ock
+    Thread-3 ?ausch
+    Thread-3 ?ocket
+    Thread-3 ?apid
+    Thread-3 ?andom
+    Thread-3 ?andal
+    Thread-3 ?ock
+    Thread-3 ?ausch
+    Thread-3 ?ocket
+    Scaling to 2 workers
+    Thread-3 ?apid
+    Thread-3 ?andom
+    Thread-3 ?andal
+    Thread-3 ?ock
+    Thread-3 ?ausch
+    Thread-3 ?ocket
+    Thread-5 ?andom
+    Thread-5 ?ock
+    Thread-4 ?apid
+    Thread-5 ?ocket
+    Thread-4 ?andal
+    Thread-4 ?ausch
+    Thread-5 ?andom
+    Thread-5 ?ock
+    Thread-5 ?ocket
+    Thread-4 ?apid
+    Thread-4 ?andal
+    Thread-4 ?ausch
+    Thread-5 ?andom
+    Thread-4 ?apid
+    Thread-4 ?andal
+    Thread-5 ?ock
+    Thread-4 ?ausch
+    Thread-5 ?ocket
+    Thread-4 ?apid
+    Thread-4 ?andal
+    Thread-4 ?ausch
+    Thread-5 ?andom
+    Thread-5 ?ock
+    Thread-5 ?ocket
+    Thread-4 ?apid
+    Thread-4 ?andal
+    Thread-4 ?ausch
+    Thread-5 ?andom
+    Thread-5 ?ock
+    Thread-5 ?ocket
+
+LongLiveTaskDistributorTest > Test common use-case() STANDARD_OUT
+    Thread-4 ?apid
+    Thread-4 ?andal
+    Thread-4 ?ausch
+    Thread-5 ?andom
+    Thread-5 ?ock
+    Thread-5 ?ocket
+    Thread-7 ?andom
+    Thread-6 ?apid
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-6 ?ausch
+    Thread-7 ?ocket
+    Thread-8 ?andal
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-9 ?ock
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-9 ?ock
+    Thread-6 ?apid
+    Thread-8 ?andal
+    Thread-6 ?ausch
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-8 ?andal
+    Thread-7 ?andom
+    Thread-9 ?ock
+    Thread-7 ?ocket
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-6 ?apid
+    Thread-6 ?ausch
+    Thread-8 ?andal
+    Thread-9 ?ock
+    Thread-7 ?andom
+    Thread-7 ?ocket
+    Thread-6 ?apid
+    Thread-6 ?ausch
+
+RandomTest > Test random by chance() STANDARD_OUT
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    a / 0.1
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    b / 0.5
+    a / 0.1
+    b / 0.5
+    b / 0.5
+
+Gradle Test Executor 5 finished executing tests.
+
+> Task :common:test FAILED
+Finished generating test XML results (0.01 secs) into: D:\rust\library\common\build\test-results\test
+Generating HTML test report...
+Finished generating test html results (0.007 secs) into: D:\rust\library\common\build\reports\tests\test
+9 actionable tasks: 1 executed, 8 up-to-date
+Watched directory hierarchies: [D:\rust\library]
