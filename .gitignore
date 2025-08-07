@@ -3,3 +3,4 @@
 .idea/
 *.iml
 tarpaulin-report.html
+.direnv
