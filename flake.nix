@@ -23,14 +23,14 @@
       "aarch64-darwin"
     ];
     eachSystem = lib.genAttrs systems;
-    pkgsFor = eachSystem (system:
+    pkgs = eachSystem (system:
       import nixpkgs {
         localSystem.system = system;
         overlays = [(import rust-overlay) self.overlays.logana];
       });
   in {
     packages = eachSystem (system: {
-      inherit (pkgsFor.${system}) logana;
+      inherit (pkgs.${system}) logana;
       /*
       The default logana build. Uses the latest stable Rust toolchain, and unstable
       nixpkgs.
@@ -58,19 +58,22 @@
           rustPlatform = msrvPlatform;
         };
       })
-      pkgsFor;
+      pkgs;
 
     # Devshell behavior is preserved.
     devShells =
       lib.mapAttrs (system: pkgs: {
         default = pkgs.mkShell {
+          buildInputs = [
+            pkgs.rust-bin.stable.latest.default
+          ];
           shellHook = ''
             export RUST_BACKTRACE="1"
             export RUSTFLAGS="''${RUSTFLAGS:-""}"
           '';
         };
       })
-      pkgsFor;
+      pkgs;
 
     overlays = {
       logana = final: prev: {
