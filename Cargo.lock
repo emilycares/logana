@@ -226,8 +226,8 @@ dependencies = [
 
 [[package]]
 name = "coffee_stain"
-version = "0.1.0"
-source = "git+https://github.com/emilycares/coffee_stain#038513f747a6466c01bf5c0d2575aa49cae186ff"
+version = "1.0.0"
+source = "git+https://github.com/emilycares/coffee_stain?tag=1.0.0#03fbac70c8d50db1ae5388ffb1289574b5aead7d"
 dependencies = [
  "clap",
  "colored",
