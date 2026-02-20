@@ -72,7 +72,7 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
                             }
                         }
                     }
-                } else if let Some((_, path)) = line.split_once(" panicked at ").take() {
+                } else if let Some((_, path)) = line.split_once(" panicked at ") {
                     let path = &path[0..path.len() - 1];
                     if let Some(location) = parse_location(path, project_dir) {
                         if let Some(error) = lines.get(i + 1) {

@@ -47,7 +47,7 @@ fn combine_lines(start: usize, end: usize, lines: &[&str]) -> String {
 #[cfg(test)]
 mod tests {
 
-    #[cfg(target_arch = "linux")]
+    #[cfg(target = "linux")]
     #[test]
     fn should_split_builds() {
         use crate::input::split::builds;
@@ -77,7 +77,7 @@ mod tests {
                    "emily@dione ~/t/some_project (main)> cargo build\n   Compiling some_project v0.1.0 (/home/emily/tmp/some_project)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.14s\n\n"]);
     }
 
-    #[cfg(target_arch = "linux")]
+    #[cfg(target = "linux")]
     #[test]
     fn should_split_builds_2() {
         use crate::input::split::builds;

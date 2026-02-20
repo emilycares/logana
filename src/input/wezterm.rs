@@ -4,7 +4,7 @@ use subprocess::{Exec, Redirection};
 #[must_use]
 pub fn get_wezterm_pane_content(target: &str) -> Option<String> {
     let out = Exec::cmd("wezterm")
-        .args(&[
+        .args([
             "cli",
             "get-text",
             "--pane-id",
@@ -15,7 +15,7 @@ pub fn get_wezterm_pane_content(target: &str) -> Option<String> {
         ])
         .stdout(Redirection::Pipe)
         .capture()
-        .expect("Unable to get wezterm output")
+        .ok()?
         .stdout_str();
 
     Some(out)

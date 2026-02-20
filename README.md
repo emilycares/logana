@@ -12,6 +12,7 @@ Currently, it supports
 - eslint https://eslint.org/
 - go https://go.dev/
 - gradle (java only) (Tests are not supported for the moment) https://gradle.org/
+- gcc https://gcc.gnu.org/
 - java (Only exceptions) https://www.java.com/en/
 - karmaJasmine https://karma-runner.github.io/latest/index.html
 - maven https://maven.apache.org/

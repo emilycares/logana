@@ -94,12 +94,11 @@ fn parse_test_exception(
                         error: format!("{message}  {better_message}"),
                         locations: vec![location],
                     });
-                } else {
-                    return Some(types::Message {
-                        error: format!("{message}"),
-                        locations: vec![location],
-                    });
                 }
+                return Some(types::Message {
+                    error: message.clone(),
+                    locations: vec![location],
+                });
             }
             break;
         }
@@ -320,7 +319,7 @@ mod tests {
                     col: 0
                 }]
             }]
-        )
+        );
     }
     #[test]
     fn should_find_failed_test_4() {

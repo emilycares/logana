@@ -5,7 +5,7 @@ use std::str::FromStr;
 #[derive(Parser, Debug, Clone)]
 #[clap(author, version, about, long_about = None)]
 pub struct Args {
-    /// The type of log input "Cargo", "Maven" or "KarmaJasmine"
+    /// The type of log input "Cargo", "Maven" or "`KarmaJasmine`"
     #[clap(short, long, value_enum, required_if_eq_any([("input", "stdin"), ("input", "tmux"), ("input", "wezterm")]))]
     pub parser: Option<ParserKind>,
 
@@ -76,6 +76,8 @@ pub enum ParserKind {
     Cargo,
     /// The parser for clang
     Clang,
+    /// The parser for gcc
+    Gcc,
     /// The parser for gradle
     Gradle,
     /// The parser for Karma with Jasmine
@@ -105,11 +107,13 @@ impl FromStr for ParserKind {
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         match input {
+            "clang" => Ok(Self::Clang),
             "alr" => Ok(Self::Alire),
             "cargo" | "typos" => Ok(Self::Cargo),
             "dune" => Ok(Self::Dune),
             "go" => Ok(Self::Go),
             "gradle" | "./gradlew" => Ok(Self::Gradle),
+            "gcc" => Ok(Self::Gcc),
             "java" => Ok(Self::Java),
             "karma-jasmine" => Ok(Self::KarmaJasmine),
             "maven" | "mvn" => Ok(Self::Maven),

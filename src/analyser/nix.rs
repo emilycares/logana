@@ -6,12 +6,12 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
     let mut errors: Vec<types::Message> = vec![];
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
-    let line_len = &lines.len();
+    let line_len = lines.len();
 
-    for i in 0..*line_len {
+    for i in 0..line_len {
         if let Some(line) = lines.get(i) {
             if line.starts_with("Failed! ") && line.ends_with(" error found at:") {
-                errors.extend(parse_fmt_errors(lines, i, &line_len, project_dir));
+                errors.extend(parse_fmt_errors(lines, i, line_len, project_dir));
             }
         }
     }
@@ -22,11 +22,11 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 fn parse_fmt_errors(
     lines: &[&str],
     i: usize,
-    line_len: &usize,
+    line_len: usize,
     project_dir: &str,
 ) -> Vec<types::Message> {
     let mut out = vec![];
-    for i in i + 1..*line_len {
+    for i in i + 1..line_len {
         if let Some(line) = lines.get(i) {
             if !line.starts_with("- ") {
                 break;

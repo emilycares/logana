@@ -7,16 +7,16 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     let lines = log.lines().collect::<Vec<&str>>();
     let lines = lines.as_slice();
-    let line_len = &lines.len();
+    let line_len = lines.len();
     let mut current_module = None;
 
-    for i in 0..*line_len {
+    for i in 0..line_len {
         if let Some(line) = lines.get(i) {
             let line = line.trim();
 
             if line.starts_with("> Task :") {
                 let line = line.trim_start_matches("> Task :");
-                if let Some((module, _)) = line.split_once(":") {
+                if let Some((module, _)) = line.split_once(':') {
                     current_module = Some(module);
                 }
             }
@@ -39,14 +39,14 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
 fn parse_failed_test(
     i: usize,
-    line_len: &usize,
+    line_len: usize,
     lines: &[&str],
     project_dir: &str,
     current_module: Option<&str>,
     errors: &mut Vec<types::Message>,
 ) {
     let mut msg = None;
-    'test_case: for i in i..*line_len {
+    'test_case: for i in i..line_len {
         if let Some(line) = lines.get(i) {
             if line.is_empty() {
                 break 'test_case;
@@ -63,16 +63,16 @@ fn parse_failed_test(
                 continue 'test_case;
             }
             if let Some((_, line)) = line.split_once("app//") {
-                if let Some((path, rest)) = line.split_once("(") {
+                if let Some((path, rest)) = line.split_once('(') {
                     let mut language = "java";
-                    if let Some((_, new_lang)) = rest.split_once(".") {
-                        if let Some((new_lang, _)) = new_lang.rsplit_once(":") {
+                    if let Some((_, new_lang)) = rest.split_once('.') {
+                        if let Some((new_lang, _)) = new_lang.rsplit_once(':') {
                             language = new_lang;
                         }
                     }
 
                     if let Some((filename, line)) = rest.split_once(&format!(".{language}:")) {
-                        let line_number = line.trim_end_matches(")");
+                        let line_number = line.trim_end_matches(')');
 
                         let language_identifier = match language {
                             "java" => "java",
@@ -80,16 +80,14 @@ fn parse_failed_test(
                             a => a,
                         };
                         if let Some((class_path, _)) = path.split_once(filename) {
-                            let module = match current_module {
-                                None => "",
-                                Some(module) => &format!("/{module}"),
-                            };
+                            let module =
+                                current_module.map_or(String::new(), |module| format!("/{module}"));
                             let path = format!(
                                 "{}{}/src/test/{}/{}{}.{}",
                                 project_dir,
                                 module,
                                 language_identifier,
-                                class_path.replace(".", "/"),
+                                class_path.replace('.', "/"),
                                 filename,
                                 language
                             );
@@ -97,11 +95,11 @@ fn parse_failed_test(
                                 errors.push(types::Message {
                                     error: error.trim().to_owned(),
                                     locations: vec![types::Location {
-                                        path: path.to_string(),
+                                        path: path.clone(),
                                         row: line_number.parse::<usize>().unwrap_or_default(),
                                         col: 0,
                                     }],
-                                })
+                                });
                             }
                         }
                     }

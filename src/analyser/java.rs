@@ -17,7 +17,7 @@ pub fn analyse(log: &str, project_dir: &str, package: &str) -> Vec<types::Messag
 /// - file with exetension
 /// - `project_dir`
 /// - "/src/java/main"
-/// and replace slash with dots
+///   and replace slash with dots
 #[allow(dead_code)]
 pub fn get_package(file: &str, project_dir: &str) -> String {
     let file = Path::new(file);
@@ -150,7 +150,7 @@ fn get_exceptions(log: &[&str], project_dir: &str, package: &str) -> Vec<types::
                         if !line.trim().starts_with("at ") {
                             break 'exception;
                         }
-                    };
+                    }
                 }
 
                 end = y;

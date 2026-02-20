@@ -113,12 +113,12 @@ fn parse_exception(log: &[&str], project_dir: &str) -> Option<types::Message> {
         let mut location = String::new();
 
         if let Some((_, location_w)) = line.split_once("_karma_webpack_/webpack:") {
-            location = location_w.to_owned();
+            location_w.clone_into(&mut location);
         }
 
         if let Some((_, location_w)) = line.split_once(" (") {
             if location_w.starts_with("src/") {
-                location = location_w.to_owned();
+                location_w.clone_into(&mut location);
             }
         }
 

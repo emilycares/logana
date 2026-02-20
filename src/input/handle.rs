@@ -32,7 +32,7 @@ async fn handle_watch(args: &Args, project_dir: &str) {
         let (otx, orx) = tokio::sync::watch::channel("watch");
 
         tokio::spawn(async move {
-            listen_fs(&watch, otx);
+            listen_fs(&watch, &otx);
         });
 
         let args = args.clone();
@@ -63,7 +63,7 @@ async fn act_fs(args: Args, project_dir: String, mut orx: tokio::sync::watch::Re
     }
 }
 
-fn listen_fs(watch: &String, otx: tokio::sync::watch::Sender<&str>) {
+fn listen_fs(watch: &String, otx: &tokio::sync::watch::Sender<&str>) {
     let (tx, rx) = std::sync::mpsc::channel();
     let config = notify::Config::default()
         .with_compare_contents(true)
@@ -128,8 +128,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
                     split::builds(command::strip_color(content.as_str()).as_str(), splitby)
                         .iter()
                         .map(|build| analyse(args, format!("pane: {target}"), build, project_dir))
-                        .filter(|analyse| !analyse.errors.is_empty())
-                        .last()
+                        .rfind(|analyse| !analyse.errors.is_empty())
                 {
                     return Some(report);
                 }
@@ -154,7 +153,7 @@ pub async fn handle_input(args: &Args, project_dir: &str) -> Option<types::Analy
         None => {
             println!("There was no --input defined and it could not be guessed");
         }
-    };
+    }
 
     None
 }
@@ -181,15 +180,17 @@ pub fn analyse(
         Some(ParserKind::Eslint) => analyser::eslint::analyse(input, project_dir),
         Some(ParserKind::Go) => analyser::go::analyse(input, project_dir),
         Some(ParserKind::Gradle) => analyser::gradle::analyse(input, project_dir),
-        Some(ParserKind::Java) => {
-            if let Some(package) = &args.package {
-                let package = package.as_str();
-                analyser::java::analyse(input, project_dir, package)
-            } else {
+        Some(ParserKind::Gcc) => analyser::gcc::analyse(input, project_dir),
+        Some(ParserKind::Java) => args.package.as_ref().map_or_else(
+            || {
                 println!("The argument package is required for java");
                 vec![]
-            }
-        }
+            },
+            |package| {
+                let package = package.as_str();
+                analyser::java::analyse(input, project_dir, package)
+            },
+        ),
         Some(ParserKind::KarmaJasmine) => analyser::karma_jasmine::analyse(input, project_dir),
         Some(ParserKind::Maven) => analyser::maven::analyse(input, project_dir),
         Some(ParserKind::Nix) => analyser::nix::analyse(input, project_dir),

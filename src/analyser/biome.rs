@@ -24,7 +24,7 @@ pub fn analyse(log: &str, _project_dir: &str) -> Vec<types::Message> {
 }
 
 fn parse_line(line: &str, desc: &str) -> Option<types::Message> {
-    let (loc, _) = line.split_once(" ")?;
+    let (loc, _) = line.split_once(' ')?;
 
     let mut splits = loc.split(':');
     let mut file: String = splits.next()?.trim().to_string();
@@ -36,7 +36,7 @@ fn parse_line(line: &str, desc: &str) -> Option<types::Message> {
     let col = splits.next()?.trim();
 
     let location = types::Location {
-        path: file.to_string(),
+        path: file.clone(),
         row: row.parse().unwrap_or_default(),
         col: col.parse().unwrap_or_default(),
     };

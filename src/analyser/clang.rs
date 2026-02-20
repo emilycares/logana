@@ -10,10 +10,8 @@ pub fn analyse(log: &str, project_dir: &str) -> Vec<types::Message> {
 
     for i in 0..*line_len {
         if let Some(line) = lines.get(i) {
-            if line.starts_with(project_dir) || line.starts_with("src/") {
-                if let Some(error) = parse_line(line, project_dir) {
-                    errors.push(error);
-                }
+            if let Some(error) = parse_line(line, project_dir) {
+                errors.push(error);
             }
         }
     }

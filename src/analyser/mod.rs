@@ -12,6 +12,8 @@ pub mod clang;
 pub mod dune;
 /// Contains the analyser code for the [`crate::config::ParserKind::Eslint`]
 pub mod eslint;
+/// Contains the analyser code for the [`crate::config::ParserKind::Gcc`]
+pub mod gcc;
 /// Contains the analyser code for the [`crate::config::ParserKind::Go`]
 pub mod go;
 /// Contains the analyser code for the [`crate::config::ParserKind::Gradle`]
